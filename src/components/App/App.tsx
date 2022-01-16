@@ -1,9 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import AppHeader from './components/AppHeader/AppHeader';
-import BurgerConstructor from './components/BurgerConstructor/BurgerConstructor';
-import BurgerIngredients from './components/BurgerIngredients/BurgerIngredients';
+import AppHeader from '../AppHeader/AppHeader';
+import BurgerConstructor from '../BurgerConstructor/BurgerConstructor';
+import BurgerIngredients from '../BurgerIngredients/BurgerIngredients';
 
 
 function App() {
@@ -15,7 +14,6 @@ function App() {
 
       <BurgerIngredients></BurgerIngredients>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
