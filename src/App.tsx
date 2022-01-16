@@ -1,10 +1,19 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import AppHeader from './components/AppHeader/AppHeader';
+import BurgerConstructor from './components/BurgerConstructor/BurgerConstructor';
+import BurgerIngredients from './components/BurgerIngredients/BurgerIngredients';
+
 
 function App() {
   return (
     <div className="App">
+      <AppHeader></AppHeader>
+
+      <BurgerConstructor></BurgerConstructor>
+
+      <BurgerIngredients></BurgerIngredients>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
