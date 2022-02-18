@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import styles from './App.module.css';
 import AppHeader from '../AppHeader/AppHeader';
 import BurgerConstructor from '../BurgerConstructor/BurgerConstructor';
 import BurgerIngredients from '../BurgerIngredients/BurgerIngredients';
@@ -7,25 +7,17 @@ import BurgerIngredients from '../BurgerIngredients/BurgerIngredients';
 
 function App() {
   return (
-    <div className="App">
+    <div className={styles.app}>
       <AppHeader></AppHeader>
 
-      <BurgerConstructor></BurgerConstructor>
+      <section className={styles.body}>
 
-      <BurgerIngredients></BurgerIngredients>
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <BurgerIngredients></BurgerIngredients>
+
+        <BurgerConstructor></BurgerConstructor>
+
+        
+      </section>
     </div>
   );
 }
