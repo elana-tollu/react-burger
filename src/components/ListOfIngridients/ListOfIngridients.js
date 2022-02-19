@@ -1,14 +1,15 @@
 import React from 'react';
 import styles from './ListOfIngridients.module.css';
-import IngredientDetails from '../IngredientDetails/IngredientDetails'
+import IngredientDetails from '../IngredientDetails/IngredientDetails';
+import {forwardRef} from 'react';
 
-function ListOfIngridients (props){
+const ListOfIngridients = forwardRef(function(props, ref){
     const listOfIngridients = props.ingredients.map((ing, index) =>
     <IngredientDetails key={index} ing={ing}/>
   );
 
   return (
-        <section id={props.id}>
+        <section ref={ref}>
             <p className="text text_type_main-medium">
               {props.title}
             </p>
@@ -19,6 +20,6 @@ function ListOfIngridients (props){
             </div> 
         </section>
     );
-}
+});
 
 export default ListOfIngridients
