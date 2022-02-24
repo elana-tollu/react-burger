@@ -46,7 +46,7 @@ function TabPanel () {
 
     <div className={styles.ingredientsScroll} ref={scrollRef}> 
       <ListOfIngridients  
-      title = "Булочки" 
+      title = "Булки" 
       ingredients = {buns} 
       ref={bunsRef}/>
 

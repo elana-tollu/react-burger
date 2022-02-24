@@ -1,6 +1,9 @@
 .cardList {
-    padding: 0;
+    width: 600px;
+    margin: 0;
+    padding: 24px 16px 40px 16px;
     display: grid;
     grid-template-columns: repeat(2, 272px);
     gap: 32px 24px;
+    box-sizing: border-box;
 }

@@ -13,11 +13,9 @@ const ListOfIngridients = forwardRef(function(props, ref){
             <p className="text text_type_main-medium">
               {props.title}
             </p>
-            <div style={{ backgroundColor: '#131316' }} className="mb-10 mt-10">
-                <ul className={styles.cardList}>
-                    {listOfIngridients}
-                </ul>
-            </div> 
+            <ul className={styles.cardList}>
+                {listOfIngridients}
+            </ul> 
         </section>
     );
 });

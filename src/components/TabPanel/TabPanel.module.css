@@ -1,10 +1,12 @@
 .ingredientsScroll {
     max-height: 756px;
+    width: 600px;
+    margin: 0;
     padding: 0;
-    display: grid;
-    grid-template-columns: repeat(2, 272px);
-    gap: 32px 24px;
+    display: flex;
+    flex-direction: column;
     overflow-y: scroll;
+    overflow-x: hidden;
     scrollbar-width: thin;
     scrollbar-color: rgb(19, 19, 22);
 }
