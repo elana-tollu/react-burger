@@ -20,13 +20,11 @@ function OrderDetails (props: { ing: { image: string; name: string; price: numbe
                 <div className={styles.ingredientPrice}>
                     <span className='cost'>
                     <p style={{ marginRight: '8px' }} className="text text_type_digits-default">{props.ing.price}</p></span>
-                    <CurrencyIcon type="primary" />
+                    <CurrencyIcon style={{ textAlign: 'end' }} type="primary" />
                 </div>
 
                 <LockIcon type="primary" />
-            </div>
-
-            
+            </div>            
         </section>
     )
 }
