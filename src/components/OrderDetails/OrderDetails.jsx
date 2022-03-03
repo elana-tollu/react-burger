@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './OrderDetails.module.css'
-import { DragIcon, CurrencyIcon, LockIcon }  from '@ya.praktikum/react-developer-burger-ui-components';
+import { DragIcon, CurrencyIcon, DeleteIcon }  from '@ya.praktikum/react-developer-burger-ui-components';
 import image from '../../images/meat-Protostomia.png'
 
 function OrderDetails (props: { ing: { image: string; name: string; price: number}; }) {
@@ -23,7 +23,7 @@ function OrderDetails (props: { ing: { image: string; name: string; price: numbe
                     <CurrencyIcon style={{ textAlign: 'end' }} type="primary" />
                 </div>
 
-                <LockIcon type="primary" />
+                <DeleteIcon type="primary" />
             </div>            
         </section>
     )
