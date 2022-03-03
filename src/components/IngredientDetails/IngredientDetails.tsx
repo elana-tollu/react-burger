@@ -17,7 +17,7 @@ function IngredientDetails (props: { ing: { image: string; name: string; price: 
         />
 
         <div className={styles.price}>
-            <p className="text text_type_digits-default">{props.ing.price}</p>
+            <p style={{ marginRight: '8px' }} className="text text_type_digits-default">{props.ing.price}</p>
             <CurrencyIcon type="primary" />
         </div>
         <p className="text text_type_main-default">{props.ing.name}</p>

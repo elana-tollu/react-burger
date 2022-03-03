@@ -21,6 +21,11 @@
     border-radius: 40px;
 }
 
+.ingredientImage {
+    width: 80px;
+    height: 40px;
+}
+
 .ingredientName {
     width: 254px;
     height: 48px;
