@@ -49,7 +49,7 @@ function BurgerConstructor () {
             alt=''
             /> 
 
-            <p className={styles.ingredientName}>Флюоресцентная булка R2-D3 (верх)</p>
+            <p className={styles.ingredientName}>Флюоресцентная булка R2-D3 (низ)</p>
 
             <div className={styles.ingredientPrice}>
                 <span className='cost'>

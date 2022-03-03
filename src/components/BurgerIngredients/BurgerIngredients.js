@@ -9,7 +9,7 @@ function BurgerIngredients () {
         Соберите бургер
       </p>
       
-      <div style={{ backgroundColor: '#4c4cff' }} className="mb-10 mt-5">
+      <div className="mb-10 mt-5">
         <TabPanel></TabPanel>
       </div>
     </section>    
