@@ -7,6 +7,12 @@
     flex-direction: column;
     overflow-y: scroll;
     overflow-x: hidden;
-    scrollbar-width: thin;
-    scrollbar-color: rgb(19, 19, 22);
+}
+.ingredientsScroll::-webkit-scrollbar{
+    background-color: #2F2F37;
+    width: 8px;
+} 
+
+.ingredientsScroll::-webkit-scrollbar-thumb{
+    background-color: #8585AD;
 }
