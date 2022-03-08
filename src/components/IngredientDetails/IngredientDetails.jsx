@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './IngredientDetails.module.css';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import image from '../../images/bun-01.jpg'
 
-function IngredientDetails (props: { ing: { image: string; name: string; price: number}; }) {
+
+function IngredientDetails (props) {
   return (
     <section className={styles.IngredientDetails}>
         <span className={styles.counter}>
@@ -24,5 +25,13 @@ function IngredientDetails (props: { ing: { image: string; name: string; price: 
     </section>
   );
 }
+
+IngredientDetails.propTypes = {
+  ing: PropTypes.shape({
+    image: PropTypes.string.isRequired, 
+    price: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired
+  }).isRequired
+};
 
 export default IngredientDetails;

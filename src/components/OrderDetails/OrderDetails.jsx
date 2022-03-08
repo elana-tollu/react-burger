@@ -1,9 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './OrderDetails.module.css'
 import { DragIcon, CurrencyIcon, DeleteIcon }  from '@ya.praktikum/react-developer-burger-ui-components';
-import image from '../../images/meat-Protostomia.png'
 
-function OrderDetails (props: { ing: { image: string; name: string; price: number}; }) {
+function OrderDetails (props) {
     return (
         <section className={styles.OrderDetails}>
             <DragIcon style={{ marginRight: '8px' }} type="primary" />
@@ -28,5 +28,13 @@ function OrderDetails (props: { ing: { image: string; name: string; price: numbe
         </section>
     )
 }
+
+OrderDetails.propTypes = {
+    ing: PropTypes.shape({
+      image: PropTypes.string.isRequired, 
+      price: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired
+    }).isRequired
+  };
 
 export default OrderDetails;

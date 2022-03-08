@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './ListOfIngridients.module.css';
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import {forwardRef} from 'react';
@@ -19,5 +20,9 @@ const ListOfIngridients = forwardRef(function(props, ref){
         </section>
     );
 });
+
+ListOfIngridients.propTypes = {
+    title: PropTypes.string.isRequired
+  };
 
 export default ListOfIngridients
