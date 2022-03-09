@@ -16,7 +16,7 @@ function scroll(parentRef, childRef) {
 }
 
 function TabPanel () {
-  const [current, setCurrent] = useState('one')
+  const [current, setCurrent] = useState('buns')
 
   const buns = ingredientsOfType(data, 'bun');
   const mains = ingredientsOfType(data, 'main');
@@ -30,19 +30,19 @@ function TabPanel () {
   return (
     <>
     <div style={{ display: 'flex' }}>
-      <Tab value="one" active={current === 'one'} onClick={ v => {
+      <Tab value="buns" active={current === 'buns'} onClick={ v => {
           setCurrent(v);
           scroll(scrollRef, bunsRef);
         }}>
         Булки
       </Tab>
-      <Tab value="two" active={current === 'two'} onClick={ v => {
+      <Tab value="sauces" active={current === 'sauces'} onClick={ v => {
           setCurrent(v);
           scroll(scrollRef, saucesRef);
         }}>
         Соусы
       </Tab>
-      <Tab value="three" active={current === 'three'} onClick={ v => {
+      <Tab value="mains" active={current === 'mains'} onClick={ v => {
           setCurrent(v);
           scroll(scrollRef, mainsRef);
         }}>

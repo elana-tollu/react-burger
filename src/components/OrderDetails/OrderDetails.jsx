@@ -21,7 +21,7 @@ function OrderDetails (props) {
 
                 <div className={styles.ingredientPrice}>
                     <span className='cost'>
-                    <p style={{ marginRight: '8px' }} className="text text_type_digits-default">{props.ing.price}</p></span>
+                    <p className="text text_type_digits-default mr-2">{props.ing.price}</p></span>
                     <CurrencyIcon style={{ textAlign: 'end' }} type="primary" />
                 </div>
 
