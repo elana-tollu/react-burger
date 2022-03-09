@@ -1,9 +1,10 @@
-import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState, useRef } from 'react';
+
+import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import {data} from '../utils/data.js'
 import ListOfIngridients from '../ListOfIngridients/ListOfIngridients';
-import styles from './TabPanel.module.css';
 
+import styles from './TabPanel.module.css';
 
 function ingredientsOfType (ings, type) {
   return ings.filter(element => element.type === type);

@@ -1,6 +1,8 @@
 import React from 'react';
-import styles from './BurgerIngredients.module.css';
+
 import TabPanel from '../TabPanel/TabPanel';
+
+import styles from './BurgerIngredients.module.css';
 
 function BurgerIngredients () {
   return (
@@ -10,7 +12,7 @@ function BurgerIngredients () {
       </p>
       
       <div className="mb-10 mt-5">
-        <TabPanel></TabPanel>
+        <TabPanel />
       </div>
     </section>    
   );

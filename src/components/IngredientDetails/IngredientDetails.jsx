@@ -1,8 +1,9 @@
 import React from 'react';
+
 import PropTypes from 'prop-types';
-import styles from './IngredientDetails.module.css';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
+import styles from './IngredientDetails.module.css';
 
 function IngredientDetails (props) {
   return (

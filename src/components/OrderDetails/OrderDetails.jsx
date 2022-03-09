@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './OrderDetails.module.css'
+
 import { DragIcon, CurrencyIcon, DeleteIcon }  from '@ya.praktikum/react-developer-burger-ui-components';
+
+import styles from './OrderDetails.module.css'
 
 function OrderDetails (props) {
     return (

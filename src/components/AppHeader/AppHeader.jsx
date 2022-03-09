@@ -1,6 +1,8 @@
-import { BurgerIcon, Button, ListIcon, Logo, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import styles from './AppHeader.module.css'
 import React from 'react';
+
+import { BurgerIcon, Button, ListIcon, Logo, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+
+import styles from './AppHeader.module.css'
 
 function AppHeader() {
   return (
@@ -13,7 +15,7 @@ function AppHeader() {
           <Button type="secondary" size="small">
             <div className={styles.buttonContent}>
               <BurgerIcon type="primary" /> 
-              <p style={{ marginLeft: '8px' }} className="text text_type_main-default text_color_inactive">
+                <p className="text text_type_main-default text_color_inactive ml-2">
                 Конструктор
               </p>
             </div>
@@ -22,7 +24,7 @@ function AppHeader() {
           <Button type="secondary" size="small">
             <div className={styles.buttonContent}>
               <ListIcon type="primary" />
-              <p style={{ marginLeft: '8px' }} className="text text_type_main-default text_color_inactive">
+              <p className="text text_type_main-default text_color_inactive ml-2">
               Лента заказов
               </p>
             </div>
@@ -32,7 +34,7 @@ function AppHeader() {
         <Button type="secondary" size="small">
           <div className={styles.buttonContent}>
             <ProfileIcon type="primary" />
-            <p style={{ marginLeft: '8px' }} className="text text_type_main-default text_color_inactive">
+            <p className="text text_type_main-default text_color_inactive ml-2">
               Личный кабинет
             </p>
           </div>

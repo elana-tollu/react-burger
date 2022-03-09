@@ -1,8 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './ListOfIngridients.module.css';
-import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import {forwardRef} from 'react';
+import PropTypes from 'prop-types';
+
+import IngredientDetails from '../IngredientDetails/IngredientDetails';
+
+import styles from './ListOfIngridients.module.css';
 
 const ListOfIngridients = forwardRef(function(props, ref){
     const listOfIngridients = props.ingredients.map((ing, index) =>

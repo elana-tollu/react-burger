@@ -1,12 +1,12 @@
 import React from 'react';
-import styles from './BurgerConstructor.module.css';
-import image from '../../images/orderIkon.png'
-import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
-import OrderDetails from '../OrderDetails/OrderDetails'
-import {data} from '../utils/data.js'
-import { CurrencyIcon, LockIcon }  from '@ya.praktikum/react-developer-burger-ui-components';
-import imageBun from '../../images/bun-01.png';
 
+import imageBun from '../../images/bun-01.png';
+import image from '../../images/orderIkon.png'
+import {Button, CurrencyIcon, LockIcon} from '@ya.praktikum/react-developer-burger-ui-components';
+import {data} from '../utils/data.js'
+import OrderDetails from '../OrderDetails/OrderDetails'
+
+import styles from './BurgerConstructor.module.css';
 
 function BurgerConstructor () {
 

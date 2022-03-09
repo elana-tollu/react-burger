@@ -1,9 +1,10 @@
 import React from 'react';
-import styles from './App.module.css';
+
 import AppHeader from '../AppHeader/AppHeader';
 import BurgerConstructor from '../BurgerConstructor/BurgerConstructor';
 import BurgerIngredients from '../BurgerIngredients/BurgerIngredients';
 
+import styles from './App.module.css';
 
 function App() {
   return (
@@ -12,9 +13,9 @@ function App() {
 
       <section className={styles.body}>
 
-        <BurgerIngredients></BurgerIngredients>
+        <BurgerIngredients />
 
-        <BurgerConstructor></BurgerConstructor>
+        <BurgerConstructor />
 
         
       </section>
