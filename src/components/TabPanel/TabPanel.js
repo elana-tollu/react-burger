@@ -10,6 +10,11 @@ function ingredientsOfType (ings, type) {
   return ings.filter(element => element.type === type);
 };
 
+function scroll(parentRef, childRef) {
+  const offset = childRef.current.offsetTop - parentRef.current.offsetTop;
+  parentRef.current.scrollTop = offset;
+}
+
 function TabPanel () {
   const [current, setCurrent] = useState('one')
 
@@ -67,7 +72,4 @@ function TabPanel () {
 
 export default TabPanel;
 
-function scroll(parentRef, childRef) {
-  const offset = childRef.current.offsetTop - parentRef.current.offsetTop;
-  parentRef.current.scrollTop = offset;
-}
+
