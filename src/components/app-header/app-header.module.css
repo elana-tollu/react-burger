@@ -1,4 +1,4 @@
-.AppHeader {
+.app-header {
     min-width: 1320px;
     max-width: 1920px;
     max-height: 88px;
@@ -34,7 +34,7 @@
     justify-content: left;
 }
 
-.buttonContent {
+.button-content {
     display: flex;
     flex-direction: row;
     justify-content: start;
@@ -42,7 +42,7 @@
 }
 
 
-.buttonHeader {
+.button-header {
     width: 178px;
     height: 56px;
     display: flex;

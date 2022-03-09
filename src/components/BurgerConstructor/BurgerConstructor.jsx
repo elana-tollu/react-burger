@@ -11,7 +11,7 @@ import styles from './BurgerConstructor.module.css';
 function BurgerConstructor () {
 
   const listIngridients = data.map((ing, index) =>
-        <OrderDetails key={index} ing={ing}/>
+        <OrderDetails key={ing._id} ing={ing}/>
       );
 
   return (
@@ -53,7 +53,7 @@ function BurgerConstructor () {
 
             <div className={styles.ingredientPrice}>
                 <span className='cost'>
-                <p style={{ marginRight: '8px' }} className="text text_type_digits-default">20</p></span>
+                <p className="text text_type_digits-default mr-2">20</p></span>
                 <CurrencyIcon style={{ textAlign: 'end' }} type="primary" />
             </div>
 
