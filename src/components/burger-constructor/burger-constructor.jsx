@@ -3,7 +3,7 @@ import React from 'react';
 import imageBun from '../../images/bun-01.png';
 import image from '../../images/orderIkon.png'
 import {Button, CurrencyIcon, LockIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-import {data} from '../utils/data.js'
+import {data} from '../../utils/data.js'
 import OrderedIngredient from '../ordered-ingredient/ordered-ingredient'
 
 import styles from './burger-constructor.module.css';
