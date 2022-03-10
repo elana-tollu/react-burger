@@ -1,4 +1,4 @@
-.BurgerIngredients{
+.burger-ingredients{
     width: 600px;
     height: 912px;
     display: flex;
@@ -6,7 +6,7 @@
     text-align: left;
 }
 
-.ingredientsScroll {
+/* .ingredientsScroll {
     height: 756px;
     display: flex;
     flex-direction: column;
@@ -20,5 +20,5 @@
     display: grid;
     grid-template-columns: repeat(2, 272px);
     gap: 32px 24px;
-}
+} */
 

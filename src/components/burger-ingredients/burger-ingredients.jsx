@@ -2,11 +2,11 @@ import React from 'react';
 
 import TabPanel from '../TabPanel/TabPanel';
 
-import styles from './BurgerIngredients.module.css';
+import styles from './burger-ingredients.module.css';
 
 function BurgerIngredients () {
   return (
-    <section className={styles.BurgerIngredients}>
+    <section className={styles['burger-ingredients']}>
       <p className="text text_type_main-large">
         Соберите бургер
       </p>
