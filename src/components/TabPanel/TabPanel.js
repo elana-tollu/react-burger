@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import {data} from '../utils/data.js'
-import ListOfIngridients from '../ListOfIngridients/ListOfIngridients';
+import ListOfIngridients from '../list-of-ingridients/list-of-ingridients';
 
 import styles from './TabPanel.module.css';
 
