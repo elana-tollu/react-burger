@@ -4,14 +4,14 @@ import imageBun from '../../images/bun-01.png';
 import image from '../../images/orderIkon.png'
 import {Button, CurrencyIcon, LockIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {data} from '../utils/data.js'
-import OrderDetails from '../OrderDetails/OrderDetails'
+import OrderedIngredient from '../ordered-ingredient/ordered-ingredient'
 
 import styles from './burger-constructor.module.css';
 
 function BurgerConstructor () {
 
   const listIngridients = data.map((ing, index) =>
-        <OrderDetails key={ing._id} ing={ing}/>
+        <OrderedIngredient key={ing._id} ing={ing}/>
       );
 
   return (

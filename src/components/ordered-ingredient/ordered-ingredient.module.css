@@ -1,4 +1,4 @@
-.OrderDetails {
+.ordered-ingredient {
     margin-bottom: 16px;
     width: 568px;
     height: 80px;
@@ -21,19 +21,19 @@
     border-radius: 40px;
 }
 
-.ingredientImage {
+.ingredient-image {
     width: 80px;
     height: 40px;
     margin-right: 20px;
 }
 
-.ingredientName {
+.ingredient-name {
     width: 232px;
     height: 48px;
     text-align: left;
 }
 
-.ingredientPrice {
+.ingredient-price {
     margin: 4px 20px;
     width: 92px;
     height: 24px;

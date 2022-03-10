@@ -3,23 +3,23 @@ import PropTypes from 'prop-types';
 
 import { DragIcon, CurrencyIcon, DeleteIcon }  from '@ya.praktikum/react-developer-burger-ui-components';
 
-import styles from './OrderDetails.module.css'
+import styles from './ordered-ingredient.module.css'
 
-function OrderDetails (props) {
+function OrderedIngredient (props) {
     return (
-        <section className={styles.OrderDetails}>
+        <section className={styles['ordered-ingredient']}>
             <DragIcon style={{ marginRight: '8px' }} type="primary" />
 
             <div className={styles.ingredient}>
                 <img
-                className={styles.ingredientImage}
+                className={styles['ingredient-image']}
                 src={props.ing.image}
                 alt=''
                 /> 
 
-                <p className={styles.ingredientName}>{props.ing.name}</p>
+                <p className={styles['ingredient-name']}>{props.ing.name}</p>
 
-                <div className={styles.ingredientPrice}>
+                <div className={styles['ingredient-price']}>
                     <span className='cost'>
                     <p className="text text_type_digits-default mr-2">{props.ing.price}</p></span>
                     <CurrencyIcon style={{ textAlign: 'end' }} type="primary" />
@@ -31,7 +31,7 @@ function OrderDetails (props) {
     )
 }
 
-OrderDetails.propTypes = {
+OrderedIngredient.propTypes = {
     ing: PropTypes.shape({
       _id: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired, 
@@ -40,4 +40,4 @@ OrderDetails.propTypes = {
     }).isRequired
   };
 
-export default OrderDetails;
+export default OrderedIngredient;
