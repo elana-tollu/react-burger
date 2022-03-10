@@ -4,7 +4,7 @@ import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import {data} from '../utils/data.js'
 import ListOfIngridients from '../list-of-ingridients/list-of-ingridients';
 
-import styles from './TabPanel.module.css';
+import styles from './tab-panel.module.css';
 
 function ingredientsOfType (ings, type) {
   return ings.filter(element => element.type === type);
@@ -50,7 +50,7 @@ function TabPanel () {
       </Tab>
     </div>
 
-    <div className={styles.ingredientsScroll} ref={scrollRef}> 
+    <div className={styles['ingredients-scroll']} ref={scrollRef}> 
       <ListOfIngridients  
       title = "Булки" 
       ingredients = {buns} 

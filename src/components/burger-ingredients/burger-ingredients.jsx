@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TabPanel from '../TabPanel/TabPanel';
+import TabPanel from '../tab-panel/tab-panel';
 
 import styles from './burger-ingredients.module.css';
 

@@ -1,4 +1,4 @@
-.ingredientsScroll {
+.ingredients-scroll {
     max-height: 756px;
     width: 600px;
     margin: 0;
@@ -8,11 +8,11 @@
     overflow-y: scroll;
     overflow-x: hidden;
 }
-.ingredientsScroll::-webkit-scrollbar{
+.ingredients-scroll::-webkit-scrollbar{
     background-color: #2F2F37;
     width: 8px;
 } 
 
-.ingredientsScroll::-webkit-scrollbar-thumb{
+.ingredients-scroll::-webkit-scrollbar-thumb{
     background-color: #8585AD;
 }
