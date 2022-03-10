@@ -1,4 +1,4 @@
-.BurgerConstructor {
+.burger-constructor {
     width: 600px;
     height: 912px;
     padding: 100px 16px 0 16px;
@@ -8,7 +8,7 @@
     background-color: rgb(19, 19, 22);
 }
 
-.ConstructorScroll {
+.constructor-scroll {
     height: 576px;
     display: flex;
     flex-direction: column;
@@ -17,12 +17,12 @@
     scrollbar-color: rgb(19, 19, 22);
 }
 
-.ConstructorScroll::-webkit-scrollbar{
+.constructor-scroll::-webkit-scrollbar{
     background-color: #2F2F37;
     width: 8px;
 }
 
-.ConstructorScroll::-webkit-scrollbar-thumb{
+.constructor-scroll::-webkit-scrollbar-thumb{
     background-color: #8585AD;
 }
 
@@ -36,7 +36,7 @@
     align-items: center;
 }
 
-.orderImage {
+.order-image {
     width: 33px;
     height: 33px;
 }
@@ -51,7 +51,7 @@
     align-items: center;
 }
 
-.OrderDetails {
+.order-details {
     margin-bottom: 16px;
     width: 568px;
     height: 80px;
@@ -61,7 +61,7 @@
     background-color: rgb(19, 19, 22);
 }
 
-.topIngredient {
+.top-ingredient {
     width: 536px;
     height: 48px;
     padding: 16px 32px 16px 24px;
@@ -74,7 +74,7 @@
     border-radius: 88px 88px 40px 40px;
 }
 
-.bottomIngredient {
+.bottom-ingredient {
     width: 536px;
     height: 48px;
     padding: 16px 32px 16px 24px;
@@ -87,19 +87,19 @@
     border-radius: 40px 40px 88px 88px;
 }
 
-.ingredientImage {
+.ingredient-image {
     width: 80px;
     height: 40px;
     margin-right: 20px;
 }
 
-.ingredientName {
+.ingredient-name {
     width: 232px;
     height: 48px;
     text-align: left;
 }
 
-.ingredientPrice {
+.ingredient-price {
     margin: 4px 20px;
     width: 92px;
     height: 24px;

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import AppHeader from '../app-header/app-header';
-import BurgerConstructor from '../BurgerConstructor/BurgerConstructor';
+import BurgerConstructor from '../burger-constructor/burger-constructor';
 import BurgerIngredients from '../BurgerIngredients/BurgerIngredients';
 
 import styles from './app.module.css';

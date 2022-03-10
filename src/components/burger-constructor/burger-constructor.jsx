@@ -6,7 +6,7 @@ import {Button, CurrencyIcon, LockIcon} from '@ya.praktikum/react-developer-burg
 import {data} from '../utils/data.js'
 import OrderDetails from '../OrderDetails/OrderDetails'
 
-import styles from './BurgerConstructor.module.css';
+import styles from './burger-constructor.module.css';
 
 function BurgerConstructor () {
 
@@ -15,21 +15,21 @@ function BurgerConstructor () {
       );
 
   return (
-    <section className={styles.BurgerConstructor}>
+    <section className={styles['burger-constructor']}>
 
-    <section className={styles.OrderDetails}>
-        <div className={styles.topIngredient}>
+    <section className={styles['order-details']}>
+        <div className={styles['top-ingredient']}>
             <img
-            className={styles.ingredientImage}
+            className={styles['ingredient-image']}
             src= {imageBun}
             alt=''
             /> 
 
-            <p className={styles.ingredientName}>Флюоресцентная булка R2-D3 (верх)</p>
+            <p className={styles['ingredient-name']}>Флюоресцентная булка R2-D3 (верх)</p>
 
-            <div className={styles.ingredientPrice}>
+            <div className={styles['ingredient-price']}>
                 <span className='cost'>
-                <p style={{ marginRight: '8px' }} className="text text_type_digits-default">20</p></span>
+                <p className="text text_type_digits-default mr-2">20</p></span>
                 <CurrencyIcon style={{ textAlign: 'end' }} type="primary" />
             </div>
 
@@ -37,21 +37,21 @@ function BurgerConstructor () {
         </div>            
       </section>
 
-      <div className={styles.ConstructorScroll}>
+      <div className={styles['constructor-scroll']}>
         {listIngridients}
       </div>
 
-      <section className={styles.OrderDetails}>
-        <div className={styles.bottomIngredient}>
+      <section className={styles['order-details']}>
+        <div className={styles['bottom-ingredient']}>
             <img
-            className={styles.ingredientImage}
+            className={styles['ingredient-image']}
             src= {imageBun}
             alt=''
             /> 
 
-            <p className={styles.ingredientName}>Флюоресцентная булка R2-D3 (низ)</p>
+            <p className={styles['ingredient-name']}>Флюоресцентная булка R2-D3 (низ)</p>
 
-            <div className={styles.ingredientPrice}>
+            <div className={styles['ingredient-price']}>
                 <span className='cost'>
                 <p className="text text_type_digits-default mr-2">20</p></span>
                 <CurrencyIcon style={{ textAlign: 'end' }} type="primary" />
