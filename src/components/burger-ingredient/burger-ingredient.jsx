@@ -3,11 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
-import styles from './IngredientDetails.module.css';
+import styles from './burger-ingredient.module.css';
 
-function IngredientDetails (props) {
+function BurgerIngredient (props) {
   return (
-    <section className={styles.IngredientDetails}>
+    <section className={styles['burger-ingredient']}>
         <span className={styles.counter}>
         <p className="text text_type_digits-default">
             1
@@ -19,7 +19,7 @@ function IngredientDetails (props) {
         />
 
         <div className={styles.price}>
-            <p style={{ marginRight: '8px' }} className="text text_type_digits-default">{props.ing.price}</p>
+            <p className="text text_type_digits-default mr-2">{props.ing.price}</p>
             <CurrencyIcon type="primary" />
         </div>
         <p className="text text_type_main-default">{props.ing.name}</p>
@@ -27,7 +27,7 @@ function IngredientDetails (props) {
   );
 }
 
-IngredientDetails.propTypes = {
+BurgerIngredient.propTypes = {
   ing: PropTypes.shape({
     image: PropTypes.string.isRequired, 
     price: PropTypes.number.isRequired,
@@ -35,4 +35,4 @@ IngredientDetails.propTypes = {
   }).isRequired
 };
 
-export default IngredientDetails;
+export default BurgerIngredient;

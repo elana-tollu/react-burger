@@ -2,13 +2,13 @@ import React from 'react';
 import {forwardRef} from 'react';
 import PropTypes from 'prop-types';
 
-import IngredientDetails from '../IngredientDetails/IngredientDetails';
+import BurgerIngredient from '../burger-ingredient/burger-ingredient';
 
 import styles from './ListOfIngridients.module.css';
 
 const ListOfIngridients = forwardRef(function(props, ref){
     const listOfIngridients = props.ingredients.map((ing, index) =>
-    <IngredientDetails key={ing._id} ing={ing}/>
+    <BurgerIngredient key={ing._id} ing={ing}/>
   );
 
   return (
