@@ -4,7 +4,8 @@ import TabPanel from '../tab-panel/tab-panel';
 
 import styles from './burger-ingredients.module.css';
 
-function BurgerIngredients () {
+function BurgerIngredients (props) {
+  console.log('BurgerIngredients', props)
   return (
     <section className={styles['burger-ingredients']}>
       <p className="text text_type_main-large">
@@ -12,7 +13,7 @@ function BurgerIngredients () {
       </p>
       
       <div className="mb-10 mt-5">
-        <TabPanel />
+        <TabPanel data = {props.data} />
       </div>
     </section>    
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import {CloseIcon, CheckMarkIcon, Button} from '@ya.praktikum/react-developer-burger-ui-components';
+import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
 import styles from './order-details.module.css';
 

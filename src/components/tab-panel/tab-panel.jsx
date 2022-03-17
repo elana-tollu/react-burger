@@ -15,12 +15,14 @@ function scroll(parentRef, childRef) {
   parentRef.current.scrollTop = offset;
 }
 
-function TabPanel () {
+function TabPanel (props) {
+  console.log('TabPanel', props)
+  
   const [current, setCurrent] = useState('buns')
 
-  const buns = ingredientsOfType(data, 'bun');
-  const mains = ingredientsOfType(data, 'main');
-  const sauces = ingredientsOfType(data, 'sauce');
+  const buns = ingredientsOfType(props.data, 'bun');
+  const mains = ingredientsOfType(props.data, 'main');
+  const sauces = ingredientsOfType(props.data, 'sauce');
 
   const scrollRef = useRef(null);
   const bunsRef = useRef(null);
