@@ -1,0 +1,110 @@
+.burger-constructor {
+    width: 600px;
+    height: 912px;
+    padding: 100px 16px 0 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    background-color: rgb(19, 19, 22);
+}
+
+.constructor-scroll {
+    height: 576px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(19, 19, 22);
+}
+
+.constructor-scroll::-webkit-scrollbar{
+    background-color: #2F2F37;
+    width: 8px;
+}
+
+.constructor-scroll::-webkit-scrollbar-thumb{
+    background-color: #8585AD;
+}
+
+.order {
+    width: 568px;
+    height: 64px;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.order-image {
+    width: 33px;
+    height: 33px;
+}
+
+.cost {
+    margin-right: 40px;
+    width: 119px;
+    height: 64px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-details {
+    margin-bottom: 16px;
+    width: 568px;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgb(19, 19, 22);
+}
+
+.top-ingredient {
+    width: 536px;
+    height: 48px;
+    padding: 16px 32px 16px 24px;
+    margin: 0 0 0 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color:  #1C1C21;
+    border-radius: 88px 88px 40px 40px;
+}
+
+.bottom-ingredient {
+    width: 536px;
+    height: 48px;
+    padding: 16px 32px 16px 24px;
+    margin: 0 0 0 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color:  #1C1C21;
+    border-radius: 40px 40px 88px 88px;
+}
+
+.ingredient-image {
+    width: 80px;
+    height: 40px;
+    margin-right: 20px;
+}
+
+.ingredient-name {
+    width: 232px;
+    height: 48px;
+    text-align: left;
+}
+
+.ingredient-price {
+    margin: 4px 20px;
+    width: 92px;
+    height: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+}

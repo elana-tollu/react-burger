@@ -1,0 +1,40 @@
+.burger-ingredient{
+    padding: 0;
+    width: 272px;
+    height: 208px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    background-color: #131316;
+    text-align: center;
+}
+
+.counter {
+    display: flex;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #4C4CFF;
+    border-radius: 16px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.image {
+    width: 240px;
+    height: 120px;
+    background-color: #131316;
+}
+
+.price {
+    margin: 4px 0;
+    min-width: 62px;
+    max-width: 120px;
+    height: 24px;
+    display: grid;
+    grid-template-columns: 1fr 24px;
+    gap: 8px;
+}
