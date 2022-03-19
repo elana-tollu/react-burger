@@ -22,8 +22,6 @@ function App() {
     <div className={styles.app}>
       <AppHeader />
 
-      <OrderDetails />
-
       <IngredientDetails />
 
       <section className={styles.body}>

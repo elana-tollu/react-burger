@@ -24,12 +24,6 @@
     align-items: center;
 }
 
-.button-close {
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-}
-
 .order-number {
     height: 120px;
     margin: 16px 0 32px 0;

@@ -7,10 +7,7 @@ import styles from './order-details.module.css';
 function OrderDetails () {
     return (
         <section className={styles['order-details']}>
-            <div className={styles.title}>
-                <div className={styles['button-close']}>
-                    <CloseIcon type="primary" /></div>
-            </div>
+            <div className={styles.title} />
 
             <>
                 <p className={styles['order-number']}>

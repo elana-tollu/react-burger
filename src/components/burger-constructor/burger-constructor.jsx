@@ -4,8 +4,9 @@ import imageBun from '../../images/bun-01.png';
 import image from '../../images/orderIkon.png'
 import {Button, CurrencyIcon, LockIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {data} from '../../utils/data.js'
-import OrderedIngredient from '../ordered-ingredient/ordered-ingredient'
-import Modal from '../modal/modal';
+import OrderedIngredient from '../ordered-ingredient/ordered-ingredient.jsx'
+import Modal from '../modal/modal.jsx';
+import OrderDetails from '../order-details/order-details.jsx'
 
 import styles from './burger-constructor.module.css';
 
@@ -16,7 +17,7 @@ function BurgerConstructor () {
       );
   
   const [orderNumOpen, setOrderNumOpen] = useState(false);
-  const orderNumModal = (<Modal onClose={() => setOrderNumOpen (false)}>Word</Modal>);
+  const orderNumModal = (<Modal onClose={() => setOrderNumOpen (false)}> <OrderDetails/> </Modal>);
 
   return (
     <section className={styles['burger-constructor']}>
