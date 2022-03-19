@@ -7,9 +7,10 @@ import BurgerIngredient from '../burger-ingredient/burger-ingredient';
 import styles from './list-of-ingridients.module.css';
 
 const ListOfIngridients = forwardRef(function(props, ref){
-    const listOfIngridients = props.ingredients.map((ing, index) =>
-    <BurgerIngredient key={ing._id} ing={ing}/>
-  );
+    const listOfIngridients = props.ingredients
+      .map((ing, index) => 
+        <BurgerIngredient key={ing.id} ing={ing}/>
+      );
 
   return (
         <section ref={ref}>

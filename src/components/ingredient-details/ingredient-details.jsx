@@ -16,30 +16,32 @@ function IngredientDetails (props) {
                     <CloseIcon type="primary" /></div>
             </div>
             
-            <img
-                className={styles.image}
-                src= {main} // {props.ing.image}
-                alt=''
-            /> 
+            <>
+                <img
+                    className={styles.image}
+                    src= {main} // {props.ing.image}
+                    alt=''
+                /> 
 
-            <p className="text text_type_main-medium mt-4 p-1">Биокотлета из марсианской Магнолии</p> 
+                <p className="text text_type_main-medium mt-4 p-1">Биокотлета из марсианской Магнолии</p> 
 
-            <div className="text text_type_main-default text_color_inactive mt-8">
-                <ul className={styles.nutritions}>
-                    <li>Калории,ккал
-                        <p className="mt-2">244,4</p>
-                    </li> 
-                    <li>Белки, г
-                        <p className="mt-2">12,2</p>
-                    </li>
-                    <li>Жиры, г
-                        <p className="mt-2">17,2</p>
-                    </li>
-                    <li>Углеводы, г
-                        <p className="mt-2">10,2</p>
-                    </li>
-                </ul>
-            </div>
+                <div className="text text_type_main-default text_color_inactive mt-8">
+                    <ul className={styles.nutritions}>
+                        <li>Калории,ккал
+                            <p className="mt-2">244,4</p>
+                        </li> 
+                        <li>Белки, г
+                            <p className="mt-2">12,2</p>
+                        </li>
+                        <li>Жиры, г
+                            <p className="mt-2">17,2</p>
+                        </li>
+                        <li>Углеводы, г
+                            <p className="mt-2">10,2</p>
+                        </li>
+                    </ul>
+                </div>
+            </>
         </section>
     )
 }

@@ -1,10 +1,11 @@
-import React from 'react';
+import { useState } from 'react';
 
 import imageBun from '../../images/bun-01.png';
 import image from '../../images/orderIkon.png'
 import {Button, CurrencyIcon, LockIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {data} from '../../utils/data.js'
 import OrderedIngredient from '../ordered-ingredient/ordered-ingredient'
+import Modal from '../modal/modal';
 
 import styles from './burger-constructor.module.css';
 
@@ -13,6 +14,9 @@ function BurgerConstructor () {
   const listIngridients = data.map((ing, index) =>
         <OrderedIngredient key={ing._id} ing={ing}/>
       );
+  
+  const [orderNumOpen, setOrderNumOpen] = useState(false);
+  const orderNumModal = (<Modal onClose={() => setOrderNumOpen (false)}>Word</Modal>);
 
   return (
     <section className={styles['burger-constructor']}>
@@ -73,9 +77,13 @@ function BurgerConstructor () {
           />  
         </span>
 
-        <Button type="primary" size="large">
+        <Button type="primary" size="large"
+          onClick={() => setOrderNumOpen (true)}>
           Оформить заказ
         </Button>
+
+        {orderNumOpen && orderNumModal}
+
       </div>
 
     </section>

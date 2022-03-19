@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 import AppHeader from '../app-header/app-header';
+import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details'
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
@@ -16,8 +17,6 @@ function App() {
     .then( ingredientsData => {
       setIngredients(ingredientsData);
   })}, []);
-
-  console.log('App', ingredients)
 
   return (
     <div className={styles.app}>
