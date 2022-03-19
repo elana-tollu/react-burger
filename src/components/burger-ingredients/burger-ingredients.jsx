@@ -5,7 +5,6 @@ import TabPanel from '../tab-panel/tab-panel';
 import styles from './burger-ingredients.module.css';
 
 function BurgerIngredients (props) {
-  console.log('BurgerIngredients', props)
   return (
     <section className={styles['burger-ingredients']}>
       <p className="text text_type_main-large">

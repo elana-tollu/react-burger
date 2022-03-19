@@ -16,7 +16,6 @@ function scroll(parentRef, childRef) {
 }
 
 function TabPanel (props) {
-  console.log('TabPanel', props)
   
   const [current, setCurrent] = useState('buns')
 
