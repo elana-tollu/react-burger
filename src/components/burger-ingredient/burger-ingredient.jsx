@@ -9,7 +9,7 @@ import Modal from '../modal/modal.jsx';
 
 function BurgerIngredient (props) {
   const [ingDetailsOpen, setIngDetailsOpen] = useState(false);
-  const ingDetailsModal = (<Modal title = 'Детали ингредиента'  onClose={() => setIngDetailsOpen (false) }> <IngredientDetails/> </Modal>);
+  const ingDetailsModal = (<Modal title = 'Детали ингредиента'  onClose={() => setIngDetailsOpen (false) }> <IngredientDetails ing = {props.ing}/> </Modal>);
 
   return (
     <section className={styles['burger-ingredient']}

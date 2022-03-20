@@ -1,11 +1,8 @@
 import React, { useEffect } from 'react';
 
 import AppHeader from '../app-header/app-header';
-import Modal from '../modal/modal';
-import OrderDetails from '../order-details/order-details'
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
-import IngredientDetails from '../ingredient-details/ingredient-details';
 
 import styles from './app.module.css';
 
@@ -21,8 +18,6 @@ function App() {
   return (
     <div className={styles.app}>
       <AppHeader />
-
-      <IngredientDetails />
 
       <section className={styles.body}>
 

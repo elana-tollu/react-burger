@@ -15,25 +15,25 @@ function IngredientDetails (props) {
             <>
                 <img
                     className={styles.image}
-                    src= {main} // {props.ing.image}
+                    src= {props.ing.image}
                     alt=''
                 /> 
 
-                <p className="text text_type_main-medium mt-4 p-1">Биокотлета из марсианской Магнолии</p> 
+                <p className="text text_type_main-medium mt-4 p-1">{props.ing.name}</p> 
 
                 <div className="text text_type_main-default text_color_inactive mt-8">
                     <ul className={styles.nutritions}>
                         <li>Калории,ккал
-                            <p className="mt-2">244,4</p>
+                            <p className="mt-2">{props.ing.calories}</p>
                         </li> 
                         <li>Белки, г
-                            <p className="mt-2">12,2</p>
+                            <p className="mt-2">{props.ing.proteins}</p>
                         </li>
                         <li>Жиры, г
-                            <p className="mt-2">17,2</p>
+                            <p className="mt-2">{props.ing.fat}</p>
                         </li>
                         <li>Углеводы, г
-                            <p className="mt-2">10,2</p>
+                            <p className="mt-2">{props.ing.carbohydrates}</p>
                         </li>
                     </ul>
                 </div>
@@ -56,7 +56,7 @@ function IngredientDetails (props) {
 
 export default IngredientDetails;
 
-/* {props.ing.calories}
-{props.ing.proteins}
-{props.ing.fat}
-{props.ing.carbohydrates} */
+/* 
+
+
+ */
