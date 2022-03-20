@@ -10,11 +10,7 @@ import styles from './ingredient-details.module.css';
 function IngredientDetails (props) {
     return (
         <section className={styles['ingredient-details']}>
-            <div className={styles.title}>
-                <h2 className="text text_type_main-medium">Детали ингредиента</h2>
-                <div className={styles['button-close']}>
-                    <CloseIcon type="primary" /></div>
-            </div>
+            
             
             <>
                 <img
