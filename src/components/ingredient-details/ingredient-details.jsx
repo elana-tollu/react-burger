@@ -1,11 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-import main from '../../images/meat-01.png';
-
 import styles from './ingredient-details.module.css';
-
 
 function IngredientDetails (props) {
     return (
@@ -42,8 +38,8 @@ function IngredientDetails (props) {
     )
 }
 
-/*BurgerIngredient.propTypes = {
-  ing: PropTypes.shape({
+IngredientDetails.propTypes = {
+    ing: PropTypes.shape({
     image: PropTypes.string.isRequired,     
     name: PropTypes.string.isRequired,
     calories: PropTypes.number.isRequired,
@@ -52,11 +48,5 @@ function IngredientDetails (props) {
     carbohydrates: PropTypes.number.isRequired,
   }).isRequired
 };
-*/
 
 export default IngredientDetails;
-
-/* 
-
-
- */
