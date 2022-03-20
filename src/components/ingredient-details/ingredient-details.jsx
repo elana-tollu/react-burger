@@ -6,7 +6,7 @@ import styles from './ingredient-details.module.css';
 function IngredientDetails (props) {
     return (
         <section className={styles['ingredient-details']}>
-            
+            <div className={styles.title} />
             
             <>
                 <img

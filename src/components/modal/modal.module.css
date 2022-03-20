@@ -32,6 +32,18 @@
     z-index: 1;
 }
 
+.title {
+    width: 640px;
+    height: 64px;
+    margin: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    z-index: 3;
+}
+
 .button-close {
     width: 24px;
     height: 24px;
