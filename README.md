@@ -1,6 +1,6 @@
 # Проект: Stellar Burgers
 
-Проект опубликован на [GitHub Pages](...)
+Проект опубликован на [GitHub Pages](https://elana-tollu.github.io/react-burger/)
 
 Проектная работа для второго спринта в рамках курса Яндекс Практикума "Веб-разработчик плюс".
 
