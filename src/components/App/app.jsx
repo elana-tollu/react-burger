@@ -24,7 +24,6 @@ function App() {
         <BurgerIngredients data = {ingredients}/>
 
         <BurgerConstructor />
-
         
       </section>
     </div>
@@ -69,5 +68,6 @@ function loadIngredientCards() {
           price:  card.price,
           image:  card.image,
       }));
-  });
+  })
+  .catch(alert);
 }
