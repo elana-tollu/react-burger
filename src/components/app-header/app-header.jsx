@@ -15,7 +15,7 @@ function AppHeader() {
           <Button type="secondary" size="small">
             <div className={styles['button-content']}>
               <BurgerIcon type="primary" /> 
-                <p className="text text_type_main-default text_color_inactive ml-2">
+                <p className="text text_type_main-default ml-2">
                 Конструктор
               </p>
             </div>
@@ -23,7 +23,7 @@ function AppHeader() {
           
           <Button type="secondary" size="small">
             <div className={styles['button-content']}>
-              <ListIcon type="primary" />
+              <ListIcon type="secondary" />
               <p className="text text_type_main-default text_color_inactive ml-2">
               Лента заказов
               </p>
@@ -33,7 +33,7 @@ function AppHeader() {
 
         <Button type="secondary" size="small">
           <div className={styles['button-content']}>
-            <ProfileIcon type="primary" />
+            <ProfileIcon type="secondary" />
             <p className="text text_type_main-default text_color_inactive ml-2">
               Личный кабинет
             </p>
