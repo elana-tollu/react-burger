@@ -10,23 +10,24 @@ import styles from './modal.module.css';
 const modalRoot = document.body;
 
 function Modal (props) {
-    const handleEscClose = (event) => {
-        if (event.key === 'Escape') {
-            props.onClose();
-        }
-    };
-
+    
     const handleClickClose = (event) => {
         event.stopPropagation();
         props.onClose();
     };
 
     useEffect(() => {
+        const handleEscClose = (event) => {
+            if (event.key === 'Escape') {
+                props.onClose();
+            }
+        };
+    
         document.addEventListener('keydown', handleEscClose); // при монтировании добавляем обработчик события
         return () => {
             document.removeEventListener('keydown', handleEscClose); // при размонтировании убираем
         }
-    }, []);
+    }, [props.onClose]);
 
     return ReactDOM.createPortal ( (
         <div className={styles['modal-container']}>
