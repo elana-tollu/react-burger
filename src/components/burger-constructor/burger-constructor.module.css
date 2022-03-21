@@ -53,10 +53,12 @@
 
 .order-details {
     margin-bottom: 16px;
+    padding-left: 32px;
     width: 568px;
     height: 80px;
     display: flex;
     flex-direction: row;
+    justify-items: right;
     align-items: center;
     background-color: rgb(19, 19, 22);
 }

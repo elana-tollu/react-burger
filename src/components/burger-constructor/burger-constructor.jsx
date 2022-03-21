@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import imageBun from '../../images/bun-01.png';
 import image from '../../images/orderIkon.png'
-import {Button, CurrencyIcon, LockIcon} from '@ya.praktikum/react-developer-burger-ui-components';
+import {Button, CurrencyIcon, LockIcon, ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
 import {data} from '../../utils/data.js'
 import OrderedIngredient from '../ordered-ingredient/ordered-ingredient.jsx'
 import Modal from '../modal/modal.jsx';
@@ -22,24 +22,16 @@ function BurgerConstructor () {
   return (
     <section className={styles['burger-constructor']}>
 
-    <section className={styles['order-details']}>
-        <div className={styles['top-ingredient']}>
-            <img
-            className={styles['ingredient-image']}
-            src= {imageBun}
-            alt=''
-            /> 
+      <section className={styles['order-details']}>
 
-            <p className={styles['ingredient-name']}>Флюоресцентная булка R2-D3 (верх)</p>
-
-            <div className={styles['ingredient-price']}>
-                <span className='cost'>
-                <p className="text text_type_digits-default mr-2">20</p></span>
-                <CurrencyIcon style={{ textAlign: 'end' }} type="primary" />
-            </div>
-
-            <LockIcon type="primary" />
-        </div>            
+        <ConstructorElement
+            type="top"
+            isLocked={true}
+            text="Краторная булка N-200i (верх)"
+            price={200}
+            thumbnail={imageBun}
+        />
+        
       </section>
 
       <div className={styles['constructor-scroll']}>
@@ -47,23 +39,15 @@ function BurgerConstructor () {
       </div>
 
       <section className={styles['order-details']}>
-        <div className={styles['bottom-ingredient']}>
-            <img
-            className={styles['ingredient-image']}
-            src= {imageBun}
-            alt=''
-            /> 
 
-            <p className={styles['ingredient-name']}>Флюоресцентная булка R2-D3 (низ)</p>
-
-            <div className={styles['ingredient-price']}>
-                <span className='cost'>
-                <p className="text text_type_digits-default mr-2">20</p></span>
-                <CurrencyIcon style={{ textAlign: 'end' }} type="primary" />
-            </div>
-
-            <LockIcon type="primary" />
-        </div>            
+        <ConstructorElement
+          type="bottom"
+          isLocked={true}
+          text="Краторная булка N-200i (низ)"
+          price={200}
+          thumbnail={imageBun}
+        />
+                   
       </section>
 
       <div className={styles.order}>
