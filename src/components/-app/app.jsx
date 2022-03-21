@@ -7,7 +7,7 @@ import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import styles from './app.module.css';
 
 function App() {
-  let [ingredients, setIngredients] = React.useState([]);
+  const [ingredients, setIngredients] = React.useState([]);
 
   useEffect(() => {
     loadIngredientCards()
