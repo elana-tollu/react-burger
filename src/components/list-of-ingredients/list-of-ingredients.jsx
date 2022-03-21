@@ -25,7 +25,19 @@ const ListOfIngridients = forwardRef(function(props, ref){
 });
 
 ListOfIngridients.propTypes = {
-    title: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired,
+    ingredients: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired, 
+        price: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        calories: PropTypes.number.isRequired,
+        proteins: PropTypes.number.isRequired,
+        fat: PropTypes.number.isRequired,
+        carbohydrates: PropTypes.number.isRequired
+      })
+    )
   };
 
 export default ListOfIngridients
