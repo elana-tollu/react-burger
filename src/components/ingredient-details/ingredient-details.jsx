@@ -12,7 +12,7 @@ function IngredientDetails (props) {
                 <img
                     className={styles.image}
                     src= {props.ing.image}
-                    alt=''
+                    alt= {props.ing.name}
                 /> 
 
                 <p className="text text_type_main-medium mt-4 p-1">{props.ing.name}</p> 

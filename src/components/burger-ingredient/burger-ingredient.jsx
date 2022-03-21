@@ -21,7 +21,7 @@ function BurgerIngredient (props) {
         <img
         className={styles.image}
         src={props.ing.image}
-        alt=''
+        alt= {props.ing.name}
         />
 
         <div className={styles.price}>

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import BurgerIngredient from '../burger-ingredient/burger-ingredient';
 
-import styles from './list-of-ingridients.module.css';
+import styles from './list-of-ingredients.module.css';
 
 const ListOfIngridients = forwardRef(function(props, ref){
     const listOfIngridients = props.ingredients
