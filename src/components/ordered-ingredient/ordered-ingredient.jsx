@@ -13,15 +13,15 @@ function OrderedIngredient (props) {
             <div className={styles.ingredient}>
                 <img
                 className={styles['ingredient-image']}
-                src={props.ing.image}
+                src={props.ingredient.image}
                 alt=''
                 /> 
 
-                <p className={styles['ingredient-name']}>{props.ing.name}</p>
+                <p className={styles['ingredient-name']}>{props.ingredient.name}</p>
 
                 <div className={styles['ingredient-price']}>
                     <span className='cost'>
-                    <p className="text text_type_digits-default mr-2">{props.ing.price}</p></span>
+                    <p className="text text_type_digits-default mr-2">{props.ingredient.price}</p></span>
                     <CurrencyIcon style={{ textAlign: 'end' }} type="primary" />
                 </div>
 
@@ -32,7 +32,7 @@ function OrderedIngredient (props) {
 }
 
 OrderedIngredient.propTypes = {
-    ing: PropTypes.shape({
+    ingredient: PropTypes.shape({
       _id: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired, 
       price: PropTypes.number.isRequired,

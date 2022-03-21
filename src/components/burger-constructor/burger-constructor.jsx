@@ -12,8 +12,8 @@ import styles from './burger-constructor.module.css';
 
 function BurgerConstructor () {
 
-  const listIngridients = data.map((ing, index) =>
-        <OrderedIngredient key={ing._id} ing={ing}/>
+  const listIngridients = data.map((ingredient, index) =>
+        <OrderedIngredient key={ingredient._id} ingredient={ingredient}/>
       );
   
   const [orderNumOpen, setOrderNumOpen] = useState(false);

@@ -8,8 +8,8 @@ import styles from './list-of-ingredients.module.css';
 
 const ListOfIngridients = forwardRef(function(props, ref){
     const listOfIngridients = props.ingredients
-      .map((ing, index) => 
-        <BurgerIngredient key={ing.id} ing={ing}/>
+      .map((ingredient, index) => 
+        <BurgerIngredient key={ingredient.id} ingredient={ingredient}/>
       );
 
   return (

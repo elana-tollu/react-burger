@@ -11,25 +11,25 @@ function IngredientDetails (props) {
             <>
                 <img
                     className={styles.image}
-                    src= {props.ing.image}
-                    alt= {props.ing.name}
+                    src= {props.ingredient.image}
+                    alt= {props.ingredient.name}
                 /> 
 
-                <p className="text text_type_main-medium mt-4 p-1">{props.ing.name}</p> 
+                <p className="text text_type_main-medium mt-4 p-1">{props.ingredient.name}</p> 
 
                 <div className="text text_type_main-default text_color_inactive mt-8">
                     <ul className={styles.nutritions}>
                         <li>Калории,ккал
-                            <p className="mt-2">{props.ing.calories}</p>
+                            <p className="mt-2">{props.ingredient.calories}</p>
                         </li> 
                         <li>Белки, г
-                            <p className="mt-2">{props.ing.proteins}</p>
+                            <p className="mt-2">{props.ingredient.proteins}</p>
                         </li>
                         <li>Жиры, г
-                            <p className="mt-2">{props.ing.fat}</p>
+                            <p className="mt-2">{props.ingredient.fat}</p>
                         </li>
                         <li>Углеводы, г
-                            <p className="mt-2">{props.ing.carbohydrates}</p>
+                            <p className="mt-2">{props.ingredient.carbohydrates}</p>
                         </li>
                     </ul>
                 </div>
@@ -39,7 +39,7 @@ function IngredientDetails (props) {
 }
 
 IngredientDetails.propTypes = {
-    ing: PropTypes.shape({
+    ingredient: PropTypes.shape({
     image: PropTypes.string.isRequired,     
     name: PropTypes.string.isRequired,
     calories: PropTypes.number.isRequired,

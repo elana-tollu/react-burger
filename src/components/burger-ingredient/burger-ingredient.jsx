@@ -9,7 +9,7 @@ import Modal from '../modal/modal.jsx';
 
 function BurgerIngredient (props) {
   const [ingredientDetailsOpen, setIngredientDetailsOpen] = useState(false);
-  const ingredientDetailsModal = (<Modal title = 'Детали ингредиента'  onClose={() => setIngredientDetailsOpen (false) }> <IngredientDetails ing = {props.ing}/> </Modal>);
+  const ingredientDetailsModal = (<Modal title = 'Детали ингредиента'  onClose={() => setIngredientDetailsOpen (false) }> <IngredientDetails ingredient = {props.ingredient}/> </Modal>);
 
   return (
     <section className={styles['burger-ingredient']}
@@ -20,15 +20,15 @@ function BurgerIngredient (props) {
         </p></span>
         <img
         className={styles.image}
-        src={props.ing.image}
-        alt= {props.ing.name}
+        src={props.ingredient.image}
+        alt= {props.ingredient.name}
         />
 
         <div className={styles.price}>
-            <p className="text text_type_digits-default mr-2">{props.ing.price}</p>
+            <p className="text text_type_digits-default mr-2">{props.ingredient.price}</p>
             <CurrencyIcon type="primary" />
         </div>
-        <p className="text text_type_main-default">{props.ing.name}</p>
+        <p className="text text_type_main-default">{props.ingredient.name}</p>
 
         {ingredientDetailsOpen && ingredientDetailsModal}
     </section>
@@ -36,7 +36,7 @@ function BurgerIngredient (props) {
 }
 
 BurgerIngredient.propTypes = {
-  ing: PropTypes.shape({
+  ingredient: PropTypes.shape({
     id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired, 
     price: PropTypes.number.isRequired,
