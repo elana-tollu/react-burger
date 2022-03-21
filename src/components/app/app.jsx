@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 
-import AppHeader from '../app-header/app-header';
-import BurgerConstructor from '../burger-constructor/burger-constructor';
-import BurgerIngredients from '../burger-ingredients/burger-ingredients';
+import AppHeader from '../app-header/app-header.jsx';
+import BurgerConstructor from '../burger-constructor/burger-constructor.jsx';
+import BurgerIngredients from '../burger-ingredients/burger-ingredients.jsx';
 
 import styles from './app.module.css';
 
@@ -34,10 +34,10 @@ export default App;
 
 
 
-const baseUrl = 'https://norma.nomoreparties.space/api/ingredients';
+const baseUrl = 'https://norma.nomoreparties.space/api/';
 
-function request( method, data ) {
-  return fetch(`${baseUrl}`, {
+function request( method, endpoint, data ) {
+  return fetch(`${baseUrl}${endpoint}`, {
       method,
       headers: {
         'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ function request( method, data ) {
 }
 
 function loadIngredientCards() {
-  return request('GET')
+  return request('GET', 'ingredients')
   .then((cards) => {
       return cards.data.map((card) => ({
           id: card._id,
