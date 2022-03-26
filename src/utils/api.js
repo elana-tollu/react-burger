@@ -21,16 +21,6 @@ function request( method, endpoint, data ) {
 export function loadIngredientCards() {
   return request('GET', 'ingredients')
     .then(cards => {
-        return cards.data.map(card => ({
-            id: card._id,
-            name: card.name,
-            type:  card.type,
-            proteins:  card.proteins,
-            fat:  card.fat,
-            carbohydrates:  card.carbohydrates,
-            calories:  card.calories,
-            price:  card.price,
-            image:  card.image,
-        }));
+        return cards.data;
     });
 }

@@ -74,7 +74,7 @@ function TabPanel (props) {
 TabPanel.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired, 
       price: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,

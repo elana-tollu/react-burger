@@ -37,7 +37,7 @@ function BurgerIngredient (props) {
 
 BurgerIngredient.propTypes = {
   ingredient: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired, 
     price: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,

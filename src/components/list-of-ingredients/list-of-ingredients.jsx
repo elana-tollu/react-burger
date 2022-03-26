@@ -9,7 +9,7 @@ import styles from './list-of-ingredients.module.css';
 const ListOfIngridients = forwardRef(function(props, ref){
     const listOfIngridients = props.ingredients
       .map((ingredient, index) => 
-        <BurgerIngredient key={ingredient.id} ingredient={ingredient}/>
+        <BurgerIngredient key={ingredient._id} ingredient={ingredient}/>
       );
 
   return (
@@ -28,7 +28,7 @@ ListOfIngridients.propTypes = {
     title: PropTypes.string.isRequired,
     ingredients: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.string.isRequired,
+        _id: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired, 
         price: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
