@@ -21,6 +21,13 @@ function BurgerConstructor () {
   
   const [orderNumOpen, setOrderNumOpen] = useState(false);
   const orderNumModal = (<Modal onClose={() => setOrderNumOpen (false)}> <OrderDetails/> </Modal>);
+
+  const bunPrice = bun ? bun.price * 2 : 0;
+
+  const orderSum = filling.reduce(
+    (sum, ingredient) => sum + ingredient.price,
+    0
+  ) + bunPrice;
   
   return (
     
@@ -56,8 +63,8 @@ function BurgerConstructor () {
 
         <div className={styles.order}>
           <span className={styles.cost}>
-            <p className="text text_type_digits-medium">
-              610
+            <p className="text text_type_digits-medium mr-2">
+              {orderSum}
             </p>
             <img
             className={styles.orderImage}
