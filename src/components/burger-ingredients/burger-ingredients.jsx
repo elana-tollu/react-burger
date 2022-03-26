@@ -7,15 +7,15 @@ import styles from './burger-ingredients.module.css';
 
 function BurgerIngredients (props) {
   return (
-    <section className={styles['burger-ingredients']}>
-      <h1 className="text text_type_main-large">
-        Соберите бургер
-      </h1>
-      
-      <div className="mb-10 mt-5">
-        <TabPanel data = {props.data} />
-      </div>
-    </section>    
+      <section className={styles['burger-ingredients']}>
+        <h1 className="text text_type_main-large">
+          Соберите бургер
+        </h1>
+        
+        <div className="mb-10 mt-5">
+          <TabPanel data = {props.data} />
+        </div>
+      </section>   
   );
 }
 

@@ -4,6 +4,7 @@ import AppHeader from '../app-header/app-header.jsx';
 import BurgerConstructor from '../burger-constructor/burger-constructor.jsx';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients.jsx';
 import * as api from '../../utils/api.js';
+import { AppContext } from '../../services/app-context.js'
 
 import styles from './app.module.css';
 
@@ -26,8 +27,10 @@ function App() {
 
         <BurgerIngredients data = {ingredients}/>
 
-        <BurgerConstructor />
-        
+        <AppContext.Provider value={ingredients}>
+          <BurgerConstructor />
+        </AppContext.Provider>
+
       </section>
     </div>
   );
