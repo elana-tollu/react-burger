@@ -13,9 +13,9 @@ import styles from './burger-constructor.module.css';
 
 function BurgerConstructor () {
 
-  const ingredients = useContext(AppContext);
-
-  const listIngridients = ingredients.map((ingredient, index) =>
+  const { bun, filling } = useContext(AppContext);
+  
+  const listIngridients = filling.map((ingredient, index) =>
         <OrderedIngredient key={ingredient._id} ingredient={ingredient}/>
       );
   
@@ -28,13 +28,13 @@ function BurgerConstructor () {
 
         <section className={styles['order-details']}>
 
-          <ConstructorElement
+          {bun && <ConstructorElement
               type="top"
               isLocked={true}
-              text="Краторная булка N-200i (верх)"
-              price={200}
-              thumbnail={imageBun}
-          />
+              text={`${bun.name} (верх)`}
+              price={bun.price}
+              thumbnail={bun.image}
+          />}
           
         </section>
 
@@ -44,13 +44,13 @@ function BurgerConstructor () {
 
         <section className={styles['order-details']}>
 
-          <ConstructorElement
+          {bun && <ConstructorElement
             type="bottom"
             isLocked={true}
-            text="Краторная булка N-200i (низ)"
-            price={200}
-            thumbnail={imageBun}
-          />
+            text={`${bun.name} (низ)`}
+              price={bun.price}
+              thumbnail={bun.image}
+          />}
                     
         </section>
 

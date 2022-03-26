@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { DragIcon, CurrencyIcon, DeleteIcon, ConstructorElement }  from '@ya.praktikum/react-developer-burger-ui-components';
+import { DragIcon, ConstructorElement }  from '@ya.praktikum/react-developer-burger-ui-components';
 
 import styles from './ordered-ingredient.module.css'
 

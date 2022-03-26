@@ -19,6 +19,9 @@ function App() {
       .catch(alert)
   }, []);
 
+  const bun = ingredients.find(ingredient => ingredient.type === 'bun')
+  const filling = ingredients.filter(ingredient => ingredient.type !== 'bun')
+  
   return (
     <div className={styles.app}>
       <AppHeader />
@@ -27,7 +30,7 @@ function App() {
 
         <BurgerIngredients data = {ingredients}/>
 
-        <AppContext.Provider value={ingredients}>
+        <AppContext.Provider value={{ bun, filling }}>
           <BurgerConstructor />
         </AppContext.Provider>
 
