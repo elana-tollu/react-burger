@@ -24,3 +24,8 @@ export function loadIngredientCards() {
         return cards.data;
     });
 }
+
+export function submitOrder(ingredientIDs) {
+    return request('POST', 'orders', {ingredients: ingredientIDs})
+      .then(order => order.order.number);
+}

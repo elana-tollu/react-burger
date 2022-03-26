@@ -1,26 +1,18 @@
 import { useState,  useContext} from 'react';
 
-import imageBun from '../../images/bun-01.png';
 import image from '../../images/orderIkon.png'
 import {Button, ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
 import OrderedIngredient from '../ordered-ingredient/ordered-ingredient.jsx'
 import Modal from '../modal/modal.jsx';
 import OrderDetails from '../order-details/order-details.jsx';
 import { AppContext } from '../../services/app-context.js'
-
+import * as api from '../../utils/api.js';
 
 import styles from './burger-constructor.module.css';
 
 function BurgerConstructor () {
 
   const { bun, filling } = useContext(AppContext);
-  
-  const listIngridients = filling.map((ingredient, index) =>
-        <OrderedIngredient key={ingredient._id} ingredient={ingredient}/>
-      );
-  
-  const [orderNumOpen, setOrderNumOpen] = useState(false);
-  const orderNumModal = (<Modal onClose={() => setOrderNumOpen (false)}> <OrderDetails/> </Modal>);
 
   const bunPrice = bun ? bun.price * 2 : 0;
 
@@ -28,6 +20,24 @@ function BurgerConstructor () {
     (sum, ingredient) => sum + ingredient.price,
     0
   ) + bunPrice;
+  
+  const listIngridients = filling.map((ingredient, index) =>
+        <OrderedIngredient key={ingredient._id} ingredient={ingredient}/>
+      );
+  
+  const [orderNumOpen, setOrderNumOpen] = useState(false);
+
+  const [orderNum, setOrderNum] = useState();
+  const ingredientIDs = filling.map( ingredient => ingredient._id);
+  const submitOrder = () => {
+    api.submitOrder(ingredientIDs)
+      .then(setOrderNum)
+      .catch(alert);
+    setOrderNumOpen (true);
+  };
+ 
+  const orderNumModal = (orderNum && <Modal  onClose={() => setOrderNumOpen (false)}> <OrderDetails orderNum = {orderNum}/> </Modal>);
+
   
   return (
     
@@ -74,7 +84,7 @@ function BurgerConstructor () {
           </span>
 
           <Button type="primary" size="large"
-            onClick={() => setOrderNumOpen (true)}>
+            onClick={submitOrder}>
             Оформить заказ
           </Button>
 
