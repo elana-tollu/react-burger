@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react';
+import PropTypes from 'prop-types';
 
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
-import {data} from '../../utils/data.js'
-import ListOfIngridients from '../list-of-ingridients/list-of-ingridients';
+import ListOfIngridients from '../list-of-ingredients/list-of-ingredients';
 
 import styles from './tab-panel.module.css';
 
@@ -15,12 +15,13 @@ function scroll(parentRef, childRef) {
   parentRef.current.scrollTop = offset;
 }
 
-function TabPanel () {
+function TabPanel (props) {
+  
   const [current, setCurrent] = useState('buns')
 
-  const buns = ingredientsOfType(data, 'bun');
-  const mains = ingredientsOfType(data, 'main');
-  const sauces = ingredientsOfType(data, 'sauce');
+  const buns = ingredientsOfType(props.data, 'bun');
+  const mains = ingredientsOfType(props.data, 'main');
+  const sauces = ingredientsOfType(props.data, 'sauce');
 
   const scrollRef = useRef(null);
   const bunsRef = useRef(null);
@@ -69,6 +70,21 @@ function TabPanel () {
     </>
   );
 }
+
+TabPanel.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired, 
+      price: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      calories: PropTypes.number.isRequired,
+      proteins: PropTypes.number.isRequired,
+      fat: PropTypes.number.isRequired,
+      carbohydrates: PropTypes.number.isRequired
+    })
+  )
+};
 
 export default TabPanel;
 
