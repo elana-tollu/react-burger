@@ -28,7 +28,10 @@ function BurgerConstructor () {
   const [orderNumOpen, setOrderNumOpen] = useState(false);
 
   const [orderNum, setOrderNum] = useState();
-  const ingredientIDs = filling.map( ingredient => ingredient._id);
+  const ingredientIDs = [bun, ...filling, bun]
+    .filter(ingredient => ingredient) // убираем из обрабатываемого списка undefined, пока булочка ещё не выбрана
+    .map(ingredient => ingredient._id);
+
   const submitOrder = () => {
     api.submitOrder(ingredientIDs)
       .then(setOrderNum)
