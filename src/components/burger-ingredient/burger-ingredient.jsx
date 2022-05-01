@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import PropTypes from 'prop-types';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -6,14 +6,28 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 import styles from './burger-ingredient.module.css';
 import IngredientDetails from '../ingredient-details/ingredient-details.jsx'
 import Modal from '../modal/modal.jsx';
+import { HIDE_INGREDIENT, SHOW_INGREDIENT } from '../../services/actions/actions';
 
 function BurgerIngredient (props) {
-  const [ingredientDetailsOpen, setIngredientDetailsOpen] = useState(false);
-  const ingredientDetailsModal = (<Modal title = 'Детали ингредиента'  onClose={() => setIngredientDetailsOpen (false) }> <IngredientDetails ingredient = {props.ingredient}/> </Modal>);
+  const currentIngredient = useSelector(store => store.currentIngredient);
+  const ingredientDetailsModal = (
+    <Modal 
+      title = 'Детали ингредиента'  
+      onClose={() => dispatch ({
+        type: HIDE_INGREDIENT}) 
+      }> 
+      <IngredientDetails ingredient = {props.ingredient}/> 
+    </Modal>
+  );
+  const dispatch = useDispatch();
 
   return (
     <section className={styles['burger-ingredient']}
-      onClick={() => setIngredientDetailsOpen (true) }>
+      onClick={() => dispatch ({
+          type: SHOW_INGREDIENT,
+          ingredient: props.ingredient
+        })
+      }>
         <span className={styles.counter}>
         <p className="text text_type_digits-default">
             1
@@ -30,7 +44,7 @@ function BurgerIngredient (props) {
         </div>
         <p className="text text_type_main-default">{props.ingredient.name}</p>
 
-        {ingredientDetailsOpen && ingredientDetailsModal}
+        {currentIngredient === props.ingredient && ingredientDetailsModal}
     </section>
   );
 }
