@@ -4,7 +4,6 @@ import AppHeader from '../app-header/app-header.jsx';
 import BurgerConstructor from '../burger-constructor/burger-constructor.jsx';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients.jsx';
 import * as api from '../../utils/api.js';
-import { AppContext } from '../../services/app-context.js'
 
 import styles from './app.module.css';
 
@@ -18,9 +17,6 @@ function App() {
       })
       .catch(alert)
   }, []);
-
-  const bun = ingredients.find(ingredient => ingredient.type === 'bun')
-  const filling = ingredients.filter(ingredient => ingredient.type !== 'bun')
   
   return (
     <div className={styles.app}>
@@ -30,10 +26,8 @@ function App() {
 
         <BurgerIngredients data = {ingredients}/>
 
-        <AppContext.Provider value={{ bun, filling }}>
-          <BurgerConstructor />
-        </AppContext.Provider>
-
+        <BurgerConstructor />
+        
       </section>
     </div>
   );

@@ -1,18 +1,18 @@
 import { useState,  useContext} from 'react';
+import { useSelector } from 'react-redux';
 
 import image from 'images/orderIkon.png'
 import {Button, ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
 import OrderedIngredient from 'components/ordered-ingredient/ordered-ingredient.jsx'
 import Modal from 'components/modal/modal.jsx';
 import OrderDetails from 'components/order-details/order-details.jsx';
-import { AppContext } from 'services/app-context.js'
 import * as api from 'utils/api.js';
 
 import styles from './burger-constructor.module.css';
 
 function BurgerConstructor () {
 
-  const { bun, filling } = useContext(AppContext);
+  const { bun, filling } = useSelector(store => store.burger);
 
   const bunPrice = bun ? bun.price * 2 : 0;
 
