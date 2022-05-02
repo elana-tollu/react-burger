@@ -1,5 +1,4 @@
-import { useState,  useContext} from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import image from 'images/orderIkon.png'
 import {Button, ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
@@ -7,12 +6,13 @@ import OrderedIngredient from 'components/ordered-ingredient/ordered-ingredient.
 import Modal from 'components/modal/modal.jsx';
 import OrderDetails from 'components/order-details/order-details.jsx';
 import * as api from 'utils/api.js';
+import { HIDE_ORDER_NUMBER, SHOW_ORDER_NUMBER } from '../../services/actions/actions';
 
 import styles from './burger-constructor.module.css';
 
 function BurgerConstructor () {
 
-  const { bun, filling } = useSelector(store => store.burger);
+  const [{ bun, filling }, orderNumber] = useSelector(store => [store.burger, store.orderNumber]);
 
   const bunPrice = bun ? bun.price * 2 : 0;
 
@@ -25,21 +25,29 @@ function BurgerConstructor () {
         <OrderedIngredient key={ingredient._id} ingredient={ingredient}/>
       );
   
-  const [orderNumOpen, setOrderNumOpen] = useState(false);
-
-  const [orderNum, setOrderNum] = useState();
   const ingredientIDs = [bun, ...filling, bun]
     .filter(ingredient => ingredient) // убираем из обрабатываемого списка undefined, пока булочка ещё не выбрана
     .map(ingredient => ingredient._id);
 
+  const dispatch = useDispatch();
+  
   const submitOrder = () => {
     api.submitOrder(ingredientIDs)
-      .then(setOrderNum)
+      .then(orderNumber => dispatch ({
+        type: SHOW_ORDER_NUMBER,
+        orderNumber
+      }))
       .catch(alert);
-    setOrderNumOpen (true);
   };
- 
-  const orderNumModal = (orderNum && <Modal  onClose={() => setOrderNumOpen (false)}> <OrderDetails orderNum = {orderNum}/> </Modal>);
+
+  const orderNumModal = (orderNumber && 
+    <Modal  
+      onClose={() => dispatch ({
+        type: HIDE_ORDER_NUMBER
+      })
+      }> 
+      <OrderDetails orderNum = {orderNumber}/> 
+    </Modal>);
 
   
   return (
@@ -91,7 +99,7 @@ function BurgerConstructor () {
             Оформить заказ
           </Button>
 
-          {orderNumOpen && orderNumModal}
+          {orderNumber && orderNumModal}
 
         </div>
 

@@ -250,7 +250,7 @@ const store = createStore(
       filling
     },
     currentIngredient: null,
-    order: null,
+    orderNumber: null,
   },
   enhancer
 );
