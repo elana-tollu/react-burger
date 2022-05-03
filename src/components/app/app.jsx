@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import AppHeader from '../app-header/app-header.jsx';
 import BurgerConstructor from '../burger-constructor/burger-constructor.jsx';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients.jsx';
-import * as api from '../../utils/api.js';
+import { loadIngredients } from 'services/actions/actions'
 
 import styles from './app.module.css';
 
 function App() {
-  const [ingredients, setIngredients] = React.useState([]);
+
+  const ingredients = useSelector(store => store.ingredients);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    api.loadIngredientCards()
-      .then(ingredientsData => {
-        setIngredients(ingredientsData);
-      })
-      .catch(alert)
+    dispatch(loadIngredients())
   }, []);
   
   return (
