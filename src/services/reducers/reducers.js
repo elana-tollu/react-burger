@@ -1,12 +1,14 @@
 import {
     HIDE_INGREDIENT, 
     LOAD_INGREDIENTS_REQUEST, 
+    LOAD_INGREDIENTS_SUCCESS,
+    LOAD_INGREDIENTS_ERROR,
     SHOW_BURGER_INGREDIENTS, 
     SHOW_INGREDIENT, 
-    SUBMIT_ORDER, 
-    SHOW_ORDER_NUMBER,
+    SUBMIT_ORDER_REQUEST, 
+    SUBMIT_ORDER_SUCCESS,
+    SUBMIT_ORDER_ERROR,
     HIDE_ORDER_NUMBER,
-    LOAD_INGREDIENTS_SUCCESS
 } from "../actions/actions";
 
 export const rootReducer = (state, action) => {
@@ -22,7 +24,9 @@ export const rootReducer = (state, action) => {
                 ...state,
                 ingredients: action.ingredients,
                 burger: {bun, filling}
-            }
+            };
+        case LOAD_INGREDIENTS_ERROR:
+            return state;
         case SHOW_BURGER_INGREDIENTS:
             return state;
         case SHOW_INGREDIENT:
@@ -35,13 +39,15 @@ export const rootReducer = (state, action) => {
                 ...state, 
                 currentIngredient: null,
             };
-        case SUBMIT_ORDER:
+        case SUBMIT_ORDER_REQUEST:
             return state;
-        case SHOW_ORDER_NUMBER:
+        case SUBMIT_ORDER_SUCCESS:
             return {
                 ...state, 
                 orderNumber: action.orderNumber,
             };
+        case SUBMIT_ORDER_ERROR:
+            return state;
         case HIDE_ORDER_NUMBER:
             return {
                 ...state, 

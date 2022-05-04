@@ -5,8 +5,7 @@ import {Button, ConstructorElement} from '@ya.praktikum/react-developer-burger-u
 import OrderedIngredient from 'components/ordered-ingredient/ordered-ingredient.jsx'
 import Modal from 'components/modal/modal.jsx';
 import OrderDetails from 'components/order-details/order-details.jsx';
-import * as api from 'utils/api.js';
-import { HIDE_ORDER_NUMBER, SHOW_ORDER_NUMBER } from '../../services/actions/actions';
+import { HIDE_ORDER_NUMBER, submitOrderAction } from '../../services/actions/actions';
 
 import styles from './burger-constructor.module.css';
 
@@ -32,12 +31,7 @@ function BurgerConstructor () {
   const dispatch = useDispatch();
   
   const submitOrder = () => {
-    api.submitOrder(ingredientIDs)
-      .then(orderNumber => dispatch ({
-        type: SHOW_ORDER_NUMBER,
-        orderNumber
-      }))
-      .catch(alert);
+    dispatch(submitOrderAction(ingredientIDs))
   };
 
   const orderNumModal = (orderNumber && 
