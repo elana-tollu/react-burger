@@ -23,6 +23,7 @@ function TabPanel (props) {
   const mains = ingredientsOfType(props.data, 'main');
   const sauces = ingredientsOfType(props.data, 'sauce');
 
+  const panelRef = useRef(null);
   const scrollRef = useRef(null);
   const bunsRef = useRef(null);
   const mainsRef = useRef(null);
@@ -30,7 +31,7 @@ function TabPanel (props) {
 
   return (
     <>
-    <div style={{ display: 'flex' }}>
+    <div style={{ display: 'flex' }} ref={panelRef}>
       <Tab value="buns" active={current === 'buns'} onClick={ v => {
           setCurrent(v);
           scroll(scrollRef, bunsRef);
@@ -51,7 +52,26 @@ function TabPanel (props) {
       </Tab>
     </div>
 
-    <div className={styles['ingredients-scroll']} ref={scrollRef}> 
+    <div className={styles['ingredients-scroll']} ref={scrollRef} onScroll={ s => {
+      const panelOffset = panelRef.current.getBoundingClientRect().top; // определить координаты панели
+      const bunsOffset = bunsRef.current.getBoundingClientRect().top;   // определить координаты заголовков
+      const saucesOffset = saucesRef.current.getBoundingClientRect().top;
+      const mainsOffset = mainsRef.current.getBoundingClientRect().top;
+
+      const bunsDistance = Math.abs(panelOffset - bunsOffset);  // вычислить расстояние между панелью и заголовком
+      const saucesDistance = Math.abs(panelOffset - saucesOffset);
+      const mainsDistance = Math.abs(panelOffset - mainsOffset);
+
+      let distances = [ // создать массив объектов, связывающих заголовок и расстояние до панели
+        {tab: 'buns', distance: bunsDistance},
+        {tab: 'sauces', distance: saucesDistance},
+        {tab: 'mains', distance: mainsDistance},
+      ];
+
+      distances.sort((a, b) => a.distance - b.distance); // сортировать массив по расстоянию
+
+      setCurrent(distances[0].tab);
+      }}> 
       <ListOfIngridients  
       title = "Булки" 
       ingredients = {buns} 
