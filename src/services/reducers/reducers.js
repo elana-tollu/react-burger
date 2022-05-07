@@ -43,6 +43,11 @@ export const rootReducer = (state, action) => {
                 ...state,
                 burger: addIngredient(state.burger, action.ingredient),
             }
+        case DELETE_INGREDIENT:
+            return {
+                ...state,
+                burger: deleteIngredient(state.burger, action.index),
+            }
         case SUBMIT_ORDER_REQUEST:
             return state;
         case SUBMIT_ORDER_SUCCESS:
@@ -74,4 +79,12 @@ function addIngredient(burger, ingredient) {
             filling: [...burger.filling, ingredient]
         };
     }
+}
+
+function deleteIngredient(burger, index) {
+    console.log("Index:", index)
+    return { 
+        ...burger,
+        filling: burger.filling.filter((v, i) => i !== index)
+    };
 }

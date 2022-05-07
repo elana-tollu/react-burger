@@ -6,7 +6,7 @@ import {Button, ConstructorElement} from '@ya.praktikum/react-developer-burger-u
 import OrderedIngredient from 'components/ordered-ingredient/ordered-ingredient.jsx'
 import Modal from 'components/modal/modal.jsx';
 import OrderDetails from 'components/order-details/order-details.jsx';
-import { ADD_INGREDIENT, HIDE_ORDER_NUMBER, submitOrderAction } from '../../services/actions/actions';
+import { ADD_INGREDIENT, DELETE_INGREDIENT, HIDE_ORDER_NUMBER, submitOrderAction } from '../../services/actions/actions';
 
 import styles from './burger-constructor.module.css';
 
@@ -37,7 +37,15 @@ function BurgerConstructor () {
   ) + bunPrice;
   
   const listIngridients = filling.map((ingredient, index) =>
-        <OrderedIngredient key={ingredient._id} ingredient={ingredient}/>
+        <OrderedIngredient 
+          key={index}  
+          ingredient={ingredient}
+          onClose={() => dispatch ({
+              type: DELETE_INGREDIENT,
+              index
+            })
+          }
+        />
       );
   
   const ingredientIDs = [bun, ...filling, bun]

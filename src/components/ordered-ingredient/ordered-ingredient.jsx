@@ -14,6 +14,7 @@ function OrderedIngredient (props) {
                 text={props.ingredient.name}
                 price={props.ingredient.price}
                 thumbnail={props.ingredient.image}
+                handleClose = {props.onClose}
             />
                         
         </section>
