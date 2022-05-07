@@ -29,6 +29,7 @@ export function loadIngredientsAction() {
             })
         })
         .catch (err => {
+            alert ("Ингредиенты для бургеров похитили космические пираты!");
             dispatch({
                 type: LOAD_INGREDIENTS_ERROR
             })
@@ -49,6 +50,7 @@ export function submitOrderAction(ingredientIDs) {
             })
         })
         .catch (err => {
+            alert ("Упс! Заказ потерялся в космическом пространстве!");
             dispatch({
                 type: SUBMIT_ORDER_ERROR
             })
