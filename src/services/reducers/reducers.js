@@ -5,6 +5,8 @@ import {
     LOAD_INGREDIENTS_ERROR,
     SHOW_BURGER_INGREDIENTS, 
     SHOW_INGREDIENT, 
+    ADD_INGREDIENT,
+    DELETE_INGREDIENT,
     SUBMIT_ORDER_REQUEST, 
     SUBMIT_ORDER_SUCCESS,
     SUBMIT_ORDER_ERROR,
@@ -36,6 +38,11 @@ export const rootReducer = (state, action) => {
                 ...state, 
                 currentIngredient: null,
             };
+        case ADD_INGREDIENT:
+            return {
+                ...state,
+                burger: addIngredient(state.burger, action.ingredient),
+            }
         case SUBMIT_ORDER_REQUEST:
             return state;
         case SUBMIT_ORDER_SUCCESS:
@@ -52,5 +59,19 @@ export const rootReducer = (state, action) => {
             };
         default:
             return state;
+    }
+}
+
+function addIngredient(burger, ingredient) {
+    if (ingredient.type === 'bun') {
+        return { 
+            ...burger,
+            bun: ingredient
+        };
+    } else {
+        return { 
+            ...burger,
+            filling: [...burger.filling, ingredient]
+        };
     }
 }

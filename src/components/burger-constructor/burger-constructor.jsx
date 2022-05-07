@@ -1,15 +1,31 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { useDrop } from 'react-dnd';
 
 import image from 'images/orderIkon.png'
 import {Button, ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
 import OrderedIngredient from 'components/ordered-ingredient/ordered-ingredient.jsx'
 import Modal from 'components/modal/modal.jsx';
 import OrderDetails from 'components/order-details/order-details.jsx';
-import { HIDE_ORDER_NUMBER, submitOrderAction } from '../../services/actions/actions';
+import { ADD_INGREDIENT, HIDE_ORDER_NUMBER, submitOrderAction } from '../../services/actions/actions';
 
 import styles from './burger-constructor.module.css';
 
 function BurgerConstructor () {
+
+  const dispatch = useDispatch();
+
+  const [{ isHover }, dropTarget] = useDrop({
+    accept: 'ingredient',
+    drop(ingredient) {
+      dispatch ({
+        type: ADD_INGREDIENT,
+        ingredient
+      });
+    },
+    collect: monitor => ({
+      isHover: monitor.isOver()
+    })
+  }); 
 
   const [{ bun, filling }, orderNumber] = useSelector(store => [store.burger, store.orderNumber]);
 
@@ -28,7 +44,7 @@ function BurgerConstructor () {
     .filter(ingredient => ingredient) // убираем из обрабатываемого списка undefined, пока булочка ещё не выбрана
     .map(ingredient => ingredient._id);
 
-  const dispatch = useDispatch();
+  
   
   const submitOrder = () => {
     dispatch(submitOrderAction(ingredientIDs))
@@ -46,57 +62,57 @@ function BurgerConstructor () {
   
   return (
     
-      <section className={styles['burger-constructor']}>
-
-        <section className={styles['order-details']}>
-
-          {bun && <ConstructorElement
-              type="top"
-              isLocked={true}
-              text={`${bun.name} (верх)`}
-              price={bun.price}
-              thumbnail={bun.image}
-          />}
+      <section ref={dropTarget} className={styles['burger-constructor']}>
           
-        </section>
+          <section className={styles['order-details']}>
 
-        <div className={styles['constructor-scroll']}>
-          {listIngridients}
-        </div>
+            {bun && <ConstructorElement
+                type="top"
+                isLocked={true}
+                text={`${bun.name} (верх)`}
+                price={bun.price}
+                thumbnail={bun.image}
+            />}
+            
+          </section>
 
-        <section className={styles['order-details']}>
+          <div className={styles['constructor-scroll']}>
+            {listIngridients}
+          </div>
 
-          {bun && <ConstructorElement
-            type="bottom"
-            isLocked={true}
-            text={`${bun.name} (низ)`}
-              price={bun.price}
-              thumbnail={bun.image}
-          />}
-                    
-        </section>
+          <section className={styles['order-details']}>
 
-        <div className={styles.order}>
-          <span className={styles.cost}>
-            <p className="text text_type_digits-medium mr-2">
-              {orderSum}
-            </p>
-            <img
-            className={styles.orderImage}
-            src={image}
-            alt=''
-            />  
-          </span>
+            {bun && <ConstructorElement
+              type="bottom"
+              isLocked={true}
+              text={`${bun.name} (низ)`}
+                price={bun.price}
+                thumbnail={bun.image}
+            />}
+                      
+          </section>
 
-          <Button type="primary" size="large"
-            onClick={submitOrder}>
-            Оформить заказ
-          </Button>
+          <div className={styles.order}>
+            <span className={styles.cost}>
+              <p className="text text_type_digits-medium mr-2">
+                {orderSum}
+              </p>
+              <img
+              className={styles.orderImage}
+              src={image}
+              alt=''
+              />  
+            </span>
 
-          {orderNumber && orderNumModal}
+            <Button type="primary" size="large"
+              onClick={submitOrder}>
+              Оформить заказ
+            </Button>
 
-        </div>
+            {orderNumber && orderNumModal}
 
+          </div>
+        
       </section>
   
   );

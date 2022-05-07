@@ -21,9 +21,10 @@ function BurgerIngredient (props) {
     </Modal>
   );
   const dispatch = useDispatch();
+
   const [{opacity}, dragRef] = useDrag({
-    type: 'items',
-    item: '_id',
+    type: 'ingredient',
+    item: props.ingredient,
     collect: monitor => ({
       opacity: monitor.isDragging() ? 0.5 : 1
       })
@@ -31,7 +32,7 @@ function BurgerIngredient (props) {
 
   return (
     <section ref={dragRef} className={styles['burger-ingredient']} 
-    style = {{opacity: 1}}
+    style = {{opacity}}
       onClick={() => dispatch ({
           type: SHOW_INGREDIENT,
           ingredient: props.ingredient
