@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useDrag } from 'react-dnd';
 
 import PropTypes from 'prop-types';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -20,9 +21,17 @@ function BurgerIngredient (props) {
     </Modal>
   );
   const dispatch = useDispatch();
+  const [{opacity}, dragRef] = useDrag({
+    type: 'items',
+    item: '_id',
+    collect: monitor => ({
+      opacity: monitor.isDragging() ? 0.5 : 1
+      })
+    });
 
   return (
-    <section className={styles['burger-ingredient']}
+    <section ref={dragRef} className={styles['burger-ingredient']} 
+    style = {{opacity: 1}}
       onClick={() => dispatch ({
           type: SHOW_INGREDIENT,
           ingredient: props.ingredient

@@ -18,12 +18,9 @@ export const rootReducer = (state, action) => {
         case LOAD_INGREDIENTS_REQUEST:
             return state;
         case LOAD_INGREDIENTS_SUCCESS:
-            const bun = action.ingredients.find(ingredient => ingredient.type === 'bun');
-            const filling = action.ingredients.filter(ingredient => ingredient.type !== 'bun');
             return {
                 ...state,
-                ingredients: action.ingredients,
-                burger: {bun, filling}
+                ingredients: action.ingredients
             };
         case LOAD_INGREDIENTS_ERROR:
             return state;

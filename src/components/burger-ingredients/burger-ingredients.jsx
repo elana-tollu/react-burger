@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import TabPanel from '../tab-panel/tab-panel';
 
@@ -8,13 +10,15 @@ import styles from './burger-ingredients.module.css';
 function BurgerIngredients (props) {
   return (
       <section className={styles['burger-ingredients']}>
-        <h1 className="text text_type_main-large">
-          Соберите бургер
-        </h1>
-        
-        <div className="mb-10 mt-5">
-          <TabPanel data = {props.data} />
-        </div>
+        <DndProvider backend={HTML5Backend}>
+          <h1 className="text text_type_main-large">
+            Соберите бургер
+          </h1>
+          
+          <div className="mb-10 mt-5">
+            <TabPanel data = {props.data} />
+          </div>
+        </DndProvider>
       </section>   
   );
 }
