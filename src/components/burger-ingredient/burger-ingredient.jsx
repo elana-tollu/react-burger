@@ -11,6 +11,14 @@ import { HIDE_INGREDIENT, SHOW_INGREDIENT } from '../../services/actions/actions
 
 function BurgerIngredient (props) {
   const currentIngredient = useSelector(store => store.currentIngredient);
+  const count = useSelector(store => [...store.burger.filling, store.burger.bun].filter(value => value === props.ingredient).length);
+  const counterBadge = (
+    <span className={styles.counter}>
+      <p className="text text_type_digits-default">
+          {count}
+      </p></span>
+    );
+
   const ingredientDetailsModal = (
     <Modal 
       title = 'Детали ингредиента'  
@@ -38,10 +46,9 @@ function BurgerIngredient (props) {
           ingredient: props.ingredient
         })
       }>
-        <span className={styles.counter}>
-        <p className="text text_type_digits-default">
-            1
-        </p></span>
+
+        {count > 0 && counterBadge}
+
         <img
         className={styles.image}
         src={props.ingredient.image}
