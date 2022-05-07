@@ -14,7 +14,7 @@ function BurgerConstructor () {
 
   const dispatch = useDispatch();
 
-  const [{ isHover }, dropTarget] = useDrop({
+  const [{}, dropIngredient] = useDrop({
     accept: 'ingredient',
     drop(ingredient) {
       dispatch ({
@@ -22,9 +22,6 @@ function BurgerConstructor () {
         ingredient
       });
     },
-    collect: monitor => ({
-      isHover: monitor.isOver()
-    })
   }); 
 
   const [{ bun, filling }, orderNumber] = useSelector(store => [store.burger, store.orderNumber]);
@@ -40,6 +37,7 @@ function BurgerConstructor () {
         <OrderedIngredient 
           key={index}  
           ingredient={ingredient}
+          index = {index}
           onClose={() => dispatch ({
               type: DELETE_INGREDIENT,
               index
@@ -70,7 +68,7 @@ function BurgerConstructor () {
   
   return (
     
-      <section ref={dropTarget} className={styles['burger-constructor']}>
+      <section ref={dropIngredient} className={styles['burger-constructor']}>
           
           <section className={styles['order-details']}>
 

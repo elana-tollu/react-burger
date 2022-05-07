@@ -7,6 +7,7 @@ import {
     SHOW_INGREDIENT, 
     ADD_INGREDIENT,
     DELETE_INGREDIENT,
+    MOVE_ORDER_ITEM,
     SUBMIT_ORDER_REQUEST, 
     SUBMIT_ORDER_SUCCESS,
     SUBMIT_ORDER_ERROR,
@@ -14,8 +15,6 @@ import {
 } from "../actions/actions";
 
 export const rootReducer = (state, action) => {
-    console.log(action);
-
     switch (action.type) {
         case LOAD_INGREDIENTS_REQUEST:
             return state;
@@ -47,6 +46,11 @@ export const rootReducer = (state, action) => {
             return {
                 ...state,
                 burger: deleteIngredient(state.burger, action.index),
+            }
+        case MOVE_ORDER_ITEM:
+            return {
+                ...state,
+                burger: moveOrderItem(state.burger, action.fromIndex, action.toIndex),
             }
         case SUBMIT_ORDER_REQUEST:
             return state;
@@ -82,9 +86,19 @@ function addIngredient(burger, ingredient) {
 }
 
 function deleteIngredient(burger, index) {
-    console.log("Index:", index)
     return { 
         ...burger,
         filling: burger.filling.filter((v, i) => i !== index)
+    };
+}
+
+function moveOrderItem(burger, fromIndex, toIndex) {
+    let newFilling = [...burger.filling];
+    let fromIngredient = newFilling[fromIndex];
+    newFilling[fromIndex] = newFilling[toIndex];
+    newFilling[toIndex] = fromIngredient;
+    return { 
+        ...burger,
+        filling: newFilling
     };
 }
