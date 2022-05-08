@@ -8,6 +8,7 @@ import styles from './burger-ingredient.module.css';
 import IngredientDetails from '../ingredient-details/ingredient-details.jsx'
 import Modal from '../modal/modal.jsx';
 import { HIDE_INGREDIENT, SHOW_INGREDIENT } from '../../services/actions/actions';
+import {INGREDIENT_TYPE} from 'utils/types';
 
 function BurgerIngredient (props) {
   const currentIngredient = useSelector(store => store.currentIngredient);
@@ -67,16 +68,7 @@ function BurgerIngredient (props) {
 }
 
 BurgerIngredient.propTypes = {
-  ingredient: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired, 
-    price: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    calories: PropTypes.number.isRequired,
-    proteins: PropTypes.number.isRequired,
-    fat: PropTypes.number.isRequired,
-    carbohydrates: PropTypes.number.isRequired,
-  }).isRequired
+  ingredient: INGREDIENT_TYPE.isRequired
 };
 
 export default BurgerIngredient;

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import ListOfIngridients from '../list-of-ingredients/list-of-ingredients';
+import {INGREDIENT_TYPE} from 'utils/types';
 
 import styles from './tab-panel.module.css';
 
@@ -95,16 +96,7 @@ function TabPanel () {
 
 TabPanel.propTypes = {
   data: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired, 
-      price: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      calories: PropTypes.number.isRequired,
-      proteins: PropTypes.number.isRequired,
-      fat: PropTypes.number.isRequired,
-      carbohydrates: PropTypes.number.isRequired
-    })
+    INGREDIENT_TYPE
   )
 };
 
