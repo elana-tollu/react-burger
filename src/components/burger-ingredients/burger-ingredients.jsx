@@ -7,7 +7,7 @@ import TabPanel from '../tab-panel/tab-panel';
 
 import styles from './burger-ingredients.module.css';
 
-function BurgerIngredients (props) {
+function BurgerIngredients () {
   return (
       <section className={styles['burger-ingredients']}>
         <DndProvider backend={HTML5Backend}>
@@ -16,7 +16,7 @@ function BurgerIngredients (props) {
           </h1>
           
           <div className="mb-10 mt-5">
-            <TabPanel data = {props.data} />
+            <TabPanel />
           </div>
         </DndProvider>
       </section>   

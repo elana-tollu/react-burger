@@ -27,7 +27,7 @@ function App() {
       <section className={styles.body}>
         <DndProvider backend={HTML5Backend}>
 
-          <BurgerIngredients data = {ingredients}/>
+          <BurgerIngredients />
 
           <BurgerConstructor />
         </DndProvider>

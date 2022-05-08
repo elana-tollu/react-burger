@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import ListOfIngridients from '../list-of-ingredients/list-of-ingredients';
@@ -15,13 +16,14 @@ function scroll(parentRef, childRef) {
   parentRef.current.scrollTop = offset;
 }
 
-function TabPanel (props) {
+function TabPanel () {
+  const ingredients = useSelector(store => store.ingredients);
   
   const [current, setCurrent] = useState('buns')
 
-  const buns = ingredientsOfType(props.data, 'bun');
-  const mains = ingredientsOfType(props.data, 'main');
-  const sauces = ingredientsOfType(props.data, 'sauce');
+  const buns = ingredientsOfType(ingredients, 'bun');
+  const mains = ingredientsOfType(ingredients, 'main');
+  const sauces = ingredientsOfType(ingredients, 'sauce');
 
   const panelRef = useRef(null);
   const scrollRef = useRef(null);
