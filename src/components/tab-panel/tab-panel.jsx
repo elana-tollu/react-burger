@@ -34,7 +34,7 @@ function TabPanel () {
 
   return (
     <>
-    <div style={{ display: 'flex' }} ref={panelRef}>
+    <div className={styles['tab-panel']} ref={panelRef}>
       <Tab value="buns" active={current === 'buns'} onClick={ v => {
           setCurrent(v);
           scroll(scrollRef, bunsRef);

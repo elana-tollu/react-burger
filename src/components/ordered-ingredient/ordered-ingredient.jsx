@@ -35,7 +35,7 @@ function OrderedIngredient (props) {
 
     return (
         <section ref={(node) => dragRef(dropRef(node))} className={styles['ordered-ingredient']} style={{ opacity }}>
-            <DragIcon style={{ marginRight: '8px' }} type="primary" />
+            <DragIcon type="primary" />
 
             <ConstructorElement
                 text={props.ingredient.name}
