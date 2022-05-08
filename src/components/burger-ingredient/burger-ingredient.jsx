@@ -12,7 +12,7 @@ import {INGREDIENT_TYPE} from 'utils/types';
 
 function BurgerIngredient (props) {
   const currentIngredient = useSelector(store => store.currentIngredient);
-  const count = useSelector(store => [...store.burger.filling, store.burger.bun].filter(value => value === props.ingredient).length);
+  const count = useSelector(store => [...store.burger.filling, store.burger.bun].filter(value => value && value._id === props.ingredient._id).length);
   const counterBadge = (
     <span className={styles.counter}>
       <p className="text text_type_digits-default">
