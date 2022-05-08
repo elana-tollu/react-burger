@@ -58,6 +58,10 @@ export const rootReducer = (state, action) => {
             return {
                 ...state, 
                 orderNumber: action.orderNumber,
+                burger: {
+                    bun: null,
+                    filling: []
+                  },
             };
         case SUBMIT_ORDER_ERROR:
             return state;
