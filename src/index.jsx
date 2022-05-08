@@ -3,31 +3,10 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/app/app";
 import reportWebVitals from "./reportWebVitals";
-import { compose, createStore, applyMiddleware } from "redux";
-import { rootReducer } from "services/reducers/reducers";
 import { Provider } from "react-redux";
-import thunk from "redux-thunk";
 
-const composeEnhancers =
-  typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-    : compose;
+import {store} from 'services/store';
 
-const enhancer = composeEnhancers(applyMiddleware(thunk));
-
-const store = createStore(
-  rootReducer,
-  {
-    ingredients: [],
-    burger: {
-      bun: null,
-      filling: []
-    },
-    currentIngredient: null,
-    orderNumber: null,
-  },
-  enhancer
-);
 
 ReactDOM.render(
   <React.StrictMode>
