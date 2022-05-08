@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
+import { v4 as uuidv4 } from 'uuid';
 
 import image from 'images/orderIkon.png'
 import {Button, ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
@@ -17,9 +18,10 @@ function BurgerConstructor () {
   const [{}, dropIngredient] = useDrop({
     accept: 'ingredient',
     drop(ingredient) {
+      const uuid = uuidv4();
       dispatch ({
         type: ADD_INGREDIENT,
-        ingredient
+        ingredient: {...ingredient, uuid}
       });
     },
   }); 
@@ -35,7 +37,7 @@ function BurgerConstructor () {
   
   const listIngridients = filling.map((ingredient, index) =>
         <OrderedIngredient 
-          key={index}  
+          key={ingredient.uuid}  
           ingredient={ingredient}
           index = {index}
           onClose={() => dispatch ({
