@@ -112,7 +112,7 @@ function BurgerConstructor () {
               />  
             </span>
 
-            <Button type="primary" size="large"
+            <Button type="primary" size="large" disabled={!bun}
               onClick={submitOrder}>
               Оформить заказ
             </Button>
