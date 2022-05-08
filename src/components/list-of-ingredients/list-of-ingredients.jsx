@@ -3,6 +3,7 @@ import {forwardRef} from 'react';
 import PropTypes from 'prop-types';
 
 import BurgerIngredient from '../burger-ingredient/burger-ingredient';
+import {INGREDIENT_TYPE} from 'utils/types';
 
 import styles from './list-of-ingredients.module.css';
 
@@ -27,16 +28,7 @@ const ListOfIngridients = forwardRef(function(props, ref){
 ListOfIngridients.propTypes = {
     title: PropTypes.string.isRequired,
     ingredients: PropTypes.arrayOf(
-      PropTypes.shape({
-        _id: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired, 
-        price: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        calories: PropTypes.number.isRequired,
-        proteins: PropTypes.number.isRequired,
-        fat: PropTypes.number.isRequired,
-        carbohydrates: PropTypes.number.isRequired
-      })
+      INGREDIENT_TYPE
     )
   };
 
