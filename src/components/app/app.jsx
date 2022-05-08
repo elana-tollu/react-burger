@@ -12,8 +12,6 @@ import styles from './app.module.css';
 
 function App() {
 
-  const ingredients = useSelector(store => store.ingredients);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
