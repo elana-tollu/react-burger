@@ -1,11 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import Email from '../email-input/email-input';
+import { YandexEmailInput } from 'yandex/yandex-email-input';
 
 import styles from './page-forgot-password.module.css';
 
 function PageForgotPassword () {
+    const [value, setValue] = React.useState('')
+    const onChange = e => {
+      setValue(e.target.value)
+    }
     return (
         <section className={styles.body}>
             <form className={styles.form}>
@@ -14,7 +18,7 @@ function PageForgotPassword () {
                         <p className="text text_type_main-medium">Восстановление пароля</p>
                     </h1>
                     <div className={styles.input}>
-                        <Email />
+                    <YandexEmailInput placeholder="Укажите e-mail" onChange={onChange} value={value} name={'email'} size='default' />
                     </div>
 
                     <div className={styles.button}>
