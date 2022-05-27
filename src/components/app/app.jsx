@@ -13,6 +13,7 @@ import PageLogin from '../page-login/page-login.jsx';
 import PageRegistration from '../page-registration/page-registration';
 import PageForgotPassword from '../page-forgot-password/page-forgot-password';
 import { loadIngredientsAction } from 'services/actions/actions';
+import PageResetPassword from '../page-reset-password/page-reset-password.jsx';
 
 import styles from './app.module.css';
 
@@ -47,6 +48,7 @@ function App() {
             <PageLogin />
             <PageRegistration />
             <PageForgotPassword />
+            <PageResetPassword />
 
             <HomePage />
           </Route>

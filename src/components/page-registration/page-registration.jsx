@@ -2,12 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { YandexEmailInput } from 'yandex/yandex-email-input';
-import Password from '../password-input/password-input';
-import InputName from '../input/input';
+import { YandexPasswordInput } from 'yandex/yandex-password-input';
+import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import styles from './page-registration.module.css';
 
 function PageRegistration () {
+    const [value, setValue] = React.useState('')
+    const onChange = e => {
+      setValue(e.target.value)
+    }
+
     return (
         <section className={styles.body}>
             <form className={styles.form}>
@@ -16,13 +21,23 @@ function PageRegistration () {
                         <p className="text text_type_main-medium">Регистрация</p>
                     </h1>
                     <div className={styles.input}>
-                        <InputName />
+                        <Input 
+                            type={'text'}
+                            placeholder="Имя" 
+                            onChange={onChange} 
+                            icon={null}
+                            value={value} 
+                            name={'input'} 
+                            error={false}
+                            errorText={'Ошибка'}
+                            size='default'
+                        />
                     </div>
                     <div className={styles.input}>
                         <YandexEmailInput />
                     </div>
                     <div className={styles.input}>
-                        <Password />
+                        <YandexPasswordInput />
                     </div>
 
                     <div className={styles.button}>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { YandexEmailInput } from 'yandex/yandex-email-input';
-import Password from '../password-input/password-input';
+import { YandexPasswordInput } from 'yandex/yandex-password-input';
 
 import styles from './page-login.module.css';
 
@@ -18,7 +18,7 @@ function PageLogin () {
                         <YandexEmailInput />
                     </div>
                     <div className={styles.input}>
-                        <Password />
+                        <YandexPasswordInput />
                     </div>
 
                     <div className={styles.button}>
