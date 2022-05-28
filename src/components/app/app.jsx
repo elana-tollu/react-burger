@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import HomePage from 'pages/home.jsx';
 import Login from 'pages/login.jsx';
+import ProfilePage from 'pages/profile.jsx';
 
 
 import PageLogin from '../page-login/page-login.jsx';
@@ -15,6 +16,10 @@ import styles from './app.module.css';
 function App() {
   return (
         <Router>
+          <Route path="/profile">
+            <ProfilePage />
+          </Route>
+
           <Route path="/login">
             <Login />
           </Route>

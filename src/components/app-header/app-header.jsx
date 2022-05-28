@@ -35,7 +35,7 @@ function AppHeader() {
         <Button type="secondary" size="small">
           <div className={styles['button-content']}>
             <ProfileIcon type="secondary" />
-            <Link to='/login'>
+            <Link to='/profile'>
               <p className="text text_type_main-default text_color_inactive ml-2">
                 Личный кабинет
               </p>
