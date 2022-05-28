@@ -23,3 +23,20 @@
     justify-content: end;
     align-items: center;
 }
+
+.app {
+    height: 100vh;
+    min-width: 1320px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    background-color: rgb(19, 19, 22);
+  }
+  
+.body {
+    display: grid;
+    grid-template-columns: repeat(2, 600px);
+    gap: 40px;
+    }

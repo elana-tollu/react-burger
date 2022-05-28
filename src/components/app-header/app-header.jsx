@@ -1,8 +1,9 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 import { BurgerIcon, Button, ListIcon, Logo, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
-import styles from './app-header.module.css'
+import styles from './app-header.module.css';
 
 function AppHeader() {
   return (
@@ -34,9 +35,11 @@ function AppHeader() {
         <Button type="secondary" size="small">
           <div className={styles['button-content']}>
             <ProfileIcon type="secondary" />
-            <p className="text text_type_main-default text_color_inactive ml-2">
-              Личный кабинет
-            </p>
+            <Link to='/login'>
+              <p className="text text_type_main-default text_color_inactive ml-2">
+                Личный кабинет
+              </p>
+            </Link>
           </div>
         </Button>
       </nav>
