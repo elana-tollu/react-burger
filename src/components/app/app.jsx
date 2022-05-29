@@ -10,9 +10,11 @@ import ResetPasswordPage from 'pages/reset-password.jsx';
 import ProtectedRoute from 'components/protected-route/protected-route.jsx';
 
 import styles from './app.module.css';
+import { ProvideAuth } from 'services/auth';
 
 function App() {
   return (
+    <ProvideAuth>
         <Router>
           <Switch>
             
@@ -42,7 +44,8 @@ function App() {
 
           </Switch>
         </Router>
-      );     
+      </ProvideAuth>
+    );     
 }
 
 export default App;
