@@ -33,12 +33,12 @@ function PageLogin () {
                 
                 <div className={styles.linksContainer}>
                     <p className="text text_type_main-default text_color_inactive">Вы — новый пользователь? 
-                        <Link to='/' className={styles.link}>
+                        <Link to='/register' className={styles.link}>
                             Зарегистрироваться
                         </Link>
                     </p>
                     <p className="text text_type_main-default text_color_inactive">Забыли пароль? 
-                        <Link to='/' className={styles.link}>
+                        <Link to='/forgot-password' className={styles.link}>
                             Восстановить пароль
                         </Link>
                     </p>
