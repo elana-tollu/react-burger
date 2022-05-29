@@ -7,6 +7,7 @@ import ProfilePage from 'pages/profile.jsx';
 import RegistrationPage from 'pages/register.jsx';
 import ForgotPasswordPage from 'pages/forgot-password.jsx';
 import ResetPasswordPage from 'pages/reset-password.jsx';
+import ProtectedRoute from 'components/protected-route/protected-route.jsx';
 
 import styles from './app.module.css';
 
@@ -27,9 +28,9 @@ function App() {
               <RegistrationPage />
             </Route>
 
-            <Route path="/profile">
+            <ProtectedRoute path="/profile">
               <ProfilePage />
-            </Route>
+            </ProtectedRoute>
 
             <Route path="/login">
               <Login />
@@ -45,6 +46,3 @@ function App() {
 }
 
 export default App;
-
-
-
