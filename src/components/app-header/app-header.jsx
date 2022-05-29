@@ -9,7 +9,11 @@ function AppHeader() {
   return (
     <header className={styles['app-header']}>
 
-      <div className={styles.logo}><Logo/></div>
+      <div className={styles.logo}>
+        <Link to='/'>
+          <Logo/>
+        </Link>
+      </div>
 
       <nav className={styles.content}>
         <div className={styles.menu}>
