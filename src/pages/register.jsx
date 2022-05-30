@@ -9,9 +9,7 @@ function RegistrationPage () {
   
   return (
     <div className={styles.app}>
-        <AppHeader />
-
-        <PageRegistration />
+      <PageRegistration />
     </div>
   );
 };

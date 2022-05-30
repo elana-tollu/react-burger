@@ -33,7 +33,7 @@ export function useProvideAuth() {
 }
 
 const fakeAuth = {
-    isAuthenticated: false,
+    isAuthenticated: true,
     signIn(cb) {
       fakeAuth.isAuthenticated = true;
       setTimeout(cb, 100); // fake async

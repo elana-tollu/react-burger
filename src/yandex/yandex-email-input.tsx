@@ -8,7 +8,7 @@ const validateEmail = (email: string) => {
 
 export const YandexEmailInput = ({
     placeholder = 'E-mail',
-    value = '',
+    value,
     onChange,
     name,
     size = 'default',

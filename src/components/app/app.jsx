@@ -8,6 +8,7 @@ import RegistrationPage from 'pages/register.jsx';
 import ForgotPasswordPage from 'pages/forgot-password.jsx';
 import ResetPasswordPage from 'pages/reset-password.jsx';
 import ProtectedRoute from 'components/protected-route/protected-route.jsx';
+import AppHeader from '../app-header/app-header.jsx';
 
 import styles from './app.module.css';
 import { ProvideAuth } from 'services/auth';
@@ -16,6 +17,8 @@ function App() {
   return (
     <ProvideAuth>
         <Router>
+          <AppHeader />
+          
           <Switch>
             
             <Route path="/reset-password">

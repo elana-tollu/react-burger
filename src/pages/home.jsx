@@ -22,8 +22,6 @@ function HomePage () {
   
   return (
     <div className={styles.app}>
-        <AppHeader />
-
         <section className={styles.body}>
           <DndProvider backend={HTML5Backend}>
 
