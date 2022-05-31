@@ -17,6 +17,7 @@ function AppHeader() {
 
       <nav className={styles.content}>
         <div className={styles.menu}>
+          
           <Button type="secondary" size="small">
             <div className={styles['button-content']}>
               <NavLink 
@@ -30,22 +31,18 @@ function AppHeader() {
               </NavLink>
             </div>
           </Button>
-          
-          
+           
           <NavLink 
-                to={{pathname: `/feed`}}
-                className={styles.link}
-                activeClassName={styles.activeLink}>
-                  <Button type="secondary" size="small">
-            <div className={styles['button-content']}>
-            
-              <ListIcon type="secondary" />
-              <p className="text text_type_main-default text_color_inactive ml-2">
-              Лента заказов
-              </p>
-              
-            </div>
-            
+            to={{pathname: `/feed`}}
+            className={styles.link}
+            activeClassName={styles.activeLink}>
+            <Button type="secondary" size="small">
+              <div className={styles['button-content']}>
+                <ListIcon type="secondary" />
+                  <p className="text text_type_main-default text_color_inactive ml-2">
+                    Лента заказов
+                  </p>
+              </div>
           </Button>
           </NavLink>
         </div>
