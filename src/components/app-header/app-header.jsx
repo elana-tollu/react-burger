@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 
 import { BurgerIcon, Button, ListIcon, Logo, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
@@ -19,21 +19,35 @@ function AppHeader() {
         <div className={styles.menu}>
           <Button type="secondary" size="small">
             <div className={styles['button-content']}>
-              <BurgerIcon type="primary" /> 
-                <p className="text text_type_main-default ml-2">
-                Конструктор
-              </p>
+              <NavLink 
+                to={{pathname: `/`}}
+                className={styles.link}
+                activeClassName={styles.activeLink}>
+                <BurgerIcon type="secondary" /> 
+                  <p className="text text_type_main-default text_color_inactive ml-2">
+                  Конструктор
+                </p>
+              </NavLink>
             </div>
           </Button>
           
-          <Button type="secondary" size="small">
+          
+          <NavLink 
+                to={{pathname: `/feed`}}
+                className={styles.link}
+                activeClassName={styles.activeLink}>
+                  <Button type="secondary" size="small">
             <div className={styles['button-content']}>
+            
               <ListIcon type="secondary" />
               <p className="text text_type_main-default text_color_inactive ml-2">
               Лента заказов
               </p>
+              
             </div>
+            
           </Button>
+          </NavLink>
         </div>
 
         <Button type="secondary" size="small">

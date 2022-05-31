@@ -8,6 +8,7 @@ import RegistrationPage from 'pages/register.jsx';
 import ForgotPasswordPage from 'pages/forgot-password.jsx';
 import ResetPasswordPage from 'pages/reset-password.jsx';
 import Orders from 'pages/orders.jsx';
+import FeedPage from 'pages/feed.jsx';
 import ProtectedRoute from 'components/protected-route/protected-route.jsx';
 import AppHeader from '../app-header/app-header.jsx';
 
@@ -40,6 +41,10 @@ function App() {
 
             <Route path="/profile/orders">
               <Orders />
+            </Route>
+
+            <Route path="/feed">
+              <FeedPage />
             </Route>
 
             <Route path="/login">

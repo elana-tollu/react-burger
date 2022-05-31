@@ -40,24 +40,18 @@
     width: 100%;
 }
 
-.button {
-    width: 253px;
-    height: 56px;
-    padding: 0 112px 80px 112px;
-}
-
-.linksContainer {
+.buttonContainer {
     width: 480px;
-    height: 24px;
+    height: 56px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
 }
 
-.link {
-    height: 24px;
-    padding: 0 0 0 12px;
-    font-weight: bold;
-    text-decoration: none;
-    text-align: center;
-    color: #4C4CFF;;
-    background: var(--color-primary);
-    border-radius: 100px;
-  }
+.button {
+    width: 168px;
+    height: 56px;
+    padding: 0;
+}

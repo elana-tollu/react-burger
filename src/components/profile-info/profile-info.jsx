@@ -40,7 +40,26 @@ function ProfileInfo () {
                         <YandexPasswordInput 
                          icon={'EditIcon'} />
                     </div>
-                </div>           
+
+                    <div className={styles.buttonContainer}>
+                        <div className={styles.button}>
+                            <Button type="secondary" 
+                                size="medium" 
+                                style={{ height: '56px' }} 
+                                className="ml-1 mr-1 mb-1 mt-6">
+                                Отмена
+                            </Button>
+                        </div>
+                        <div className={styles.button}>
+                            <Button type="primary" 
+                                size="medium" 
+                                style={{ height: '56px' }} 
+                                className="ml-1 mr-1 mb-1 mt-6">
+                                Сохранить
+                            </Button>
+                        </div>
+                    </div>
+                </div> 
             </form>
         </section>
     )
