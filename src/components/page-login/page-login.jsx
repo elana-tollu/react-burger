@@ -9,6 +9,10 @@ import styles from './page-login.module.css';
 function PageLogin () {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+
+    const logIn = () => {
+        console.log("что-угодно")
+    };
     return (
         <section className={styles.body}>
             <form className={styles.form}>
@@ -17,17 +21,18 @@ function PageLogin () {
                         <p className="text text_type_main-medium">Вход</p>
                     </h1>
                     <div className={styles.input}>
-                        <YandexEmailInput value = {email} onChange = {setEmail}/>
+                        <YandexEmailInput value = {email} onChange = {e => setEmail(e.target.value)}/>
                     </div>
                     <div className={styles.input}>
-                        <YandexPasswordInput value = {password} onChange = {setPassword}/>
+                        <YandexPasswordInput value = {password} onChange = {e => setPassword(e.target.value)}/>
                     </div>
 
                     <div className={styles.button}>
                         <Button type="primary" 
                             size="medium" 
                             style={{ height: '56px' }} 
-                            className="ml-1 mr-1 mb-1 mt-6">
+                            className="ml-1 mr-1 mb-1 mt-6"
+                            onClick={logIn}>
                             Войти
                         </Button>
                     </div>
