@@ -1,8 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { YandexEmailInput } from 'yandex/yandex-email-input';
-import { YandexPasswordInput } from 'yandex/yandex-password-input';
-import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
+import {  NavLink } from 'react-router-dom';
 
 import styles from './profile-menu.module.css';
 
@@ -11,13 +8,28 @@ function ProfileMenu () {
         <section className={styles.body}>
             <ul className={styles.list}>
                 <li className="text text_type_main-medium text_color_inactive">
-                    <Link className={styles.link}>Профиль</Link>
+                    <NavLink 
+                        to={{pathname: `/profile`}}
+                        className={styles.link}
+                        activeClassName={styles.activeLink}>
+                            Профиль
+                    </NavLink>
                 </li>
                 <li className="text text_type_main-medium text_color_inactive">
-                    <Link className={styles.link}>История заказов</Link>
+                    <NavLink 
+                        to={{pathname: `/`}} 
+                        className={styles.link}
+                        activeClassName={styles.activeLink}>
+                            История заказов
+                    </NavLink>
                 </li>
                 <li className="text text_type_main-medium text_color_inactive">
-                    <Link className={styles.link}>Выход</Link>
+                    <NavLink 
+                        to={{pathname: `/`}} 
+                        className={styles.link}
+                        activeClassName={styles.activeLink}>
+                            Выход
+                    </NavLink>
                 </li>
             </ul>
 

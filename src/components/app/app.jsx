@@ -42,7 +42,8 @@ function App() {
             </Route>
             
             <Route path="/">
-              <HomePage />  
+              <ProfilePage />
+              <HomePage /> 
             </Route>
 
           </Switch>
