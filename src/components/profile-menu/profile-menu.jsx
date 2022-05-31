@@ -17,7 +17,7 @@ function ProfileMenu () {
                 </li>
                 <li className="text text_type_main-medium text_color_inactive">
                     <NavLink 
-                        to={{pathname: `/`}} 
+                        to={{pathname: `/profile/orders`}} 
                         className={styles.link}
                         activeClassName={styles.activeLink}>
                             История заказов
