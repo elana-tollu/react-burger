@@ -12,6 +12,9 @@ import {
     SUBMIT_ORDER_SUCCESS,
     SUBMIT_ORDER_ERROR,
     HIDE_ORDER_NUMBER,
+    LOGIN_REQUEST,
+    LOGIN_SUCCESS,
+    LOGIN_ERROR
 } from "../actions/actions";
 
 export const rootReducer = (state, action) => {
@@ -70,6 +73,16 @@ export const rootReducer = (state, action) => {
                 ...state, 
                 orderNumber: null,
             };
+        case LOGIN_REQUEST:
+            return state;
+        case LOGIN_SUCCESS:
+            return {
+                ...state,
+                isAuthenticated: true,
+                user: action.user,
+            };
+        case LOGIN_ERROR:
+            return state;
         default:
             return state;
     }

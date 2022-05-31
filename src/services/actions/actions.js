@@ -1,4 +1,4 @@
-import { loadIngredientCards, submitOrder } from 'utils/api';
+import { loadIngredientCards, submitOrder, login } from 'utils/api';
 
 export const LOAD_INGREDIENTS_REQUEST = 'LOAD_INGREDIENTS_REQUEST';
 export const LOAD_INGREDIENTS_SUCCESS = 'LOAD_INGREDIENTS_SUCCESS';
@@ -16,6 +16,10 @@ export const SUBMIT_ORDER_REQUEST = 'SUBMIT_ORDER_REQUEST';
 export const SUBMIT_ORDER_SUCCESS = 'SUBMIT_ORDER_SUCCESS';
 export const SUBMIT_ORDER_ERROR = 'SUBMIT_ORDER_ERROR';
 export const HIDE_ORDER_NUMBER = 'HIDE_ORDER_NUMBER';
+
+export const LOGIN_REQUEST = 'LOGIN_REQUEST';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
 
 export function loadIngredientsAction() {
     return function(dispatch) {
@@ -54,6 +58,27 @@ export function submitOrderAction(ingredientIDs) {
             alert ("Упс! Заказ потерялся в космическом пространстве!");
             dispatch({
                 type: SUBMIT_ORDER_ERROR
+            })
+        });
+    }
+}
+
+export function loginAction (email, password) {
+    return function(dispatch) {
+        dispatch({
+            type: LOGIN_REQUEST
+        });
+        login(email, password)
+        .then(response => {
+            dispatch({
+                type: LOGIN_SUCCESS,
+                user: response.user
+            })
+        })
+        .catch (err => {
+            alert ("Упс! Зарегистрируйся и собери свой бургер, друг!");
+            dispatch({
+                type: LOGIN_ERROR
             })
         });
     }

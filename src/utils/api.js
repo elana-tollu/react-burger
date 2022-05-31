@@ -29,3 +29,7 @@ export function submitOrder(ingredientIDs) {
     return request('POST', 'orders', {ingredients: ingredientIDs})
       .then(order => order.order.number);
 }
+
+export function login(email, password) {
+  return request('POST', 'auth/login', {email, password});
+}

@@ -19,6 +19,11 @@ export const store = createStore(
     },
     currentIngredient: null,
     orderNumber: null,
+    isAuthenticated: false,
+    user: {
+      email: '',
+      password: ''
+    }
   },
   enhancer
 );

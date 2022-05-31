@@ -1,23 +1,26 @@
 import React, {useState} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link, Redirect, useLocation } from 'react-router-dom';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { YandexEmailInput } from 'yandex/yandex-email-input';
 import { YandexPasswordInput } from 'yandex/yandex-password-input';
-import {useAuth} from 'services/auth';
+import {loginAction} from 'services/actions/actions';
 
 import styles from './page-login.module.css';
 
 function PageLogin () {
-    const {user, signIn} = useAuth();
+    const isAuthenticated = useSelector(store => store.isAuthenticated);
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     let {state} = useLocation();
 
+    const dispatch = useDispatch();
+
     const logIn = (event) => {
         event.preventDefault();
-        signIn(console.log);
+        dispatch(loginAction (email, password));
     };
-    if(user) {
+    if(isAuthenticated) {
         return (
             <Redirect 
                 to={ state?.from || '/' }
