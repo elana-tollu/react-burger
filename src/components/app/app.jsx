@@ -52,7 +52,6 @@ function App() {
             </Route>
             
             <Route path="/">
-              <ProfilePage />
               <HomePage /> 
             </Route>
 
