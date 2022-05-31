@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect, useLocation } from 'react-router-dom';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { YandexEmailInput } from 'yandex/yandex-email-input';
 import { YandexPasswordInput } from 'yandex/yandex-password-input';
@@ -8,14 +8,22 @@ import {useAuth} from 'services/auth';
 import styles from './page-login.module.css';
 
 function PageLogin () {
-    const {signIn} = useAuth();
+    const {user, signIn} = useAuth();
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    let {state} = useLocation();
 
     const logIn = (event) => {
         event.preventDefault();
         signIn(console.log);
     };
+    if(user) {
+        return (
+            <Redirect 
+                to={ state?.from || '/' }
+            />
+        )
+    }
     return (
         <section className={styles.body}>
             <form className={styles.form}
