@@ -40,3 +40,7 @@
     grid-template-columns: repeat(2, 600px);
     gap: 40px;
     }
+
+.link {
+    text-decoration: none;
+}
