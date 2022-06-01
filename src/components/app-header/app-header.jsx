@@ -24,10 +24,10 @@ function AppHeader() {
                 to={{pathname: `/`}}
                 className={styles.link}
                 activeClassName={styles.activeLink}>
-                <BurgerIcon type="secondary" /> 
+                  <BurgerIcon type="secondary" /> 
                   <p className="text text_type_main-default text_color_inactive ml-2">
-                  Конструктор
-                </p>
+                    Конструктор
+                  </p>
               </NavLink>
             </div>
           </Button>
@@ -36,12 +36,12 @@ function AppHeader() {
             to={{pathname: `/feed`}}
             className={styles.link}
             activeClassName={styles.activeLink}>
-            <Button type="secondary" size="small">
-              <div className={styles['button-content']}>
-                <ListIcon type="secondary" />
-                  <p className="text text_type_main-default text_color_inactive ml-2">
-                    Лента заказов
-                  </p>
+              <Button type="secondary" size="small">
+                <div className={styles['button-content']}>
+                  <ListIcon type="secondary" />
+                    <p className="text text_type_main-default text_color_inactive ml-2">
+                      Лента заказов
+                    </p>
               </div>
           </Button>
           </NavLink>
@@ -50,11 +50,14 @@ function AppHeader() {
         <Button type="secondary" size="small">
           <div className={styles['button-content']}>
             <ProfileIcon type="secondary" />
-            <Link to='/profile'>
-              <p className="text text_type_main-default text_color_inactive ml-2">
-                Личный кабинет
-              </p>
-            </Link>
+            <NavLink 
+              to={{pathname: `/profile`}}
+              className={styles.link}
+              activeClassName={styles.activeLink}>
+                <p className="text text_type_main-default text_color_inactive ml-2">
+                  Личный кабинет
+                </p>
+            </NavLink>
           </div>
         </Button>
       </nav>
