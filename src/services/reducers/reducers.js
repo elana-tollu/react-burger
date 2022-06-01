@@ -14,7 +14,10 @@ import {
     HIDE_ORDER_NUMBER,
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
-    LOGIN_ERROR
+    LOGIN_ERROR,
+    REGISTER_REQUEST,
+    REGISTER_SUCCESS,
+    REGISTER_ERROR
 } from "../actions/actions";
 
 export const rootReducer = (state, action) => {
@@ -83,6 +86,18 @@ export const rootReducer = (state, action) => {
             };
         case LOGIN_ERROR:
             return state;
+        
+        case REGISTER_REQUEST:
+            return state;
+        case REGISTER_SUCCESS:
+            return {
+                ...state,
+                isAuthenticated: true,
+                user: action.user,
+            };
+        case REGISTER_ERROR:
+            return state;
+
         default:
             return state;
     }

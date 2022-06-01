@@ -1,4 +1,4 @@
-import { loadIngredientCards, submitOrder, login } from 'utils/api';
+import { loadIngredientCards, submitOrder, login, register } from 'utils/api';
 
 export const LOAD_INGREDIENTS_REQUEST = 'LOAD_INGREDIENTS_REQUEST';
 export const LOAD_INGREDIENTS_SUCCESS = 'LOAD_INGREDIENTS_SUCCESS';
@@ -20,6 +20,10 @@ export const HIDE_ORDER_NUMBER = 'HIDE_ORDER_NUMBER';
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
+
+export const REGISTER_REQUEST = 'REGISTER_REQUEST';
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_ERROR = 'REGISTER_ERROR';
 
 export function loadIngredientsAction() {
     return function(dispatch) {
@@ -79,6 +83,27 @@ export function loginAction (email, password) {
             alert ("Упс! Зарегистрируйся и собери свой бургер, друг!");
             dispatch({
                 type: LOGIN_ERROR
+            })
+        });
+    }
+}
+
+export function registerAction (userName, email, password) {
+    return function(dispatch) {
+        dispatch({
+            type: REGISTER_REQUEST
+        });
+        register(userName, email, password)
+        .then(response => {
+            dispatch({
+                type: REGISTER_SUCCESS,
+                user: response.user
+            })
+        })
+        .catch (err => {
+            alert ("Упс! Данные попали в чёрную дыру - попробуй еще раз, друг!");
+            dispatch({
+                type: REGISTER_ERROR
             })
         });
     }

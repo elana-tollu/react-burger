@@ -33,3 +33,7 @@ export function submitOrder(ingredientIDs) {
 export function login(email, password) {
   return request('POST', 'auth/login', {email, password});
 }
+
+export function register(name, email, password) {
+  return request('POST', 'auth/register', {name, email, password});
+}

@@ -20,6 +20,7 @@ function PageLogin () {
         event.preventDefault();
         dispatch(loginAction (email, password));
     };
+    
     if(isAuthenticated) {
         return (
             <Redirect 
