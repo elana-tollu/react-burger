@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { YandexEmailInput } from 'yandex/yandex-email-input';
@@ -10,6 +10,8 @@ import {registerAction} from 'services/actions/actions';
 import styles from './page-registration.module.css';
 
 function PageRegistration () {
+    const isAuthenticated = useSelector(store => store.isAuthenticated);
+    
     const [form, setForm] = React.useState({
         userName: '',
         email: '',
@@ -18,12 +20,18 @@ function PageRegistration () {
     const onChange = e => {
         setForm({...form, [e.target.name]:e.target.value});
     };
-    
+
     const dispatch = useDispatch();
     const register = (event) => {
         event.preventDefault();
         dispatch(registerAction (form.userName, form.email, form.password));
     };
+
+    if(isAuthenticated) {
+        return (
+            <Redirect to="/" />
+        )
+    }
 
     return (
         <section className={styles.body}>
