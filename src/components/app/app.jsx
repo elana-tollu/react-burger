@@ -13,12 +13,8 @@ import NotFoundPage from 'pages/not-found.jsx';
 import ProtectedRoute from 'components/protected-route/protected-route.jsx';
 import AppHeader from '../app-header/app-header.jsx';
 
-import styles from './app.module.css';
-import { ProvideAuth } from 'services/auth';
-
 function App() {
   return (
-    <ProvideAuth>
         <Router>
           <AppHeader />
           
@@ -61,7 +57,6 @@ function App() {
             </Route>
           </Switch>
         </Router>
-      </ProvideAuth>
     );     
 }
 
