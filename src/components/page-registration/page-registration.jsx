@@ -73,7 +73,7 @@ function PageRegistration () {
                 
                 <div className={styles.linksContainer}>
                     <p className="text text_type_main-default text_color_inactive">Уже зарегистрированы? 
-                        <Link to='/' className={styles.link}>
+                        <Link to='/login' className={styles.link}>
                             Войти
                         </Link>
                     </p>
