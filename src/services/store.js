@@ -23,7 +23,8 @@ export const store = createStore(
     user: {
       email: '',
       password: ''
-    }
+    },
+    isResettingPassword: false,
   },
   enhancer
 );

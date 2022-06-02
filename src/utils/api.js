@@ -37,3 +37,7 @@ export function login(email, password) {
 export function register(name, email, password) {
   return request('POST', 'auth/register', {name, email, password});
 }
+
+export function forgotPassword(email) {
+  return request('POST', 'password-reset', {email});
+}

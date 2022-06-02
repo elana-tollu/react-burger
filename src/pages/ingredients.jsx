@@ -1,9 +1,9 @@
 import React from 'react';
 
-import PageLogin from '../components/page-login/page-login.jsx';
+import IngredientDetails from 'components/ingredient-details/ingredient-details.jsx';
 import styles from './home.module.css';
 
-function Login() {
+function IngredientPage() {
   
   return (
     <>
@@ -11,7 +11,7 @@ function Login() {
       <div className={styles.app}>
        
         <section>
-            <PageLogin />
+            <IngredientDetails />
         </section>
 
       </div>
@@ -19,4 +19,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default IngredientPage;

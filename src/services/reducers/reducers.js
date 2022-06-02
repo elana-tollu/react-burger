@@ -1,23 +1,34 @@
 import {
     HIDE_INGREDIENT, 
+
     LOAD_INGREDIENTS_REQUEST, 
     LOAD_INGREDIENTS_SUCCESS,
     LOAD_INGREDIENTS_ERROR,
+
     SHOW_BURGER_INGREDIENTS, 
     SHOW_INGREDIENT, 
     ADD_INGREDIENT,
     DELETE_INGREDIENT,
+
     MOVE_ORDER_ITEM,
+
     SUBMIT_ORDER_REQUEST, 
     SUBMIT_ORDER_SUCCESS,
     SUBMIT_ORDER_ERROR,
+
     HIDE_ORDER_NUMBER,
+
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
     LOGIN_ERROR,
+
     REGISTER_REQUEST,
     REGISTER_SUCCESS,
-    REGISTER_ERROR
+    REGISTER_ERROR,
+
+    FORGOT_PASSWORD_REQUEST,
+    FORGOT_PASSWORD_SUCCESS,
+    FORGOT_PASSWORD_ERROR
 } from "../actions/actions";
 
 export const rootReducer = (state, action) => {
@@ -96,6 +107,16 @@ export const rootReducer = (state, action) => {
                 user: action.user,
             };
         case REGISTER_ERROR:
+            return state;
+
+        case FORGOT_PASSWORD_REQUEST:
+            return state;
+        case FORGOT_PASSWORD_SUCCESS:
+            return {
+                ...state,
+                isResettingPassword: true,
+            };
+        case FORGOT_PASSWORD_ERROR:
             return state;
 
         default:

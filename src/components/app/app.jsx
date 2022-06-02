@@ -12,6 +12,7 @@ import FeedPage from 'pages/feed.jsx';
 import NotFoundPage from 'pages/not-found.jsx';
 import ProtectedRoute from 'components/protected-route/protected-route.jsx';
 import AppHeader from '../app-header/app-header.jsx';
+import IngredientPage from 'pages/ingredients.jsx';
 
 function App() {
   return (
@@ -42,6 +43,10 @@ function App() {
 
             <Route path="/feed">
               <FeedPage />
+            </Route>
+
+            <Route path="/ingredients/:id">
+              <IngredientPage />
             </Route>
 
             <Route path="/login">
