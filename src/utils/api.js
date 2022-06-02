@@ -41,3 +41,7 @@ export function register(name, email, password) {
 export function forgotPassword(email) {
   return request('POST', 'password-reset', {email});
 }
+
+export function resetPassword(password, token) {
+  return request('POST', 'password-reset/reset', {password, token});
+}

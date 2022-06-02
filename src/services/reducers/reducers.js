@@ -28,7 +28,11 @@ import {
 
     FORGOT_PASSWORD_REQUEST,
     FORGOT_PASSWORD_SUCCESS,
-    FORGOT_PASSWORD_ERROR
+    FORGOT_PASSWORD_ERROR,
+
+    RESET_PASSWORD_REQUEST,
+    RESET_PASSWORD_SUCCESS,
+    RESET_PASSWORD_ERROR
 } from "../actions/actions";
 
 export const rootReducer = (state, action) => {
@@ -118,6 +122,19 @@ export const rootReducer = (state, action) => {
             };
         case FORGOT_PASSWORD_ERROR:
             return state;
+
+        case RESET_PASSWORD_REQUEST:
+            return state;
+        case RESET_PASSWORD_SUCCESS:
+            return {
+                ...state,
+                isResettingPassword: false,
+            };
+        case RESET_PASSWORD_ERROR:
+            return {
+                ...state,
+                isResettingPassword: false,
+            };
 
         default:
             return state;

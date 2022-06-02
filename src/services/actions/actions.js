@@ -1,4 +1,4 @@
-import { loadIngredientCards, submitOrder, login, register, forgotPassword } from 'utils/api';
+import { loadIngredientCards, submitOrder, login, register, forgotPassword, resetPassword } from 'utils/api';
 
 export const LOAD_INGREDIENTS_REQUEST = 'LOAD_INGREDIENTS_REQUEST';
 export const LOAD_INGREDIENTS_SUCCESS = 'LOAD_INGREDIENTS_SUCCESS';
@@ -28,6 +28,10 @@ export const REGISTER_ERROR = 'REGISTER_ERROR';
 export const FORGOT_PASSWORD_REQUEST = 'FORGOT_PASSWORD_REQUEST';
 export const FORGOT_PASSWORD_SUCCESS = 'FORGOT_PASSWORD_SUCCESS';
 export const FORGOT_PASSWORD_ERROR = 'FORGOT_PASSWORD_ERROR';
+
+export const RESET_PASSWORD_REQUEST = 'RESET_PASSWORD_REQUEST';
+export const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS';
+export const RESET_PASSWORD_ERROR = 'RESET_PASSWORD_ERROR';
 
 export function loadIngredientsAction() {
     return function(dispatch) {
@@ -128,6 +132,26 @@ export function forgotPasswordAction (email) {
             alert ("Упс! Данные попали в чёрную дыру - попробуй еще раз, друг!");
             dispatch({
                 type: FORGOT_PASSWORD_ERROR
+            })
+        });
+    }
+}
+
+export function resetPasswordAction (password, token) {
+    return function(dispatch) {
+        dispatch({
+            type: RESET_PASSWORD_REQUEST
+        });
+        resetPassword(password, token)
+        .then(() => {
+            dispatch({
+                type: RESET_PASSWORD_SUCCESS
+            })
+        })
+        .catch (err => {
+            alert ("Упс! Данные попали в чёрную дыру - попробуй еще раз, друг!");
+            dispatch({
+                type: RESET_PASSWORD_ERROR
             })
         });
     }
