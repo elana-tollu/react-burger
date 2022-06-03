@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { YandexEmailInput } from 'yandex/yandex-email-input';
@@ -9,10 +10,16 @@ import styles from './profile-info.module.css';
 import ProfileMenu from '../profile-menu/profile-menu';
 
 function ProfileInfo () {
-    const [value, setValue] = React.useState('')
+    const { name, email } = useSelector(store => store.user);
+
+    const [form, setForm] = React.useState({
+        name: name,
+        email: email,
+        password: '',
+    })
     const onChange = e => {
-      setValue(e.target.value)
-    }
+        setForm({...form, [e.target.name]:e.target.value});
+    };
 
     return (
         <section className={styles.body}>
@@ -26,18 +33,18 @@ function ProfileInfo () {
                             placeholder="Имя" 
                             onChange={onChange} 
                             icon={'EditIcon'}
-                            value={value} 
-                            name={'input'} 
+                            value={form.name} 
+                            name="name" 
                             error={false}
                             errorText={'Ошибка'}
                             size='default'
                         />
                     </div>
                     <div className={styles.input}>
-                        <YandexEmailInput />
+                        <YandexEmailInput value={form.email} name="email" onChange={onChange} />
                     </div>
                     <div className={styles.input}>
-                        <YandexPasswordInput 
+                        <YandexPasswordInput value={form.password} name="password" onChange={onChange} 
                          icon={'EditIcon'} />
                     </div>
 

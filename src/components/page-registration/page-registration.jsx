@@ -10,7 +10,6 @@ import {registerAction} from 'services/actions/actions';
 import styles from './page-registration.module.css';
 
 function PageRegistration () {
-    const isAuthenticated = useSelector(store => store.isAuthenticated);
     
     const [form, setForm] = React.useState({
         userName: '',
@@ -27,6 +26,7 @@ function PageRegistration () {
         dispatch(registerAction (form.userName, form.email, form.password));
     };
 
+    const isAuthenticated = useSelector(store => store.isAuthenticated);
     if(isAuthenticated) {
         return (
             <Redirect to="/" />

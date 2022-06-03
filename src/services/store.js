@@ -21,8 +21,8 @@ export const store = createStore(
     orderNumber: null,
     isAuthenticated: false,
     user: {
-      email: '',
-      password: ''
+      email: 'feleslunara@gmail.com',
+      name: 'Teo'
     },
     isResettingPassword: false,
   },
