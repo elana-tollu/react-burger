@@ -10,18 +10,21 @@ import styles from './profile-info.module.css';
 import ProfileMenu from '../profile-menu/profile-menu';
 
 function ProfileInfo () {
-    const { name, email } = useSelector(store => store.user);
+    const originalData = useSelector(store => ({
+            ...store.user,
+            password:''
+        }));
 
-    const [form, setForm] = React.useState({
-        name: name,
-        email: email,
-        password: '',
-    })
+    const [form, setForm] = React.useState(originalData)
     const onChange = e => {
         setForm({...form, [e.target.name]:e.target.value});
     };
 
-    const isEdited = name !== form.name || email !== form.email || form.password !== '';
+    const isEdited = form !== originalData;
+
+    const cancel = () => {
+        setForm(originalData)
+    };
 
     return (
         <section className={styles.body}>
@@ -52,7 +55,9 @@ function ProfileInfo () {
 
                     {isEdited && <div className={styles.buttonContainer}>
                         <div className={styles.button}>
-                            <Button type="secondary" 
+                            <Button 
+                                onClick = {cancel}
+                                type="secondary" 
                                 size="medium" 
                                 style={{ height: '56px' }} 
                                 className="ml-1 mr-1 mb-1 mt-6">
