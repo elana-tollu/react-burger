@@ -21,6 +21,8 @@ function ProfileInfo () {
         setForm({...form, [e.target.name]:e.target.value});
     };
 
+    const isEdited = name !== form.name || email !== form.email || form.password !== '';
+
     return (
         <section className={styles.body}>
             <ProfileMenu />
@@ -48,7 +50,7 @@ function ProfileInfo () {
                          icon={'EditIcon'} />
                     </div>
 
-                    <div className={styles.buttonContainer}>
+                    {isEdited && <div className={styles.buttonContainer}>
                         <div className={styles.button}>
                             <Button type="secondary" 
                                 size="medium" 
@@ -65,7 +67,7 @@ function ProfileInfo () {
                                 Сохранить
                             </Button>
                         </div>
-                    </div>
+                    </div>}
                 </div> 
             </form>
         </section>
