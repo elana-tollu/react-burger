@@ -30,18 +30,54 @@ export function submitOrder(ingredientIDs) {
       .then(order => order.order.number);
 }
 
+
+//получаем оба токена
 export function login(email, password) {
-  return request('POST', 'auth/login', {email, password});
+  return request('POST', 'auth/login', {email, password})
+  .then(({user, accessToken, refreshToken}) => {
+    setTokens ({accessToken, refreshToken});
+    return {user};
+  });
 }
 
+//получаем оба токена
 export function register(name, email, password) {
-  return request('POST', 'auth/register', {name, email, password});
+  return request('POST', 'auth/register', {name, email, password})
+  .then(({user, accessToken, refreshToken}) => {
+    setTokens ({accessToken, refreshToken});
+    return {user};
+  });
 }
 
 export function forgotPassword(email) {
   return request('POST', 'password-reset', {email});
 }
 
+//
 export function resetPassword(password, token) {
   return request('POST', 'password-reset/reset', {password, token});
+}
+
+//нужен refresh токен
+// удаляем оба токена
+export function logout() {}
+
+//нужен access токен
+export function getProfile() {}
+
+//нужен access токен
+export function updateProfile() {}
+
+//нужен refresh токен
+//получаем оба токена
+function refreshToken() {}
+
+function setTokens (tokens) {
+  const tokensString = JSON.stringify(tokens);
+  localStorage.setItem('tokens', tokensString);
+}
+
+function getTokens () {
+  const tokensString = localStorage.getItem('tokens');
+  return JSON.parse(tokensString);
 }
