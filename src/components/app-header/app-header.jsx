@@ -16,45 +16,45 @@ function AppHeader() {
       </div>
 
       <nav className={styles.content}>
-        <div className={styles.menu}>
-          
+        <div className={styles.menu}>          
           <Button type="secondary" size="small">
             <div className={styles['button-content']}>
               <NavLink 
-                to={{pathname: `/`}}
-                className={styles.link}
-                activeClassName={styles.activeLink}>
-                  <BurgerIcon type="secondary" /> 
-                  <p className="text text_type_main-default text_color_inactive ml-2">
-                    Конструктор
-                  </p>
+              to={{pathname: `/`}}
+              exact
+              className={ isActive => 
+              styles.link +' '+ (isActive ? styles.activeLink : "")}>
+                <BurgerIcon type="secondary" /> 
+                <p className="text text_type_main-default ml-2">
+                  Конструктор
+                </p>
               </NavLink>
             </div>
           </Button>
            
-          <NavLink 
-            to={{pathname: `/feed`}}
-            className={styles.link}
-            activeClassName={styles.activeLink}>
-              <Button type="secondary" size="small">
-                <div className={styles['button-content']}>
-                  <ListIcon type="secondary" />
-                    <p className="text text_type_main-default text_color_inactive ml-2">
-                      Лента заказов
-                    </p>
-              </div>
+          <Button type="secondary" size="small">
+            <div className={styles['button-content']}>
+            <NavLink 
+              to={{pathname: `/feed`}}
+              className={ isActive => 
+              styles.link +' '+ (isActive ? styles.activeLink : "")}>
+                <ListIcon type="secondary" />
+                  <p className="text text_type_main-default ml-2">
+                    Лента заказов
+                  </p>
+                  </NavLink>
+            </div>
           </Button>
-          </NavLink>
         </div>
 
         <Button type="secondary" size="small">
           <div className={styles['button-content']}>
-            <ProfileIcon type="secondary" />
-            <NavLink 
+           <NavLink 
               to={{pathname: `/profile`}}
-              className={styles.link}
-              activeClassName={styles.activeLink}>
-                <p className="text text_type_main-default text_color_inactive ml-2">
+              className={ isActive => 
+              styles.link +' '+ (isActive ? styles.activeLink : "")}>
+                <ProfileIcon type="secondary" />
+                <p className="text text_type_main-default ml-2">
                   Личный кабинет
                 </p>
             </NavLink>
