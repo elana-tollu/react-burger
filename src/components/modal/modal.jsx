@@ -7,7 +7,7 @@ import ModalOverlay from '../modal-overlay/modal-overlay.jsx'
 
 import styles from './modal.module.css';
 
-const modalRoot = document.body;
+const modalRoot = document.querySelector('#modals');
 
 function Modal (props) {
     

@@ -1,77 +1,127 @@
-import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useDrop } from 'react-dnd';
+import { v4 as uuidv4 } from 'uuid';
 
-import imageBun from '../../images/bun-01.png';
-import image from '../../images/orderIkon.png'
-import {Button, CurrencyIcon, LockIcon, ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
-import {data} from '../../utils/data.js'
-import OrderedIngredient from '../ordered-ingredient/ordered-ingredient.jsx'
-import Modal from '../modal/modal.jsx';
-import OrderDetails from '../order-details/order-details.jsx'
+import image from 'images/orderIkon.png'
+import {Button, ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
+import OrderedIngredient from 'components/ordered-ingredient/ordered-ingredient.jsx'
+import Modal from 'components/modal/modal.jsx';
+import OrderDetails from 'components/order-details/order-details.jsx';
+import { ADD_INGREDIENT, DELETE_INGREDIENT, HIDE_ORDER_NUMBER, submitOrderAction } from '../../services/actions/actions';
 
 import styles from './burger-constructor.module.css';
 
 function BurgerConstructor () {
 
-  const listIngridients = data.map((ingredient, index) =>
-        <OrderedIngredient key={ingredient._id} ingredient={ingredient}/>
+  const dispatch = useDispatch();
+
+  const [{}, dropIngredient] = useDrop({
+    accept: 'ingredient',
+    drop(ingredient) {
+      const uuid = uuidv4();
+      dispatch ({
+        type: ADD_INGREDIENT,
+        ingredient: {...ingredient, uuid}
+      });
+    },
+  }); 
+
+  const [{ bun, filling }, orderNumber] = useSelector(store => [store.burger, store.orderNumber]);
+
+  const bunPrice = bun ? bun.price * 2 : 0;
+
+  const orderSum = filling.reduce(
+    (sum, ingredient) => sum + ingredient.price,
+    0
+  ) + bunPrice;
+  
+  const listIngridients = filling.map((ingredient, index) =>
+        <OrderedIngredient 
+          key={ingredient.uuid}  
+          ingredient={ingredient}
+          index = {index}
+          onClose={() => dispatch ({
+              type: DELETE_INGREDIENT,
+              index
+            })
+          }
+        />
       );
   
-  const [orderNumOpen, setOrderNumOpen] = useState(false);
-  const orderNumModal = (<Modal onClose={() => setOrderNumOpen (false)}> <OrderDetails/> </Modal>);
+  const ingredientIDs = [bun, ...filling, bun]
+    .filter(ingredient => ingredient) // убираем из обрабатываемого списка undefined, пока булочка ещё не выбрана
+    .map(ingredient => ingredient._id);
 
+  
+  
+  const submitOrder = () => {
+    dispatch(submitOrderAction(ingredientIDs))
+  };
+
+  const orderNumModal = (orderNumber && 
+    <Modal  
+      onClose={() => dispatch ({
+        type: HIDE_ORDER_NUMBER
+      })
+      }> 
+      <OrderDetails orderNum = {orderNumber}/> 
+    </Modal>);
+
+  
   return (
-    <section className={styles['burger-constructor']}>
+    
+      <section ref={dropIngredient} className={styles['burger-constructor']}>
+          
+          <section className={styles['order-details']}>
 
-      <section className={styles['order-details']}>
+            {bun && <ConstructorElement
+                type="top"
+                isLocked={true}
+                text={`${bun.name} (верх)`}
+                price={bun.price}
+                thumbnail={bun.image}
+            />}
+            
+          </section>
 
-        <ConstructorElement
-            type="top"
-            isLocked={true}
-            text="Краторная булка N-200i (верх)"
-            price={200}
-            thumbnail={imageBun}
-        />
+          <div className={styles['constructor-scroll']}>
+            {listIngridients}
+          </div>
+
+          <section className={styles['order-details']}>
+
+            {bun && <ConstructorElement
+              type="bottom"
+              isLocked={true}
+              text={`${bun.name} (низ)`}
+                price={bun.price}
+                thumbnail={bun.image}
+            />}
+                      
+          </section>
+
+          <div className={styles.order}>
+            <span className={styles.cost}>
+              <p className="text text_type_digits-medium mr-2">
+                {orderSum}
+              </p>
+              <img
+              className={styles.orderImage}
+              src={image}
+              alt=''
+              />  
+            </span>
+
+            <Button type="primary" size="large" disabled={!bun}
+              onClick={submitOrder}>
+              Оформить заказ
+            </Button>
+
+            {orderNumber && orderNumModal}
+
+          </div>
         
       </section>
-
-      <div className={styles['constructor-scroll']}>
-        {listIngridients}
-      </div>
-
-      <section className={styles['order-details']}>
-
-        <ConstructorElement
-          type="bottom"
-          isLocked={true}
-          text="Краторная булка N-200i (низ)"
-          price={200}
-          thumbnail={imageBun}
-        />
-                   
-      </section>
-
-      <div className={styles.order}>
-        <span className={styles.cost}>
-          <p className="text text_type_digits-medium">
-            610
-          </p>
-          <img
-          className={styles.orderImage}
-          src={image}
-          alt=''
-          />  
-        </span>
-
-        <Button type="primary" size="large"
-          onClick={() => setOrderNumOpen (true)}>
-          Оформить заказ
-        </Button>
-
-        {orderNumOpen && orderNumModal}
-
-      </div>
-
-    </section>
   
   );
 }

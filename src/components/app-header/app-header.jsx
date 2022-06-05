@@ -6,7 +6,7 @@ import styles from './app-header.module.css'
 
 function AppHeader() {
   return (
-    <section className={styles['app-header']}>
+    <header className={styles['app-header']}>
 
       <div className={styles.logo}><Logo/></div>
 
@@ -40,7 +40,7 @@ function AppHeader() {
           </div>
         </Button>
       </nav>
-    </section>
+    </header>
   );
 }
 

@@ -16,3 +16,8 @@
 .ingredients-scroll::-webkit-scrollbar-thumb{
     background-color: #8585AD;
 }
+
+.tab-panel {
+    display: flex;
+    flex-direction: row;
+}
