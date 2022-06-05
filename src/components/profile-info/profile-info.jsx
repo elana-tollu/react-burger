@@ -26,6 +26,8 @@ function ProfileInfo () {
         setForm(originalData)
     };
 
+    const update = () => {};
+
     return (
         <section className={styles.body}>
             <ProfileMenu />
@@ -65,7 +67,9 @@ function ProfileInfo () {
                             </Button>
                         </div>
                         <div className={styles.button}>
-                            <Button type="primary" 
+                            <Button 
+                                onClick = {update}
+                                type="primary" 
                                 size="medium" 
                                 style={{ height: '56px' }} 
                                 className="ml-1 mr-1 mb-1 mt-6">

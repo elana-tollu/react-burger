@@ -1,15 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
+import {isAuthenticated} from 'utils/auth';
 
 export default function ProtectedRoute({ children, ...rest }) {
-    const isAuthenticated = useSelector(store => store.isAuthenticated);
-    
     return (
       <Route
         {...rest}
         render={({location}) =>
-          isAuthenticated ? (
+          isAuthenticated() ? (
               children
             ) : (<Redirect  to={
               {

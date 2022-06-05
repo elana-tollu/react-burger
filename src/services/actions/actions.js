@@ -75,27 +75,6 @@ export function submitOrderAction(ingredientIDs) {
     }
 }
 
-export function loginAction (email, password) {
-    return function(dispatch) {
-        dispatch({
-            type: LOGIN_REQUEST
-        });
-        login(email, password)
-        .then(response => {
-            dispatch({
-                type: LOGIN_SUCCESS,
-                user: response.user
-            })
-        })
-        .catch (err => {
-            alert ("Упс! Зарегистрируйся и собери свой бургер, друг!");
-            dispatch({
-                type: LOGIN_ERROR
-            })
-        });
-    }
-}
-
 export function registerAction (userName, email, password) {
     return function(dispatch) {
         dispatch({

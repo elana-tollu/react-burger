@@ -33,9 +33,9 @@ function App() {
               <RegistrationPage />
             </Route>
 
-            <Route path="/profile">
+            <ProtectedRoute path="/profile">
               <ProfilePage />
-            </Route>
+            </ProtectedRoute>
 
             <Route path="/profile/orders">
               <Orders />

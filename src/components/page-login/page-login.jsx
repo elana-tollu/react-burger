@@ -1,37 +1,40 @@
 import React, {useState} from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link, Redirect, useLocation } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { YandexEmailInput } from 'yandex/yandex-email-input';
 import { YandexPasswordInput } from 'yandex/yandex-password-input';
-import {loginAction} from 'services/actions/actions';
+import {isAuthenticated} from 'utils/auth';
+import { login } from 'utils/api';
 
 import styles from './page-login.module.css';
 
 function PageLogin () {
-    const isAuthenticated = useSelector(store => store.isAuthenticated);
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-    let {state} = useLocation();
-
-    const dispatch = useDispatch();
-
-    const logIn = (event) => {
-        event.preventDefault();
-        dispatch(loginAction (email, password));
-    };
+    const [isLoading, setLoading] = useState(false);
     
-    if(isAuthenticated) {
+    const submit = (event) => {
+        event.preventDefault();
+        setLoading(true);
+        login(email, password)
+        .then(response => {
+            setLoading(false);
+        })
+        .catch (err => {
+            alert ("Упс! Зарегистрируйся и собери свой бургер, друг!");
+            setLoading(false);
+        });
+    }
+    
+    if(isAuthenticated()) {
         return (
-            <Redirect 
-                to={ state?.from || '/' }
-            />
+            <Redirect to="/" />
         )
     }
     return (
         <section className={styles.body}>
             <form className={styles.form}
-                onSubmit={logIn}>
+                onSubmit={submit}>
                 <div className={styles.inputsContainer}>
                     <h1 className={styles.title}>
                         <p className="text text_type_main-medium">Вход</p>
@@ -44,7 +47,8 @@ function PageLogin () {
                     </div>
 
                     <div className={styles.button}>
-                        <Button type="primary" 
+                        <Button disabled={isLoading}
+                            type="primary" 
                             size="medium" 
                             style={{ height: '56px' }} 
                             className="ml-1 mr-1 mb-1 mt-6">

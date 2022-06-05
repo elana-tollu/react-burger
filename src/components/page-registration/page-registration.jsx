@@ -6,6 +6,7 @@ import { YandexEmailInput } from 'yandex/yandex-email-input';
 import { YandexPasswordInput } from 'yandex/yandex-password-input';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import {registerAction} from 'services/actions/actions';
+import {isAuthenticated} from 'utils/auth';
 
 import styles from './page-registration.module.css';
 
@@ -26,8 +27,7 @@ function PageRegistration () {
         dispatch(registerAction (form.userName, form.email, form.password));
     };
 
-    const isAuthenticated = useSelector(store => store.isAuthenticated);
-    if(isAuthenticated) {
+    if(isAuthenticated()) {
         return (
             <Redirect to="/" />
         )

@@ -1,3 +1,5 @@
+import { setTokens, getTokens} from 'utils/auth';
+
 const baseUrl = 'https://norma.nomoreparties.space/api/';
 
 function request( method, endpoint, data ) {
@@ -71,13 +73,3 @@ export function updateProfile() {}
 //нужен refresh токен
 //получаем оба токена
 function refreshToken() {}
-
-function setTokens (tokens) {
-  const tokensString = JSON.stringify(tokens);
-  localStorage.setItem('tokens', tokensString);
-}
-
-function getTokens () {
-  const tokensString = localStorage.getItem('tokens');
-  return JSON.parse(tokensString);
-}
