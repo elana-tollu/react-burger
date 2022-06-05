@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { YandexEmailInput } from 'yandex/yandex-email-input';
 import {forgotPasswordAction} from 'services/actions/actions';
+import {isAuthenticated} from 'utils/auth';
 
 import styles from './page-forgot-password.module.css';
 
@@ -21,6 +22,12 @@ function PageForgotPassword () {
         event.preventDefault();
         dispatch(forgotPasswordAction (email));
     };
+
+    if(isAuthenticated()) {
+        return (
+            <Redirect to="/" />
+        )
+    }
 
     if(isResettingPassword) {
         return (
