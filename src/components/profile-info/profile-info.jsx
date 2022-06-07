@@ -5,22 +5,35 @@ import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { YandexEmailInput } from 'yandex/yandex-email-input';
 import { YandexPasswordInput } from 'yandex/yandex-password-input';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
+import { getProfile } from 'utils/api';
 
 import styles from './profile-info.module.css';
 import ProfileMenu from '../profile-menu/profile-menu';
 
 function ProfileInfo () {
-    const originalData = useSelector(store => ({
-            ...store.user,
-            password:''
-        }));
+    const [originalData, setOriginalData] = React.useState({
+        name: '',
+        email: '',
+        password: ''
+    });
 
-    const [form, setForm] = React.useState(originalData)
+    const [form, setForm] = React.useState(originalData);
+
+    React.useEffect(() => {
+        getProfile()
+        .then(({user}) => {
+            const data = {...user, password: ''}
+            setOriginalData(data);
+            setForm(data);
+        })
+    }, []); 
+    
+    
     const onChange = e => {
         setForm({...form, [e.target.name]:e.target.value});
     };
 
-    const isEdited = form !== originalData;
+    const isEdited = originalData.name !== form.name || originalData.email !== form.email || form.password !== '';
 
     const cancel = () => {
         setForm(originalData)
