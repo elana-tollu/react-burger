@@ -1,0 +1,30 @@
+.title {
+    width: 1240px;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    background-color: black;
+}
+
+.page-content {
+    background-color: #8585AD;
+}
+
+.constructor-scroll {
+    height: 576px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(19, 19, 22);
+}
+
+.constructor-scroll::-webkit-scrollbar{
+    background-color: #2F2F37;
+    width: 8px;
+}
+
+.constructor-scroll::-webkit-scrollbar-thumb{
+    background-color: #8585AD;
+}
