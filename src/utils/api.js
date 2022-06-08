@@ -1,4 +1,4 @@
-import { setTokens, getTokens} from 'utils/auth';
+import { setTokens, getTokens, deleteTokens} from 'utils/auth';
 
 const baseUrl = 'https://norma.nomoreparties.space/api/';
 
@@ -66,7 +66,12 @@ export function resetPassword(password, token) {
 
 //нужен refresh токен
 // удаляем оба токена
-export function logout() {}
+export function logout() {
+  return request('POST', 'auth/logout', {token : getTokens()?.refreshToken})
+  .then(() => {
+    deleteTokens();
+  }) ;
+}
 
 //нужен access токен
 export function getProfile() {

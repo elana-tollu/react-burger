@@ -11,3 +11,7 @@ export function getTokens () {
 export function isAuthenticated () {
     return getTokens() !== null;
 }
+
+export function deleteTokens () {
+    localStorage.clear();
+}
