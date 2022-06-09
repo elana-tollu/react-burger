@@ -80,7 +80,7 @@ export function getProfile() {
 
 //нужен access токен
 export function updateProfile(name, email, password) {
-  return request('PATCH', 'auth/user', {name, email})
+  return request('PATCH', 'auth/user', {name, email, password:(password ? password : null)})
   .then(({user}) => {
     return {
       name: user.name,
