@@ -79,7 +79,15 @@ export function getProfile() {
 }
 
 //нужен access токен
-export function updateProfile() {}
+export function updateProfile(name, email, password) {
+  return request('PATCH', 'auth/user', {name, email})
+  .then(({user}) => {
+    return {
+      name: user.name,
+      email: user.email
+    };
+  });
+}
 
 //нужен refresh токен
 //получаем оба токена

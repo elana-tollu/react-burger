@@ -5,7 +5,7 @@ import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { YandexEmailInput } from 'yandex/yandex-email-input';
 import { YandexPasswordInput } from 'yandex/yandex-password-input';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
-import { getProfile } from 'utils/api';
+import { getProfile, updateProfile } from 'utils/api';
 
 import styles from './profile-info.module.css';
 import ProfileMenu from '../profile-menu/profile-menu';
@@ -39,7 +39,15 @@ function ProfileInfo () {
         setForm(originalData)
     };
 
-    const update = () => {};
+    const update = (event) => {
+        event.preventDefault();
+        updateProfile(form.name, form.email, form.password)
+        .then(({name, email}) => {
+            const data = {name, email, password: ''}
+            setOriginalData(data);
+            setForm(data);
+        });
+    };
 
     return (
         <section className={styles.body}>
