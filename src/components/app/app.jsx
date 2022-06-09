@@ -33,7 +33,7 @@ function App() {
               <RegistrationPage />
             </Route>
 
-            <ProtectedRoute path="/profile">
+            <ProtectedRoute path="/profile" exact>
               <ProfilePage />
             </ProtectedRoute>
 

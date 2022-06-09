@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
+import {Link, useLocation} from 'react-router-dom';
 import { useDrop } from 'react-dnd';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -8,10 +9,13 @@ import OrderedIngredient from 'components/ordered-ingredient/ordered-ingredient.
 import Modal from 'components/modal/modal.jsx';
 import OrderDetails from 'components/order-details/order-details.jsx';
 import { ADD_INGREDIENT, DELETE_INGREDIENT, HIDE_ORDER_NUMBER, submitOrderAction } from '../../services/actions/actions';
+import {isAuthenticated} from 'utils/auth';
 
 import styles from './burger-constructor.module.css';
 
 function BurgerConstructor () {
+
+  let {pathname} = useLocation();
 
   const dispatch = useDispatch();
 
@@ -112,10 +116,20 @@ function BurgerConstructor () {
               />  
             </span>
 
+          {isAuthenticated() ? 
             <Button type="primary" size="large" disabled={!bun}
               onClick={submitOrder}>
               Оформить заказ
             </Button>
+            : <Link  to={{
+              pathname: '/login',
+              state: { from: pathname }
+            }}>
+                <Button type="primary" size="large" disabled={!bun}>
+                  Войдите
+                </Button>
+              </Link>
+            }
 
             {orderNumber && orderNumModal}
 
