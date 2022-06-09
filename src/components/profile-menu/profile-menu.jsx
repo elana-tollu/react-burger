@@ -1,17 +1,11 @@
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
 import {  NavLink, useHistory } from 'react-router-dom';
-import { logout } from 'utils/api';
 
 import styles from './profile-menu.module.css';
 
 function ProfileMenu () {
     const history = useHistory();
-
-    const onLogout = () => {
-        logout()
-        .then(() => history.go(0)) ;
-    };
     
     return (
         <section className={styles.body}>
@@ -33,12 +27,12 @@ function ProfileMenu () {
                     </NavLink>
                 </li>
                 <li className="text text_type_main-medium text_color_inactive">
-                    <Button 
-                        type="secondary" 
-                        size="large"
-                        onClick = {onLogout}>
+                    <NavLink 
+                        to={{pathname: `/logout`}} 
+                        className={styles.link}
+                        activeClassName={styles.activeLink}>
                             Выход
-                    </Button>
+                    </NavLink>
                 </li>
             </ul>
 

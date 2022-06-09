@@ -13,6 +13,7 @@ import NotFoundPage from 'pages/not-found.jsx';
 import ProtectedRoute from 'components/protected-route/protected-route.jsx';
 import AppHeader from '../app-header/app-header.jsx';
 import IngredientPage from 'pages/ingredients.jsx';
+import Logout from 'pages/logout';
 
 function App() {
   return (
@@ -51,6 +52,10 @@ function App() {
 
             <Route path="/login">
               <Login />
+            </Route>
+
+            <Route path="/logout">
+              <Logout />
             </Route>
             
             <Route path="/" exact={true}>
