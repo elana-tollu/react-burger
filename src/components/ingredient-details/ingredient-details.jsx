@@ -7,6 +7,14 @@ import styles from './ingredient-details.module.css';
 function IngredientDetails (props) {
    const ingredient = useSelector(store => store.ingredients.find(ing => ing._id === props.ingredientId));
     
+   if(!ingredient) {
+    return (
+        <p className="text text_type_main-large">
+            Ингредиент в пути
+        </p>
+        )
+    }
+
     return (
         <section className={styles['ingredient-details']}>
             <div className={styles.title} />
