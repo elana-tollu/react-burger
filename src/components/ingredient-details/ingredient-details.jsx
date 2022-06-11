@@ -17,7 +17,9 @@ function IngredientDetails (props) {
 
     return (
         <section className={styles['ingredient-details']}>
-            <div className={styles.title} />
+            <div className={styles.title}>           
+                Детали ингредиента
+            </div>
             
             <>
                 <img

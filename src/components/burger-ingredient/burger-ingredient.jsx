@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd';
-
+import { Link, useLocation } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
@@ -22,7 +22,6 @@ function BurgerIngredient (props) {
 
   const ingredientDetailsModal = (
     <Modal 
-      title = 'Детали ингредиента'  
       onClose={() => dispatch ({
         type: HIDE_INGREDIENT}) 
       }> 
@@ -39,14 +38,20 @@ function BurgerIngredient (props) {
       })
     });
 
+  let location = useLocation();
+
   return (
+    <Link
+    key={props.ingredient._id}
+    to={{
+      pathname: `/ingredients/${props.ingredient._id}`,
+      state: { background: location }
+    }}
+    >
+   
+
     <section ref={dragRef} className={styles['burger-ingredient']} 
-    style = {{opacity}}
-      onClick={() => dispatch ({
-          type: SHOW_INGREDIENT,
-          ingredient: props.ingredient
-        })
-      }>
+    style = {{opacity}}>
 
         {count > 0 && counterBadge}
 
@@ -64,6 +69,7 @@ function BurgerIngredient (props) {
 
         {currentIngredient === props.ingredient && ingredientDetailsModal}
     </section>
+    </Link>
   );
 }
 
