@@ -5,8 +5,7 @@ import { useSelector } from 'react-redux';
 import styles from './ingredient-details.module.css';
 
 function IngredientDetails (props) {
-    const ingredientId = props.ingredient._id;
-    const ingredient = useSelector(store => store.ingredients.find(ing => ing._id === ingredientId));
+   const ingredient = useSelector(store => store.ingredients.find(ing => ing._id === props.ingredientId));
     
     return (
         <section className={styles['ingredient-details']}>
@@ -43,14 +42,7 @@ function IngredientDetails (props) {
 }
 
 IngredientDetails.propTypes = {
-    ingredient: PropTypes.shape({
-    image: PropTypes.string.isRequired,     
-    name: PropTypes.string.isRequired,
-    calories: PropTypes.number.isRequired,
-    proteins: PropTypes.number.isRequired,
-    fat: PropTypes.number.isRequired,
-    carbohydrates: PropTypes.number.isRequired,
-  }).isRequired
+    ingredientId: PropTypes.string.isRequired
 };
 
 export default IngredientDetails;

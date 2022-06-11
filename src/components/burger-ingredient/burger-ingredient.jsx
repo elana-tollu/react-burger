@@ -26,7 +26,7 @@ function BurgerIngredient (props) {
       onClose={() => dispatch ({
         type: HIDE_INGREDIENT}) 
       }> 
-      <IngredientDetails ingredient = {props.ingredient}/> 
+      <IngredientDetails ingredientId = {props.ingredient._id}/> 
     </Modal>
   );
   const dispatch = useDispatch();
