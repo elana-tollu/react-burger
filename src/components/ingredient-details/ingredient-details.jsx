@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-
 import styles from './ingredient-details.module.css';
 
 function IngredientDetails (props) {
@@ -14,7 +13,7 @@ function IngredientDetails (props) {
         </p>
         )
     }
-
+    
     return (
         <section className={styles['ingredient-details']}>
             <div className={styles.title}>           
