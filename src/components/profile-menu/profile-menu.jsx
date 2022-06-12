@@ -1,9 +1,12 @@
+import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
-import {  NavLink } from 'react-router-dom';
+import {  NavLink, useHistory } from 'react-router-dom';
 
 import styles from './profile-menu.module.css';
 
 function ProfileMenu () {
+    const history = useHistory();
+    
     return (
         <section className={styles.body}>
             <ul className={styles.list}>
@@ -25,7 +28,7 @@ function ProfileMenu () {
                 </li>
                 <li className="text text_type_main-medium text_color_inactive">
                     <NavLink 
-                        to={{pathname: `/login`}} 
+                        to={{pathname: `/logout`}} 
                         className={styles.link}
                         activeClassName={styles.activeLink}>
                             Выход

@@ -74,18 +74,25 @@ export const rootReducer = (state, action) => {
                 burger: moveOrderItem(state.burger, action.fromIndex, action.toIndex),
             }
         case SUBMIT_ORDER_REQUEST:
-            return state;
+            return {
+                ...state,
+                isSubmittingOrder: true,
+            };
         case SUBMIT_ORDER_SUCCESS:
             return {
                 ...state, 
                 orderNumber: action.orderNumber,
+                isSubmittingOrder: false,
                 burger: {
                     bun: null,
                     filling: []
                   },
             };
         case SUBMIT_ORDER_ERROR:
-            return state;
+            return {
+                ...state,
+                isSubmittingOrder: false,
+            };
         case HIDE_ORDER_NUMBER:
             return {
                 ...state, 

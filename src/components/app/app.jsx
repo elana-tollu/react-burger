@@ -1,5 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+
+import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { loadIngredientsAction } from 'services/actions/actions';
 
 import HomePage from 'pages/home.jsx';
 import Login from 'pages/login.jsx';
@@ -13,8 +16,15 @@ import NotFoundPage from 'pages/not-found.jsx';
 import ProtectedRoute from 'components/protected-route/protected-route.jsx';
 import AppHeader from '../app-header/app-header.jsx';
 import IngredientPage from 'pages/ingredients.jsx';
+import Logout from 'pages/logout';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadIngredientsAction())
+  }, []);
+
   return (
         <Router>
           <AppHeader />
@@ -33,7 +43,7 @@ function App() {
               <RegistrationPage />
             </Route>
 
-            <ProtectedRoute path="/profile">
+            <ProtectedRoute path="/profile" exact>
               <ProfilePage />
             </ProtectedRoute>
 
@@ -51,6 +61,10 @@ function App() {
 
             <Route path="/login">
               <Login />
+            </Route>
+
+            <Route path="/logout">
+              <Logout />
             </Route>
             
             <Route path="/" exact={true}>
