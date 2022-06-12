@@ -26,17 +26,15 @@ function BurgerIngredient (props) {
   let location = useLocation();
 
   return (
-    <Link
+    <Link className={styles.link}
     key={props.ingredient._id}
     to={{
       pathname: `/ingredients/${props.ingredient._id}`,
       state: { background: location }
     }}
     >
-   
-
-    <section ref={dragRef} className={styles['burger-ingredient']} 
-    style = {{opacity}}>
+      <section ref={dragRef} className={styles['burger-ingredient']} 
+        style = {{opacity}}>
 
         {count > 0 && counterBadge}
 
@@ -50,10 +48,8 @@ function BurgerIngredient (props) {
             <p className="text text_type_digits-default mr-2">{props.ingredient.price}</p>
             <CurrencyIcon type="primary" />
         </div>
-        <p className="text text_type_main-default">{props.ingredient.name}</p>
-
-        
-    </section>
+        <p className="text text_type_main-default">{props.ingredient.name}</p>    
+      </section>
     </Link>
   );
 }
