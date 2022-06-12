@@ -53,7 +53,8 @@ function ProfileInfo () {
         <section className={styles.body}>
             <ProfileMenu />
 
-            <form className={styles.form}>
+            <form className={styles.form}
+                onSubmit={update}>
                 <div className={styles.inputsContainer}>
                     <div className={styles.input}>
                         <Input 
@@ -89,7 +90,6 @@ function ProfileInfo () {
                         </div>
                         <div className={styles.button}>
                             <Button 
-                                onClick = {update}
                                 type="primary" 
                                 size="medium" 
                                 style={{ height: '56px' }} 

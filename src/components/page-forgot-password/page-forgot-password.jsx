@@ -37,7 +37,8 @@ function PageForgotPassword () {
 
     return (
         <section className={styles.body}>
-            <form className={styles.form}>
+            <form className={styles.form}
+                onSubmit={recoverPassword}>
                 <div className={styles.inputsContainer}>
                     <h1 className={styles.title}>
                         <p className="text text_type_main-medium">Восстановление пароля</p>
@@ -47,7 +48,7 @@ function PageForgotPassword () {
                     </div>
 
                     <div className={styles.button}>
-                        <Button onClick={recoverPassword}
+                        <Button
                             type="primary" 
                             size="medium" 
                             style={{ height: '56px' }} 

@@ -35,7 +35,8 @@ function PageResetPassword () {
 
     return (
         <section className={styles.body}>
-            <form className={styles.form}>
+            <form className={styles.form}
+                onSubmit={resetPassword}>
                 <div className={styles.inputsContainer}>
                     <h1 className={styles.title}>
                         <p className="text text_type_main-medium">Восстановление пароля</p>
@@ -65,7 +66,7 @@ function PageResetPassword () {
                     </div>
 
                     <div className={styles.button}>
-                        <Button onClick={resetPassword}
+                        <Button 
                             type="primary" 
                             size="medium" 
                             style={{ height: '56px' }} 
