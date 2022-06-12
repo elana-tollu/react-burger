@@ -30,7 +30,7 @@ function BurgerConstructor () {
     },
   }); 
 
-  const [{ bun, filling }, orderNumber] = useSelector(store => [store.burger, store.orderNumber]);
+  const [{ bun, filling }, orderNumber, isSubmittingOrder] = useSelector(store => [store.burger, store.orderNumber, store.isSubmittingOrder]);
 
   const bunPrice = bun ? bun.price * 2 : 0;
 
@@ -117,6 +117,11 @@ function BurgerConstructor () {
             </span>
 
           {isAuthenticated() ? 
+            isSubmittingOrder ? 
+            <Button type="primary" size="large" disabled>
+              Заказ обрабатывается...
+            </Button>
+            :
             <Button type="primary" size="large" disabled={!bun}
               onClick={submitOrder}>
               Оформить заказ
@@ -131,7 +136,7 @@ function BurgerConstructor () {
               </Link>
             }
 
-            {orderNumber && orderNumModal}
+            { orderNumber && orderNumModal}
 
           </div>
         

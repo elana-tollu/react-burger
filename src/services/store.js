@@ -25,6 +25,7 @@ export const store = createStore(
       name: ''
     },
     isResettingPassword: false,
+    isSubmittingOrder: false,
   },
   enhancer
 );
