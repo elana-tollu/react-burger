@@ -39,7 +39,7 @@ function IngredientPage() {
             </Route>
             <Route path="/ingredients/:id">
               <div className={styles.app}>
-                <section>
+                <section className={styles.modal}>
                     <IngredientDetails ingredientId = {id} />
                 </section>
               </div>
