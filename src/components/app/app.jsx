@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 
 import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { loadIngredientsAction } from 'services/actions/actions';
+import { autoLoginAction, loadIngredientsAction } from 'services/actions/actions';
 
 import HomePage from 'pages/home.jsx';
 import Login from 'pages/login.jsx';
@@ -22,7 +22,8 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadIngredientsAction())
+    dispatch(autoLoginAction());
+    dispatch(loadIngredientsAction());
   }, []);
 
   return (

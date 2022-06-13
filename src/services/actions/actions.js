@@ -1,4 +1,5 @@
-import { loadIngredientCards, submitOrder, login, register, forgotPassword, resetPassword, logout } from 'utils/api';
+import { loadIngredientCards, submitOrder, login, register, forgotPassword, resetPassword, logout, getProfile } from 'utils/api';
+import { getTokens } from 'utils/auth';
 
 export const LOAD_INGREDIENTS_REQUEST = 'LOAD_INGREDIENTS_REQUEST';
 export const LOAD_INGREDIENTS_SUCCESS = 'LOAD_INGREDIENTS_SUCCESS';
@@ -16,6 +17,10 @@ export const SUBMIT_ORDER_REQUEST = 'SUBMIT_ORDER_REQUEST';
 export const SUBMIT_ORDER_SUCCESS = 'SUBMIT_ORDER_SUCCESS';
 export const SUBMIT_ORDER_ERROR = 'SUBMIT_ORDER_ERROR';
 export const HIDE_ORDER_NUMBER = 'HIDE_ORDER_NUMBER';
+
+export const AUTOLOGIN_REQUEST = 'AUTOLOGIN_REQUEST';
+export const AUTOLOGIN_SUCCESS = 'AUTOLOGIN_SUCCESS';
+export const AUTOLOGIN_ERROR = 'AUTOLOGIN_ERROR';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -74,6 +79,31 @@ export function submitOrderAction(ingredientIDs) {
             alert ("Упс! Заказ потерялся в космическом пространстве!");
             dispatch({
                 type: SUBMIT_ORDER_ERROR
+            })
+        });
+    }
+}
+
+export function autoLoginAction () {
+    return function(dispatch) {
+        dispatch({
+            type: AUTOLOGIN_REQUEST
+        });
+        if (!getTokens()) {
+            dispatch({
+                type: AUTOLOGIN_ERROR
+            });
+            return;
+        }
+        getProfile()
+        .then(response => {
+            dispatch({
+                type: AUTOLOGIN_SUCCESS
+            })
+        })
+        .catch (err => {
+            dispatch({
+                type: AUTOLOGIN_ERROR
             })
         });
     }

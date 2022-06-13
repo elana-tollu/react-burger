@@ -18,6 +18,10 @@ import {
 
     HIDE_ORDER_NUMBER,
 
+    AUTOLOGIN_REQUEST,
+    AUTOLOGIN_SUCCESS,
+    AUTOLOGIN_ERROR,
+
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
     LOGIN_ERROR,
@@ -102,6 +106,17 @@ export const rootReducer = (state, action) => {
                 ...state, 
                 orderNumber: null,
             };
+
+        case AUTOLOGIN_REQUEST:
+            return state;
+        case AUTOLOGIN_SUCCESS:
+            return {
+                ...state,
+                isLoggedIn: true,
+            };
+        case AUTOLOGIN_ERROR:
+            return state;
+
         case LOGIN_REQUEST:
             return {
                 ...state,
