@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import { Link, Redirect, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { YandexEmailInput } from 'yandex/yandex-email-input';
 import { YandexPasswordInput } from 'yandex/yandex-password-input';
-import {isAuthenticated} from 'utils/auth';
 import { login } from 'utils/api';
 
 import styles from './page-login.module.css';
@@ -12,6 +12,8 @@ function PageLogin () {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [isLoading, setLoading] = useState(false);
+    const isLoggedIn = useSelector(store => store.isLoggedIn);
+    
     
     const submit = (event) => {
         event.preventDefault();
@@ -28,7 +30,7 @@ function PageLogin () {
     
     let {state} = useLocation();
     
-    if(isAuthenticated()) {
+    if(isLoggedIn) {
         return (
             <Redirect 
                 to={ state?.from || '/' }

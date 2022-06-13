@@ -19,7 +19,7 @@ export const store = createStore(
     },
     currentIngredient: null,
     orderNumber: null,
-    isAuthenticated: false,
+    isLoggedIn: false,
     user: {
       email: '',
       name: ''

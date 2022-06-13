@@ -9,7 +9,6 @@ import OrderedIngredient from 'components/ordered-ingredient/ordered-ingredient.
 import Modal from 'components/modal/modal.jsx';
 import OrderDetails from 'components/order-details/order-details.jsx';
 import { ADD_INGREDIENT, DELETE_INGREDIENT, HIDE_ORDER_NUMBER, submitOrderAction } from '../../services/actions/actions';
-import {isAuthenticated} from 'utils/auth';
 
 import styles from './burger-constructor.module.css';
 
@@ -30,7 +29,7 @@ function BurgerConstructor () {
     },
   }); 
 
-  const [{ bun, filling }, orderNumber, isSubmittingOrder] = useSelector(store => [store.burger, store.orderNumber, store.isSubmittingOrder]);
+  const [{ bun, filling }, orderNumber, isSubmittingOrder, isLoggedIn] = useSelector(store => [store.burger, store.orderNumber, store.isSubmittingOrder, store.isLoggedIn]);
 
   const bunPrice = bun ? bun.price * 2 : 0;
 
@@ -76,17 +75,17 @@ function BurgerConstructor () {
     
       <section ref={dropIngredient} className={styles['burger-constructor']}>
           
-          <section className={styles['order-details']}>
+        <section className={styles['order-details']}>
 
-            {bun && <ConstructorElement
-                type="top"
-                isLocked={true}
-                text={`${bun.name} (верх)`}
-                price={bun.price}
-                thumbnail={bun.image}
-            />}
-            
-          </section>
+          {bun && <ConstructorElement
+              type="top"
+              isLocked={true}
+              text={`${bun.name} (верх)`}
+              price={bun.price}
+              thumbnail={bun.image}
+          />}
+          
+        </section>
 
           <div className={styles['constructor-scroll']}>
             {listIngridients}
@@ -116,7 +115,7 @@ function BurgerConstructor () {
               />  
             </span>
 
-          {isAuthenticated() ? 
+          {isLoggedIn ? 
             isSubmittingOrder ? 
             <Button type="primary" size="large" disabled>
               Заказ обрабатывается...

@@ -4,13 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { YandexEmailInput } from 'yandex/yandex-email-input';
 import {forgotPasswordAction} from 'services/actions/actions';
-import {isAuthenticated} from 'utils/auth';
 
 import styles from './page-forgot-password.module.css';
 
 function PageForgotPassword () {
-    const isResettingPassword = useSelector(store => store.isResettingPassword);
-    
+    const [isResettingPassword, isLoggedIn] = useSelector(store => [store.isResettingPassword, store.isLoggedIn]);
     const [email, setEmail] = React.useState('')
 
     const onChange = e => {
@@ -23,7 +21,7 @@ function PageForgotPassword () {
         dispatch(forgotPasswordAction (email));
     };
 
-    if(isAuthenticated()) {
+    if(isLoggedIn) {
         return (
             <Redirect to="/" />
         )
