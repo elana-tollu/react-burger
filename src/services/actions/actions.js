@@ -1,4 +1,4 @@
-import { loadIngredientCards, submitOrder, login, register, forgotPassword, resetPassword } from 'utils/api';
+import { loadIngredientCards, submitOrder, login, register, forgotPassword, resetPassword, logout } from 'utils/api';
 
 export const LOAD_INGREDIENTS_REQUEST = 'LOAD_INGREDIENTS_REQUEST';
 export const LOAD_INGREDIENTS_SUCCESS = 'LOAD_INGREDIENTS_SUCCESS';
@@ -20,6 +20,10 @@ export const HIDE_ORDER_NUMBER = 'HIDE_ORDER_NUMBER';
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
+
+export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const LOGOUT_ERROR = 'LOGOUT_ERROR';
 
 export const REGISTER_REQUEST = 'REGISTER_REQUEST';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
@@ -70,6 +74,47 @@ export function submitOrderAction(ingredientIDs) {
             alert ("Упс! Заказ потерялся в космическом пространстве!");
             dispatch({
                 type: SUBMIT_ORDER_ERROR
+            })
+        });
+    }
+}
+
+export function loginAction (email, password) {
+    return function(dispatch) {
+        dispatch({
+            type: LOGIN_REQUEST
+        });
+        login(email, password)
+        .then(response => {
+            dispatch({
+                type: LOGIN_SUCCESS,
+                user: response.user
+            })
+        })
+        .catch (err => {
+            alert ("Упс! Зарегистрируйся и собери свой бургер, друг!");
+            dispatch({
+                type: LOGIN_ERROR
+            })
+        });
+    }
+}
+
+export function logoutAction () {
+    return function(dispatch) {
+        dispatch({
+            type: LOGOUT_REQUEST
+        });
+        logout()
+        .then(response => {
+            dispatch({
+                type: LOGOUT_SUCCESS
+            })
+        })
+        .catch (err => {
+            alert ("Упс! Ты всё ещё опознан!");
+            dispatch({
+                type: LOGOUT_ERROR
             })
         });
     }

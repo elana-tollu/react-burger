@@ -1,31 +1,22 @@
 import React, {useState} from 'react';
 import { Link, Redirect, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { YandexEmailInput } from 'yandex/yandex-email-input';
 import { YandexPasswordInput } from 'yandex/yandex-password-input';
-import { login } from 'utils/api';
+import { loginAction } from 'services/actions/actions';
 
 import styles from './page-login.module.css';
 
 function PageLogin () {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-    const [isLoading, setLoading] = useState(false);
-    const isLoggedIn = useSelector(store => store.isLoggedIn);
-    
-    
+    const [isLoggedIn, isLoggingIn] = useSelector(store => [store.isLoggedIn, store.isLoggingIn]);
+    const dispatch = useDispatch();
+      
     const submit = (event) => {
         event.preventDefault();
-        setLoading(true);
-        login(email, password)
-        .then(response => {
-            setLoading(false);
-        })
-        .catch (err => {
-            alert ("Упс! Зарегистрируйся и собери свой бургер, друг!");
-            setLoading(false);
-        });
+        dispatch(loginAction (email, password));
     }
     
     let {state} = useLocation();
@@ -37,6 +28,7 @@ function PageLogin () {
             />
         )
     }
+    
     return (
         <section className={styles.body}>
             <form className={styles.form}
@@ -53,7 +45,7 @@ function PageLogin () {
                     </div>
 
                     <div className={styles.button}>
-                        <Button disabled={isLoading}
+                        <Button disabled={isLoggingIn}
                             type="primary" 
                             size="medium" 
                             style={{ height: '56px' }} 

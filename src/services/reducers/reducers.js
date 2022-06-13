@@ -22,6 +22,10 @@ import {
     LOGIN_SUCCESS,
     LOGIN_ERROR,
 
+    LOGOUT_REQUEST,
+    LOGOUT_SUCCESS,
+    LOGOUT_ERROR,
+
     REGISTER_REQUEST,
     REGISTER_SUCCESS,
     REGISTER_ERROR,
@@ -99,14 +103,31 @@ export const rootReducer = (state, action) => {
                 orderNumber: null,
             };
         case LOGIN_REQUEST:
-            return state;
+            return {
+                ...state,
+                isLoggingIn: true,
+            };
         case LOGIN_SUCCESS:
             return {
                 ...state,
-                isAuthenticated: true,
+                isLoggedIn: true,
                 user: action.user,
+                isLoggingIn: false,
             };
         case LOGIN_ERROR:
+            return {
+                ...state,
+                isLoggingIn: false,
+            };
+
+        case LOGOUT_REQUEST:
+            return state;
+        case LOGOUT_SUCCESS:
+            return {
+                ...state,
+                isLoggedIn: false,
+            };
+        case LOGOUT_ERROR:
             return state;
         
         case REGISTER_REQUEST:
@@ -114,7 +135,7 @@ export const rootReducer = (state, action) => {
         case REGISTER_SUCCESS:
             return {
                 ...state,
-                isAuthenticated: true,
+                isLoggedIn: true,
                 user: action.user,
             };
         case REGISTER_ERROR:
@@ -136,6 +157,7 @@ export const rootReducer = (state, action) => {
             return {
                 ...state,
                 isResettingPassword: false,
+                isLoggedIn: true,
             };
         case RESET_PASSWORD_ERROR:
             return {

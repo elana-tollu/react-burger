@@ -24,6 +24,7 @@ export const store = createStore(
       email: '',
       name: ''
     },
+    isLoggingIn: false,
     isResettingPassword: false,
     isSubmittingOrder: false,
   },
