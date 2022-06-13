@@ -6,8 +6,6 @@ import styles from './home.module.css';
 function Login() {
   
   return (
-    <>
-
       <div className={styles.app}>
        
         <section>
@@ -15,7 +13,6 @@ function Login() {
         </section>
 
       </div>
-    </>
   );
 }
 
