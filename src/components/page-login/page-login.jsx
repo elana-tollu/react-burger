@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, useLocation } from 'react-router-dom';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { YandexEmailInput } from 'yandex/yandex-email-input';
 import { YandexPasswordInput } from 'yandex/yandex-password-input';
@@ -26,9 +26,13 @@ function PageLogin () {
         });
     }
     
+    let {state} = useLocation();
+    
     if(isAuthenticated()) {
         return (
-            <Redirect to="/" />
+            <Redirect 
+                to={ state?.from || '/' }
+            />
         )
     }
     return (
