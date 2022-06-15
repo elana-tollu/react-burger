@@ -1,15 +1,39 @@
 .statistics {
     width: 580px;
-    height: 626px;
     background: #1C1C21;
     display: flex;
     flex-direction: column;
     justify-content: start;
+    gap: 60px;
 }
 
 .ordersBoard {
     width: 580px;
-    height: 206px;
+    min-height: 206px;
     display: flex;
     flex-direction: row;
+    gap: 36px;
+}
+
+.orders {
+    width: 272px;
+    min-height: 206px;
+    text-align: left;
+    gap: 24px;
+}
+
+.ordersNumbers {
+    margin: 24px 0 0 0;
+    padding-left: 0;
+    max-height: 324px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+
+.ordersDone {
+    width: 580px;
+    height: 150px;
+    text-align: left;
 }

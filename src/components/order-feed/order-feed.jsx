@@ -33,7 +33,7 @@ function OrderFeed () {
                 </section>
                 
                 <section className={styles.statistics}>
-                    <Statistics/>
+                    <Statistics />
                 </section>
             </section>
         </>
