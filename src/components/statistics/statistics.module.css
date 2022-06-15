@@ -1,0 +1,15 @@
+.statistics {
+    width: 580px;
+    height: 626px;
+    background: #1C1C21;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.ordersBoard {
+    width: 580px;
+    height: 206px;
+    display: flex;
+    flex-direction: row;
+}
