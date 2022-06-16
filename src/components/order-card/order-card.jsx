@@ -7,7 +7,10 @@ function OrderCard ({orderId, orderDate, orderTitle, orderIngredients, orderStat
     const ingredientCount = ingredientImages.length;
     if (ingredientCount > 6) {
         ingredientImages = ingredientImages.slice(0, 6);
+        const moreIngredientsCount = ingredientCount - 5;
+        ingredientImages.push(<p>+ {moreIngredientsCount}</p>);
     }
+    ingredientImages.reverse();
     const orderPrice = orderIngredients.reduce((price, ingredient) => price + ingredient.price, 0);
 
     return (
