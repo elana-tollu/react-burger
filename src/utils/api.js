@@ -1,9 +1,11 @@
 import { setTokens, getTokens, deleteTokens} from 'utils/auth';
 
-const baseUrl = 'https://norma.nomoreparties.space/api/';
+const host = 'norma.nomoreparties.space';
+const wsBaseUrl = `wss://${host}/`;
+const httpBaseUrl = `https://${host}/api/`;
 
 function request( method, endpoint, data ) {
-  return fetch(`${baseUrl}${endpoint}`, {
+  return fetch(`${httpBaseUrl}${endpoint}`, {
       method,
       headers: {
         'Authorization': getTokens()?.accessToken,
@@ -97,3 +99,14 @@ function refreshToken() {
     setTokens ({accessToken, refreshToken});
   }) ;
 }
+
+export function allOrdersFeed(onData) {
+  const ws = new WebSocket(wsBaseUrl + 'orders/all');
+  ws.onmessage = (event) => {
+    let data = JSON.parse(event.data);
+    onData(data);
+  }
+  return () => ws.close();
+}
+
+function userOrdersFeed() {}

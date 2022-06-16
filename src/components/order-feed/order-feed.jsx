@@ -1,10 +1,27 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './order-feed.module.css';
 import OrderCard from 'components/order-card/order-card';
 import Statistics from 'components/statistics/statistics';
+import { allOrdersFeed } from 'utils/api';
+import { UPDATE_ORDER_FEED } from 'services/actions/actions';
 
 function OrderFeed () {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        const close = allOrdersFeed(({orders, total, totalToday}) => 
+            dispatch({
+                type: UPDATE_ORDER_FEED,
+                orders, 
+                total, 
+                totalToday
+            })
+        );
+        return () => {
+           close();
+        };
+      }, []);
+    
     const [orders, ingredients] = useSelector(store => [store.orders, store.ingredients]);
 
     const orderCards = orders.map(order => {

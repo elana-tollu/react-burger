@@ -32,7 +32,9 @@ import {
 
     RESET_PASSWORD_REQUEST,
     RESET_PASSWORD_SUCCESS,
-    RESET_PASSWORD_ERROR
+    RESET_PASSWORD_ERROR,
+
+    UPDATE_ORDER_FEED
 } from "../actions/actions";
 
 export const rootReducer = (state, action) => {
@@ -141,6 +143,14 @@ export const rootReducer = (state, action) => {
             return {
                 ...state,
                 isResettingPassword: false,
+            };
+
+        case UPDATE_ORDER_FEED:
+            return {
+                ...state,
+                total: action.total,
+                totalToday: action.totalToday,
+                orders: action.orders,
             };
 
         default:

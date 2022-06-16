@@ -27,7 +27,7 @@ function OrderInfo ({orderId, orderDate, orderTitle, orderIngredients, orderStat
         <p className="text text_type_digits-default mb-10">#{orderId}</p>
         <div className={styles.info}>
             <p className="text text_type_main-medium mb-3">{orderTitle}</p>
-            <p className="text text_type_digits-default text_color_success mb-15">{formatOrderStatus(orderStatus)}</p>
+            <p className="text text_type_main-default text_color_success mb-15">{formatOrderStatus(orderStatus)}</p>
             <p className="text text_type_main-medium">Состав:</p>
         </div>
         <section className={styles['constructor-scroll']}>
