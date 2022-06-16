@@ -1,4 +1,6 @@
 import React from 'react';
+import { formatRelative, parseISO } from 'date-fns';
+import { ru } from 'date-fns/locale';
 import styles from './order-card.module.css';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
@@ -17,7 +19,7 @@ function OrderCard ({orderId, orderDate, orderTitle, orderIngredients, orderStat
         <li className={styles.orderCard}>
             <div className={styles.orderInfo}>
                 <p className="text text_type_digits-default">#{orderId}</p>
-                <p className="text text_type_main-default text_color_inactive">{orderDate}</p>
+                <p className="text text_type_main-default text_color_inactive">{formatDate(orderDate)}</p>
             </div>
             
             <div className={styles.orderName}>
@@ -39,3 +41,7 @@ function OrderCard ({orderId, orderDate, orderTitle, orderIngredients, orderStat
 }
 
 export default OrderCard;
+
+function formatDate(date) {
+    return formatRelative(parseISO(date), new Date(), {locale: ru});
+}
