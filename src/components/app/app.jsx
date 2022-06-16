@@ -17,6 +17,7 @@ import ProtectedRoute from 'components/protected-route/protected-route.jsx';
 import AppHeader from '../app-header/app-header.jsx';
 import IngredientPage from 'pages/ingredients.jsx';
 import Logout from 'pages/logout';
+import Order from 'pages/order.jsx';
 
 function App() {
   const dispatch = useDispatch();
@@ -51,8 +52,12 @@ function App() {
               <Orders />
             </Route>
 
-            <Route path="/feed">
+            <Route path="/feed" exact>
               <FeedPage />
+            </Route>
+
+            <Route path="/feed/:id">
+              <Order />
             </Route>
 
             <Route path="/ingredients/:id">

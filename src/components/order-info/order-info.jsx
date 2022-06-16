@@ -1,0 +1,63 @@
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import styles from './order-info.module.css';
+
+function OrderInfo ({orderId, orderDate, orderTitle, orderIngredients, orderStatus}) { 
+    
+    const ingredients = orderIngredients.map(ingredient => 
+        <li className={styles.orderIngredient}>
+            <img src={ingredient.image_mobile} className={styles.image}/>
+            <p className="text text_type_main-default text_color_primary pr-8">{ingredient.name}</p>
+            <div className={styles.price}>
+                <p className="text text_type_digits-default">1 x {ingredient.price}</p>
+                <CurrencyIcon type="primary" />
+            </div>
+        </li>
+    );
+    
+    const orderPrice = orderIngredients.reduce((price, ingredient) => price + ingredient.price, 0);
+
+    return (
+      <section className={styles.modal}>
+        <p className="text text_type_digits-default mb-10">#{orderId}</p>
+        <div className={styles.info}>
+            <p className="text text_type_main-medium mb-3">{orderTitle}</p>
+            <p className="text text_type_digits-default text_color_success mb-15">{formatOrderStatus(orderStatus)}</p>
+            <p className="text text_type_main-medium">Состав:</p>
+        </div>
+        <section className={styles['constructor-scroll']}>
+            <ul className={styles.order}>
+                {ingredients}
+            </ul>
+        </section>
+        
+        <div className={styles.orderDetails}>
+            <p className="text text_type_main-default text_color_inactive">{orderDate}</p>
+            <div className={styles.price}>
+                <p className="text text_type_digits-default mr-2">{orderPrice}</p>
+                <CurrencyIcon type="primary" />
+            </div>
+        </div>
+      </section>
+    );
+  };
+  
+export default OrderInfo;
+
+function formatOrderStatus(orderStatus) {
+    if (orderStatus === 'done') {
+        return 'Выполнен';
+    } 
+    if (orderStatus === 'created') {
+        return 'Создан';
+    }
+    if (orderStatus === 'inwork') {
+        return 'Готовится';
+    }
+    if (orderStatus === 'cancel') {
+        return 'Отменен';
+    } 
+    return 'Неизвестный статус: ' + orderStatus;
+}
