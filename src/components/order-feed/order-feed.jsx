@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styles from './order-feed.module.css';
 import OrderCard from 'components/order-card/order-card';
 import Statistics from 'components/statistics/statistics';
@@ -27,12 +28,16 @@ function OrderFeed () {
     const orderCards = orders.map(order => {
         const burgerIngredients = order.ingredients.map(id => ingredients.find(ingredient => ingredient._id === id));
         return (
-            <OrderCard
-                orderId={order.number} 
-                orderDate={order.createdAt} 
-                orderTitle={order.name} 
-                orderIngredients={burgerIngredients}
+            <Link to={{
+                pathname: '/feed/' + order._id
+              }} className={styles.link}>
+                <OrderCard
+                    orderId={order.number} 
+                    orderDate={order.createdAt} 
+                    orderTitle={order.name} 
+                    orderIngredients={burgerIngredients}
                 />
+            </Link>
         );
     });
   
