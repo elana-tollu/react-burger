@@ -5,13 +5,16 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 import styles from './order-info.module.css';
 
 function OrderInfo ({orderId, orderDate, orderTitle, orderIngredients, orderStatus}) { 
+
+    const ingredientCounts = countIngredients(orderIngredients);
+    const uniqueIngredients = Object.keys(ingredientCounts).map(id => orderIngredients.find( ing => ing._id === id));
     
-    const ingredients = orderIngredients.map(ingredient => 
+    const ingredients = uniqueIngredients.map(ingredient => 
         <li className={styles.orderIngredient}>
             <img src={ingredient.image_mobile} className={styles.image}/>
             <p className="text text_type_main-default text_color_primary pr-8">{ingredient.name}</p>
             <div className={styles.price}>
-                <p className="text text_type_digits-default">1 x {ingredient.price}</p>
+                <p className="text text_type_digits-default">{ingredientCounts[ingredient._id]} x {ingredient.price}</p>
                 <CurrencyIcon type="primary" />
             </div>
         </li>
@@ -60,4 +63,18 @@ function formatOrderStatus(orderStatus) {
         return 'Отменен';
     } 
     return 'Неизвестный статус: ' + orderStatus;
+}
+
+function countIngredients(ingredients) {
+    let result = {};
+    for (const ingredient of ingredients) {
+        const id = ingredient._id;
+        const currentCount = result[id];
+        if (currentCount > 0) {
+            result[id] = currentCount + 1;
+        } else {
+            result[id] = 1;
+        }
+    }
+    return result;
 }
