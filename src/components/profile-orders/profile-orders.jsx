@@ -26,11 +26,15 @@ function ProfileOrders () {
     const [orders, ingredients] = useSelector(store => [store.orders, store.ingredients]);
 
     const orderCards = orders.map(order => {
-        const burgerIngredients = order.ingredients.map(id => ingredients.find(ingredient => ingredient._id === id));
+        const burgerIngredients = order.ingredients.map(id=> ingredients.find(ingredient => ingredient._id === id));
         return (
-            <Link to={{
-                pathname: '/profile/orders/' + order._id
-              }} className={styles.link}>
+            <Link 
+                to={{
+                    pathname: '/profile/orders/' + order._id
+                }} 
+                className={styles.link}
+                key={order._id}
+                >
                 <OrderCard
                     orderId={order.number} 
                     orderDate={order.createdAt} 

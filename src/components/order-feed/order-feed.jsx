@@ -25,9 +25,13 @@ function OrderFeed () {
     const orderCards = orders.map(order => {
         const burgerIngredients = order.ingredients.map(id => ingredients.find(ingredient => ingredient._id === id));
         return (
-            <Link to={{
-                pathname: '/feed/' + order._id
-              }} className={styles.link}>
+            <Link 
+                to={{
+                    pathname: '/feed/' + order._id
+                }} 
+                className={styles.link}
+                key={order._id}
+                >
                 <OrderCard
                     orderId={order.number} 
                     orderDate={order.createdAt} 

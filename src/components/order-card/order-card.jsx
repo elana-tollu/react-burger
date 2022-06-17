@@ -5,7 +5,7 @@ import styles from './order-card.module.css';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 function OrderCard ({orderId, orderDate, orderTitle, orderIngredients, orderStatus}) {
-    let ingredientImages = orderIngredients.map(ingredient => <img src={ingredient.image_mobile} className={styles.image}/>);
+    let ingredientImages = orderIngredients.map((ingredient, index) => <img src={ingredient.image_mobile} className={styles.image} key={index}/>);
     const ingredientCount = ingredientImages.length;
     if (ingredientCount > 6) {
         ingredientImages = ingredientImages.slice(0, 6);
