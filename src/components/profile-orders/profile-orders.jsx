@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import OrderCard from 'components/order-card/order-card';
 
 import { userOrdersFeed } from 'utils/api';
@@ -25,12 +25,14 @@ function ProfileOrders () {
     
     const [orders, ingredients] = useSelector(store => [store.orders, store.ingredients]);
 
+    let location = useLocation();
     const orderCards = orders.map(order => {
         const burgerIngredients = order.ingredients.map(id=> ingredients.find(ingredient => ingredient._id === id));
         return (
             <Link 
                 to={{
-                    pathname: '/profile/orders/' + order._id
+                    pathname: '/profile/orders/' + order._id,
+                    state: { background: location }
                 }} 
                 className={styles.link}
                 key={order._id}

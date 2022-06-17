@@ -11,10 +11,21 @@ import { useSelector } from 'react-redux';
 
 import styles from './home.module.css';
 import OrderInfo from 'components/order-info/order-info';
+import Modal from 'components/modal/modal';
+import Orders from './orders';
+import FeedPage from './feed';
 
 
 function Order () {  
     let { id } = useParams();
+    let location = useLocation();
+    let background = location.state && location.state.background;
+
+    let history = useHistory();
+    let back = () => {
+        history.goBack();
+    };
+
     const [order, ingredients] = useSelector(store => [
         store.orders.find(o => o._id === id), 
         store.ingredients
@@ -28,8 +39,8 @@ function Order () {
             </p>
             )
     }
-  
-    return (
+
+    const orderInfo =  
         <div className={styles.app}>
             <OrderInfo
                 orderId={order.number} 
@@ -39,6 +50,42 @@ function Order () {
                 orderIngredients={burgerIngredients}
             />
         </div>
+
+    const orderModal = (
+        <Modal 
+          onClose={back}> 
+          { orderInfo }
+        </Modal>
+      );
+  
+    return (
+        <>
+        <Router>
+            <Switch location={background || location}>
+                <Route exact path="/profile/orders">
+                    <Orders/>
+                </Route>
+                <Route exact path="/feed">
+                    <FeedPage/>
+                </Route>
+                <Route path="/feed/:id">
+                    <div className={styles.app}>
+                        <section className={styles.modal}>
+                            { orderInfo }
+                        </section>
+                    </div>
+                </Route>
+                <Route path="/profile/orders/:id">
+                    <div className={styles.app}>
+                        <section className={styles.modal}>
+                            { orderInfo }
+                        </section>
+                    </div>
+                </Route>
+            </Switch>
+        </Router>
+        {background && orderModal}
+        </>
     );
 };
 
