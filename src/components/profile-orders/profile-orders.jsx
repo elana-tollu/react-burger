@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import OrderCard from 'components/order-card/order-card';
 
 import { userOrdersFeed } from 'utils/api';
-import { UPDATE_ORDER_FEED } from 'services/actions/actions';
+import { UPDATE_ORDER_FEED, WS_CLOSE, WS_START } from 'services/actions/actions';
 
 import styles from './profile-orders.module.css';
 import ProfileMenu from '../profile-menu/profile-menu';
@@ -12,16 +12,14 @@ import ProfileMenu from '../profile-menu/profile-menu';
 function ProfileOrders () {
     const dispatch = useDispatch();
     useEffect(() => {
-        const close = userOrdersFeed(({orders, total, totalToday}) => 
-            dispatch({
-                type: UPDATE_ORDER_FEED,
-                orders, 
-                total, 
-                totalToday
-            })
-        );
+        dispatch ({
+            type: WS_START,
+            all: false,
+        })
         return () => {
-           close();
+            dispatch ({
+                type: WS_CLOSE,
+            })
         };
       }, []);
     
