@@ -41,7 +41,6 @@ function Order () {
     }
 
     const orderInfo =  
-        <div className={styles.app}>
             <OrderInfo
                 orderId={order.number} 
                 orderStatus={order.status}
@@ -49,7 +48,6 @@ function Order () {
                 orderTitle={order.name} 
                 orderIngredients={burgerIngredients}
             />
-        </div>
 
     const orderModal = (
         <Modal 
