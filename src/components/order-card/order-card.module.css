@@ -1,5 +1,5 @@
 .orderCard {
-    width: 584px;
+    width: 100%;
     min-height: 214px;
     box-sizing: border-box;
     padding: 24px;
@@ -12,7 +12,6 @@
 }
 
 .orderInfo {
-    width: 536px;
     height: 24px;
     padding: 0;
     margin-bottom: 24px;
@@ -22,7 +21,6 @@
 }
 
 .orderName {
-    width: 536px;
     min-height: 30px;
     text-align: left;
     margin-bottom: 24px;
@@ -30,7 +28,6 @@
 
 .orderDetails{
     margin: 0 0 0 16px;
-    width: 536px;
     height: 64px;
     display: flex;
     flex-direction: row;
