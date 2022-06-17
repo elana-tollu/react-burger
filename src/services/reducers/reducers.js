@@ -150,7 +150,12 @@ export const rootReducer = (state, action) => {
                 ...state,
                 total: action.total,
                 totalToday: action.totalToday,
-                orders: action.orders,
+                orders: action.orders.sort((a, b)=> {
+                    if (a.createdAt < b.createdAt) {
+                        return 1;
+                    }
+                    return -1;
+                }),
             };
 
         default:
