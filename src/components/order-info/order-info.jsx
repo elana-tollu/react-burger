@@ -56,7 +56,7 @@ function formatOrderStatus(orderStatus) {
     if (orderStatus === 'created') {
         return 'Создан';
     }
-    if (orderStatus === 'inwork') {
+    if (orderStatus === 'pending') {
         return 'Готовится';
     }
     if (orderStatus === 'cancel') {

@@ -25,6 +25,8 @@ function OrderCard ({orderId, orderDate, orderTitle, orderIngredients, orderStat
             <div className={styles.orderName}>
                 <p className="text text_type_main-medium">{orderTitle}</p>
             </div>
+
+            {orderStatus && <p className="text text_type_main-default text_color_success mb-15">{formatOrderStatus(orderStatus)}</p>}
             
             <div className={styles.orderDetails}>
                 <div className={styles.orderComponents}>
@@ -44,4 +46,20 @@ export default OrderCard;
 
 function formatDate(date) {
     return formatRelative(parseISO(date), new Date(), {locale: ru});
+}
+
+function formatOrderStatus(orderStatus) {
+    if (orderStatus === 'done') {
+        return 'Выполнен';
+    } 
+    if (orderStatus === 'created') {
+        return 'Создан';
+    }
+    if (orderStatus === 'pending') {
+        return 'Готовится';
+    }
+    if (orderStatus === 'cancel') {
+        return 'Отменен';
+    } 
+    return 'Неизвестный статус: ' + orderStatus;
 }

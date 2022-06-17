@@ -109,4 +109,12 @@ export function allOrdersFeed(onData) {
   return () => ws.close();
 }
 
-function userOrdersFeed() {}
+export function userOrdersFeed(onData) {
+  const accessToken = getTokens()?.accessToken?.slice(7);
+  const ws = new WebSocket(wsBaseUrl + 'orders?token=' + accessToken);
+  ws.onmessage = (event) => {
+    let data = JSON.parse(event.data);
+    onData(data);
+  }
+  return () => ws.close();
+}

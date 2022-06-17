@@ -48,9 +48,13 @@ function App() {
               <ProfilePage />
             </ProtectedRoute>
 
-            <Route path="/profile/orders">
+            <ProtectedRoute path="/profile/orders" exact>
               <Orders />
-            </Route>
+            </ProtectedRoute>
+
+            <ProtectedRoute path="/profile/orders/:id">
+              <Order />
+            </ProtectedRoute>
 
             <Route path="/feed" exact>
               <FeedPage />
