@@ -4,22 +4,19 @@ import { Link } from 'react-router-dom';
 import styles from './order-feed.module.css';
 import OrderCard from 'components/order-card/order-card';
 import Statistics from 'components/statistics/statistics';
-import { allOrdersFeed } from 'utils/api';
-import { UPDATE_ORDER_FEED } from 'services/actions/actions';
+import {WS_CLOSE, WS_START } from 'services/actions/actions';
 
 function OrderFeed () {
     const dispatch = useDispatch();
     useEffect(() => {
-        const close = allOrdersFeed(({orders, total, totalToday}) => 
-            dispatch({
-                type: UPDATE_ORDER_FEED,
-                orders, 
-                total, 
-                totalToday
-            })
-        );
+        dispatch ({
+            type: WS_START,
+            all: true,
+        })
         return () => {
-           close();
+            dispatch ({
+                type: WS_CLOSE,
+            })
         };
       }, []);
     
