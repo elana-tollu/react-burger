@@ -1,17 +1,46 @@
 import {
     HIDE_INGREDIENT, 
+
     LOAD_INGREDIENTS_REQUEST, 
     LOAD_INGREDIENTS_SUCCESS,
     LOAD_INGREDIENTS_ERROR,
+
     SHOW_BURGER_INGREDIENTS, 
     SHOW_INGREDIENT, 
     ADD_INGREDIENT,
     DELETE_INGREDIENT,
+
     MOVE_ORDER_ITEM,
+
     SUBMIT_ORDER_REQUEST, 
     SUBMIT_ORDER_SUCCESS,
     SUBMIT_ORDER_ERROR,
+
     HIDE_ORDER_NUMBER,
+
+    AUTOLOGIN_REQUEST,
+    AUTOLOGIN_SUCCESS,
+    AUTOLOGIN_ERROR,
+
+    LOGIN_REQUEST,
+    LOGIN_SUCCESS,
+    LOGIN_ERROR,
+
+    LOGOUT_REQUEST,
+    LOGOUT_SUCCESS,
+    LOGOUT_ERROR,
+
+    REGISTER_REQUEST,
+    REGISTER_SUCCESS,
+    REGISTER_ERROR,
+
+    FORGOT_PASSWORD_REQUEST,
+    FORGOT_PASSWORD_SUCCESS,
+    FORGOT_PASSWORD_ERROR,
+
+    RESET_PASSWORD_REQUEST,
+    RESET_PASSWORD_SUCCESS,
+    RESET_PASSWORD_ERROR
 } from "../actions/actions";
 
 export const rootReducer = (state, action) => {
@@ -53,23 +82,104 @@ export const rootReducer = (state, action) => {
                 burger: moveOrderItem(state.burger, action.fromIndex, action.toIndex),
             }
         case SUBMIT_ORDER_REQUEST:
-            return state;
+            return {
+                ...state,
+                isSubmittingOrder: true,
+            };
         case SUBMIT_ORDER_SUCCESS:
             return {
                 ...state, 
                 orderNumber: action.orderNumber,
+                isSubmittingOrder: false,
                 burger: {
                     bun: null,
                     filling: []
                   },
             };
         case SUBMIT_ORDER_ERROR:
-            return state;
+            return {
+                ...state,
+                isSubmittingOrder: false,
+            };
         case HIDE_ORDER_NUMBER:
             return {
                 ...state, 
                 orderNumber: null,
             };
+
+        case AUTOLOGIN_REQUEST:
+            return state;
+        case AUTOLOGIN_SUCCESS:
+            return {
+                ...state,
+                isLoggedIn: true,
+            };
+        case AUTOLOGIN_ERROR:
+            return state;
+
+        case LOGIN_REQUEST:
+            return {
+                ...state,
+                isLoggingIn: true,
+            };
+        case LOGIN_SUCCESS:
+            return {
+                ...state,
+                isLoggedIn: true,
+                user: action.user,
+                isLoggingIn: false,
+            };
+        case LOGIN_ERROR:
+            return {
+                ...state,
+                isLoggingIn: false,
+            };
+
+        case LOGOUT_REQUEST:
+            return state;
+        case LOGOUT_SUCCESS:
+            return {
+                ...state,
+                isLoggedIn: false,
+            };
+        case LOGOUT_ERROR:
+            return state;
+        
+        case REGISTER_REQUEST:
+            return state;
+        case REGISTER_SUCCESS:
+            return {
+                ...state,
+                isLoggedIn: true,
+                user: action.user,
+            };
+        case REGISTER_ERROR:
+            return state;
+
+        case FORGOT_PASSWORD_REQUEST:
+            return state;
+        case FORGOT_PASSWORD_SUCCESS:
+            return {
+                ...state,
+                isResettingPassword: true,
+            };
+        case FORGOT_PASSWORD_ERROR:
+            return state;
+
+        case RESET_PASSWORD_REQUEST:
+            return state;
+        case RESET_PASSWORD_SUCCESS:
+            return {
+                ...state,
+                isResettingPassword: false,
+                isLoggedIn: true,
+            };
+        case RESET_PASSWORD_ERROR:
+            return {
+                ...state,
+                isResettingPassword: false,
+            };
+
         default:
             return state;
     }

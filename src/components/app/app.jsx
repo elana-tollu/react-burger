@@ -1,40 +1,83 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import React, {useEffect} from 'react';
 
+import { useDispatch } from 'react-redux';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { autoLoginAction, loadIngredientsAction } from 'services/actions/actions';
+
+import HomePage from 'pages/home.jsx';
+import Login from 'pages/login.jsx';
+import ProfilePage from 'pages/profile.jsx';
+import RegistrationPage from 'pages/register.jsx';
+import ForgotPasswordPage from 'pages/forgot-password.jsx';
+import ResetPasswordPage from 'pages/reset-password.jsx';
+import Orders from 'pages/orders.jsx';
+import FeedPage from 'pages/feed.jsx';
+import NotFoundPage from 'pages/not-found.jsx';
+import ProtectedRoute from 'components/protected-route/protected-route.jsx';
 import AppHeader from '../app-header/app-header.jsx';
-import BurgerConstructor from '../burger-constructor/burger-constructor.jsx';
-import BurgerIngredients from '../burger-ingredients/burger-ingredients.jsx';
-import { loadIngredientsAction } from 'services/actions/actions'
-
-import styles from './app.module.css';
+import IngredientPage from 'pages/ingredients.jsx';
+import Logout from 'pages/logout';
 
 function App() {
-
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadIngredientsAction())
+    dispatch(autoLoginAction());
+    dispatch(loadIngredientsAction());
   }, []);
-  
+
   return (
-    <div className={styles.app}>
-      <AppHeader />
+        <Router>
+          <AppHeader />
+          
+          <Switch>
+            
+            <Route path="/reset-password">
+              <ResetPasswordPage />
+            </Route>
 
-      <section className={styles.body}>
-        <DndProvider backend={HTML5Backend}>
+            <Route path="/forgot-password">
+              <ForgotPasswordPage />
+            </Route>
 
-          <BurgerIngredients />
+            <Route path="/register">
+              <RegistrationPage />
+            </Route>
 
-          <BurgerConstructor />
-        </DndProvider>
-      </section>
-    </div>
-  );
+            <ProtectedRoute path="/profile" exact>
+              <ProfilePage />
+            </ProtectedRoute>
+
+            <Route path="/profile/orders">
+              <Orders />
+            </Route>
+
+            <Route path="/feed">
+              <FeedPage />
+            </Route>
+
+            <Route path="/ingredients/:id">
+              <IngredientPage />
+            </Route>
+
+            <Route path="/login">
+              <Login />
+            </Route>
+
+            <Route path="/logout">
+              <Logout />
+            </Route>
+            
+            <Route path="/" exact={true}>
+              <HomePage /> 
+            </Route>
+
+            <Route>
+              <NotFoundPage /> 
+            </Route>
+          </Switch>
+        </Router>
+    );     
 }
 
 export default App;
-
-
-

@@ -10,6 +10,11 @@
     text-align: center;
 }
 
+.link {
+    text-decoration: none;
+    color: #F2F2F3;
+}
+
 .counter {
     display: flex;
     width: 32px;

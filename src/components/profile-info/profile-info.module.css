@@ -1,0 +1,57 @@
+.body {
+    width: 1280px;
+    min-height: 1012px;
+    padding-top: 80px;
+    display: grid;
+    grid-template-columns: 320px 480px 320px;
+    gap: 80px;
+    background-color: #131316;
+    text-align: start;
+}
+
+.form {
+    width: 480px;
+    height: 240px;
+    padding: 0;
+    background-color: #131316;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    position: relative;
+}
+
+.inputsContainer {
+    width: 480px;
+    display: grid;
+    grid-template: column;
+    gap: 24px;
+}
+
+.title {
+    width: 480px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.input,
+.input div:not(input + div) {
+    width: 100%;
+}
+
+.buttonContainer {
+    width: 480px;
+    height: 56px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+.button {
+    width: 168px;
+    height: 56px;
+    padding: 0;
+}

@@ -1,42 +1,64 @@
 import React from 'react';
+import {NavLink, Link, useLocation} from 'react-router-dom';
 
 import { BurgerIcon, Button, ListIcon, Logo, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
-import styles from './app-header.module.css'
+import styles from './app-header.module.css';
 
 function AppHeader() {
+  let {pathname} = useLocation();
   return (
     <header className={styles['app-header']}>
 
-      <div className={styles.logo}><Logo/></div>
+      <div className={styles.logo}>
+        <Link to='/'>
+          <Logo/>
+        </Link>
+      </div>
 
       <nav className={styles.content}>
-        <div className={styles.menu}>
+        <div className={styles.menu}>          
           <Button type="secondary" size="small">
             <div className={styles['button-content']}>
-              <BurgerIcon type="primary" /> 
+              <NavLink 
+              to={{pathname: `/`}}
+              exact
+              className={ isActive => 
+              styles.link +' '+ (isActive ? styles.activeLink : "")}>
+                <BurgerIcon type={pathname === '/' ? 'primary' : 'secondary'} /> 
                 <p className="text text_type_main-default ml-2">
-                Конструктор
-              </p>
+                  Конструктор
+                </p>
+              </NavLink>
             </div>
           </Button>
-          
+           
           <Button type="secondary" size="small">
             <div className={styles['button-content']}>
-              <ListIcon type="secondary" />
-              <p className="text text_type_main-default text_color_inactive ml-2">
-              Лента заказов
-              </p>
+            <NavLink 
+              to={{pathname: `/feed`}}
+              className={ isActive => 
+              styles.link +' '+ (isActive ? styles.activeLink : "")}>
+                <ListIcon type={pathname === '/feed' ? 'primary' : 'secondary'} />
+                  <p className="text text_type_main-default ml-2">
+                    Лента заказов
+                  </p>
+                  </NavLink>
             </div>
           </Button>
         </div>
 
         <Button type="secondary" size="small">
           <div className={styles['button-content']}>
-            <ProfileIcon type="secondary" />
-            <p className="text text_type_main-default text_color_inactive ml-2">
-              Личный кабинет
-            </p>
+           <NavLink 
+              to={{pathname: `/profile`}}
+              className={ isActive => 
+              styles.link +' '+ (isActive ? styles.activeLink : "")}>
+                <ProfileIcon type={pathname === '/profile' ? 'primary' : 'secondary'} />
+                <p className="text text_type_main-default ml-2">
+                  Личный кабинет
+                </p>
+            </NavLink>
           </div>
         </Button>
       </nav>

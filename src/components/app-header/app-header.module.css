@@ -2,7 +2,7 @@
     min-width: 1320px;
     max-width: 1920px;
     max-height: 88px;
-    margin: 0 0 40px 0;
+    margin: 0 auto 40px;
     padding: 16px 0;
     display: flex;
     flex-direction: row;
@@ -35,6 +35,7 @@
 }
 
 .button-content {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: start;
@@ -52,4 +53,19 @@
     box-sizing: border-box;
     border-radius: 40px;
     background: #58587c;
+}
+
+.link {
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    color: #8585AD;
+}
+
+.link:hover {
+    color: #F2F2F3;
+}
+
+.activeLink {
+    color: #F2F2F3;
 }

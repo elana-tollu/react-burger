@@ -19,6 +19,14 @@ export const store = createStore(
     },
     currentIngredient: null,
     orderNumber: null,
+    isLoggedIn: false,
+    user: {
+      email: '',
+      name: ''
+    },
+    isLoggingIn: false,
+    isResettingPassword: false,
+    isSubmittingOrder: false,
   },
   enhancer
 );
