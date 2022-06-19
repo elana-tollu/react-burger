@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 
 import styles from './home.module.css';
 import OrderInfo from 'components/order-info/order-info';
-import Modal from 'components/modal/modal';
+import Modal from 'components/modal/modal.jsx';
 import Orders from './orders';
 import FeedPage from './feed';
 

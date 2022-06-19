@@ -3,6 +3,8 @@
     height: 620px;
     margin-top: 82px;
     background-color: #1C1C21;
+    position: relative;
+    padding-left: 8px;
 }
 
 .info {
@@ -69,7 +71,7 @@
 }
 
 .price {
-    width: 124px;
+    width: 132px;
     height: 24px;
     display: grid;
     grid-template-columns: 1fr 24px;
