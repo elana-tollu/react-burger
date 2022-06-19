@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect}  from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -7,13 +7,14 @@ import {
     useLocation,
     useParams
 } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './home.module.css';
 import OrderInfo from 'components/order-info/order-info';
 import Modal from 'components/modal/modal.jsx';
 import Orders from './orders';
 import FeedPage from './feed';
+import {WS_CLOSE, WS_START } from 'services/actions/actions';
 
 
 function Order () {  
@@ -26,19 +27,37 @@ function Order () {
         history.goBack();
     };
 
-    const [order, ingredients] = useSelector(store => [
+    const [order, ingredients, ordersTotal] = useSelector(store => [
         store.orders.find(o => o._id === id), 
-        store.ingredients
+        store.ingredients,
+        store.total
     ]);
-    const burgerIngredients = order.ingredients.map(id => ingredients.find(ingredient => ingredient._id === id));
     
-    if(ingredients.length === 0) {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if(ordersTotal === 0) {
+            dispatch ({
+                type: WS_START,
+                url: 'wss://norma.nomoreparties.space/orders/all',
+            })
+            return () => {
+                dispatch ({
+                    type: WS_CLOSE,
+                })
+            };
+        }
+    }, []);    
+    
+    if(ingredients.length === 0 || !order) {
         return (
             <p className="text text_type_main-large">
                 Информация о заказе в пути
             </p>
             )
     }
+
+    const burgerIngredients = order.ingredients.map(id => ingredients.find(ingredient => ingredient._id === id));
 
     const orderInfo =  
             <OrderInfo
