@@ -7,12 +7,12 @@ function Statistics () {
     const ordersDone = orders
         .filter(order => order.status === 'done')
         .filter((order, index) => index <= 19)
-        .map(order =>  <li className="text text_type_digits-default text_color_success mb-2">{order.number}</li>);
+        .map(order =>  <li className="text text_type_digits-default text_color_success mb-2" key = {order.number}>{order.number}</li>);
 
     const ordersInWork = orders
     .filter(order => order.status != 'done')
     .filter((order, index) => index <= 19)
-    .map(order =>  <li className="text text_type_digits-default mb-2">{order.number}</li>);
+    .map(order =>  <li className="text text_type_digits-default mb-2" key = {order.number}>{order.number}</li>);
     
     return (   
         <section className={styles.statistics}>
