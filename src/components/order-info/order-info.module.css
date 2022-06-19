@@ -1,10 +1,18 @@
 .modal {
-    width: 640px;
-    height: 620px;
-    margin-top: 82px;
-    background-color: #1C1C21;
+    width: 720px;
+    height: 688px;
+    padding: 48px 40px 40px 40px;
+    background: #1C1C21;
+    border: 1px solid rgba(76, 76, 255, 0.2);
+    box-sizing: border-box;
+    box-shadow: 0 24px 32px rgb(0 0 0 / 4%), 0 16px 24px rgb(0 0 0 / 4%), 0 4px 8px rgb(0 0 0 / 4%), 0 0 1px rgb(0 0 0 / 4%);
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    text-align: center;
     position: relative;
-    padding-left: 8px;
+    z-index: 1;
 }
 
 .info {
