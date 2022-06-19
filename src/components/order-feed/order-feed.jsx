@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import styles from './order-feed.module.css';
 import OrderCard from 'components/order-card/order-card';
 import Statistics from 'components/statistics/statistics';
-import {WS_CLOSE, WS_START } from 'services/actions/actions';
+import {WS_CLOSE, WS_START } from 'services/actions/wsActions';
 
 function OrderFeed () {
     const dispatch = useDispatch();

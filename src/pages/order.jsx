@@ -14,7 +14,7 @@ import OrderInfo from 'components/order-info/order-info';
 import Modal from 'components/modal/modal.jsx';
 import Orders from './orders';
 import FeedPage from './feed';
-import {WS_CLOSE, WS_START } from 'services/actions/actions';
+import {WS_CLOSE, WS_START } from 'services/actions/wsActions';
 
 
 function Order () {  

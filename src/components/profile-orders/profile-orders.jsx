@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import OrderCard from 'components/order-card/order-card';
 
-import { WS_CLOSE, WS_START } from 'services/actions/actions';
+import { WS_CLOSE, WS_START } from 'services/actions/wsActions';
 
 import styles from './profile-orders.module.css';
 import ProfileMenu from '../profile-menu/profile-menu';
