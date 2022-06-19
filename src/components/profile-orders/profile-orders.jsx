@@ -3,19 +3,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import OrderCard from 'components/order-card/order-card';
 
-import { userOrdersFeed } from 'utils/api';
-import { UPDATE_ORDER_FEED, WS_CLOSE, WS_START } from 'services/actions/actions';
+import { WS_CLOSE, WS_START } from 'services/actions/actions';
 
 import styles from './profile-orders.module.css';
 import ProfileMenu from '../profile-menu/profile-menu';
 
+import { refreshToken } from 'utils/api';
+import { getTokens } from 'utils/auth';
+
 function ProfileOrders () {
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch ({
-            type: WS_START,
-            all: false,
-        })
+        refreshToken().then(() => {
+            const accessToken = getTokens()?.accessToken?.slice(7);
+            dispatch ({
+                type: WS_START,
+                url: 'wss://norma.nomoreparties.space/orders?token=' + accessToken,
+            })
+        });
+        
         return () => {
             dispatch ({
                 type: WS_CLOSE,

@@ -11,7 +11,7 @@ function OrderFeed () {
     useEffect(() => {
         dispatch ({
             type: WS_START,
-            all: true,
+            url: 'wss://norma.nomoreparties.space/orders/all',
         })
         return () => {
             dispatch ({

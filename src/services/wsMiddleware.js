@@ -6,8 +6,6 @@ import {
     WS_MESSAGE,
     WS_CLOSE
 } from 'services/actions/actions';
-import { refreshToken } from 'utils/api';
-import { getTokens } from 'utils/auth';
 
 export function wsMiddleware() {
     return store => {
@@ -15,16 +13,9 @@ export function wsMiddleware() {
 
         return next => action => {
             const { dispatch } = store;
-            if(action.type === WS_START && action.all) {
-                socket = new WebSocket('wss://norma.nomoreparties.space/orders/all');
+            if(action.type === WS_START) {
+                socket = new WebSocket(action.url);
                 setSocketHandlers(socket, dispatch);
-            }
-            if(action.type === WS_START && !action.all) {
-                refreshToken().then(() => {
-                    const accessToken = getTokens()?.accessToken?.slice(7);
-                    socket = new WebSocket('wss://norma.nomoreparties.space/orders?token=' + accessToken);
-                    setSocketHandlers(socket, dispatch);
-                });
             }
             if(action.type === WS_CLOSE) {
                 if(socket) {
