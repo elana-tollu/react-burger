@@ -10,7 +10,7 @@ function OrderInfo ({orderId, orderDate, orderTitle, orderIngredients, orderStat
     const uniqueIngredients = Object.keys(ingredientCounts).map(id => orderIngredients.find( ing => ing._id === id));
     
     const ingredients = uniqueIngredients.map(ingredient => 
-        <li className={styles.orderIngredient}>
+        <li className={styles.orderIngredient} key = {ingredient._id}>
             <img src={ingredient.image_mobile} className={styles.image}/>
             <p className="text text_type_main-default text_color_primary pr-8">{ingredient.name}</p>
             <div className={styles.price}>
