@@ -52,7 +52,7 @@ function App() {
               <Orders />
             </ProtectedRoute>
 
-            <ProtectedRoute path="/profile/orders/:id">
+            <ProtectedRoute path="/profile/orders/:orderNumber">
               <Order />
             </ProtectedRoute>
 
@@ -60,7 +60,7 @@ function App() {
               <FeedPage />
             </Route>
 
-            <Route path="/feed/:id">
+            <Route path="/feed/:orderNumber">
               <Order />
             </Route>
 

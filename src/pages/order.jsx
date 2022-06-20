@@ -1,4 +1,4 @@
-import React, {useEffect}  from 'react';
+import React, {useEffect, useState}  from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -7,18 +7,18 @@ import {
     useLocation,
     useParams
 } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 
 import styles from './home.module.css';
 import OrderInfo from 'components/order-info/order-info';
 import Modal from 'components/modal/modal.jsx';
 import Orders from './orders';
 import FeedPage from './feed';
-import {WS_CLOSE, WS_START } from 'services/actions/wsActions';
+import { loadOrder } from 'utils/api';
 
 
 function Order () {  
-    let { id } = useParams();
+    let { orderNumber } = useParams();
     let location = useLocation();
     let background = location.state && location.state.background;
 
@@ -27,28 +27,21 @@ function Order () {
         history.goBack();
     };
 
-    const [order, ingredients, ordersTotal] = useSelector(store => [
-        store.orders.find(o => o._id === id), 
-        store.ingredients,
-        store.total
+    const [orderFromStore, ingredients] = useSelector(store => [
+        store.orders.find(o => o.number === orderNumber), 
+        store.ingredients
     ]);
-    
-    const dispatch = useDispatch();
 
+    const [order, setOrder] = useState(orderFromStore);
+    
     useEffect(() => {
-        if(ordersTotal === 0) {
-            dispatch ({
-                type: WS_START,
-                url: 'wss://norma.nomoreparties.space/orders/all',
-            })
-            return () => {
-                dispatch ({
-                    type: WS_CLOSE,
-                })
-            };
+        if(!order) {
+            loadOrder(orderNumber) 
+            .then (data => {
+                setOrder(data.orders[0]);
+            });
         }
     }, []);    
-    
     if(ingredients.length === 0 || !order) {
         return (
             <p className="text text_type_main-large">

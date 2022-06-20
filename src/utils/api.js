@@ -1,7 +1,6 @@
 import { setTokens, getTokens, deleteTokens} from 'utils/auth';
 
 const host = 'norma.nomoreparties.space';
-const wsBaseUrl = `wss://${host}/`;
 const httpBaseUrl = `https://${host}/api/`;
 
 function request( method, endpoint, data ) {
@@ -31,6 +30,10 @@ export function loadIngredientCards() {
     .then(cards => {
         return cards.data;
     });
+}
+
+export function loadOrder(orderNumber) {
+  return request('GET', 'orders/' + orderNumber);
 }
 
 export function submitOrder(ingredientIDs) {

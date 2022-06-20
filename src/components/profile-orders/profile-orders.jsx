@@ -45,7 +45,7 @@ function ProfileOrders () {
         return (
             <Link 
                 to={{
-                    pathname: '/profile/orders/' + order._id,
+                    pathname: '/profile/orders/' + order.number,
                     state: { background: location }
                 }} 
                 className={styles.link}

@@ -151,8 +151,8 @@ export const rootReducer = (state, action) => {
         case WS_MESSAGE:
             return {
                 ...state,
-                total: action.data.total,
-                totalToday: action.data.totalToday,
+                total: action.data.total || 0,
+                totalToday: action.data.totalToday || 0,
                 orders: action.data.orders.sort((a, b)=> {
                     if (a.createdAt < b.createdAt) {
                         return 1;

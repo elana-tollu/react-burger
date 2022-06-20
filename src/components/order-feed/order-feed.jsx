@@ -36,7 +36,7 @@ function OrderFeed () {
         return (
             <Link 
                 to={{
-                    pathname: '/feed/' + order._id,
+                    pathname: '/feed/' + order.number,
                     state: { background: location }
                 }} 
                 className={styles.link}
