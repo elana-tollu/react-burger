@@ -12,6 +12,7 @@ import { refreshToken } from 'utils/api';
 import { getTokens } from 'utils/auth';
 
 function ProfileOrders () {
+    let location = useLocation();
     const dispatch = useDispatch();
     useEffect(() => {
         refreshToken().then(() => {
@@ -31,7 +32,14 @@ function ProfileOrders () {
     
     const [orders, ingredients] = useSelector(store => [store.orders, store.ingredients]);
 
-    let location = useLocation();
+    if(ingredients.length === 0 || orders.length === 0) {
+        return (
+            <p className="text text_type_main-large">
+                Информация о заказах в пути
+            </p>
+            )
+    }
+
     const orderCards = orders.map(order => {
         const burgerIngredients = order.ingredients.map(id=> ingredients.find(ingredient => ingredient._id === id));
         return (
