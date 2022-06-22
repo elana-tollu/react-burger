@@ -3,7 +3,7 @@ import { setTokens, getTokens, deleteTokens} from 'utils/auth';
 const host = 'norma.nomoreparties.space';
 const httpBaseUrl = `https://${host}/api/`;
 
-function request( method, endpoint, data ) {
+function request<Req, Res>( method: string, endpoint: string, data?: Req ): Promise<Res> {
   return fetch(`${httpBaseUrl}${endpoint}`, {
       method,
       headers: {
@@ -25,8 +25,19 @@ function request( method, endpoint, data ) {
   });
 }
 
-export function loadIngredientCards() {
-  return request('GET', 'ingredients')
+type TIngredient = {
+  _id: string;
+  image: string; 
+  price: number;
+  name: string;
+};
+
+type TIngredientResponse = {
+  data: TIngredient[];
+};
+
+export function loadIngredientCards(): Promise<TIngredient[]> {
+  return request<void, TIngredientResponse>('GET', 'ingredients')
     .then(cards => {
         return cards.data;
     });
