@@ -43,13 +43,30 @@ export function loadIngredientCards(): Promise<TIngredient[]> {
     });
 }
 
-export function loadOrder(orderNumber) {
-  return request('GET', 'orders/' + orderNumber);
+type TOrder = {
+  number: string;
+  //todo
+};
+
+type TOrderResponse = {
+  //todo
+};
+
+export function loadOrder(orderNumber: string): Promise<TOrderResponse> {
+  return request<void, TOrderResponse>('GET', 'orders/' + orderNumber);
 }
 
-export function submitOrder(ingredientIDs) {
-    return request('POST', 'orders', {ingredients: ingredientIDs})
-      .then(order => order.order.number);
+type TSubmitOrderRequest = {
+  ingredients: string[];
+};
+
+type TSubmitOrderResponse = {
+  order: TOrder;
+};
+
+export function submitOrder(ingredientIDs: string[]) {
+    return request<TSubmitOrderRequest, TSubmitOrderResponse>('POST', 'orders', {ingredients: ingredientIDs})
+      .then(orderResponse => orderResponse.order.number);
 }
 
 
@@ -89,9 +106,16 @@ export function logout() {
   }) ;
 }
 
-//нужен access токен
-export function getProfile() {
-  return request('GET', 'auth/user');
+type TProfile = {
+  //todo
+};
+
+type TProfileResponse = {
+  //todo
+};
+
+export function getProfile(): Promise<TProfile> {
+  return request<void, TProfileResponse>('GET', 'auth/user');
 }
 
 export function updateProfile(name, email, password) {
