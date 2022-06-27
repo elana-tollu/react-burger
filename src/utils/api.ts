@@ -3,7 +3,7 @@ import { setTokens, getTokens, deleteTokens} from 'utils/auth';
 const host = 'norma.nomoreparties.space';
 const httpBaseUrl = `https://${host}/api/`;
 
-function request<Req, Res>( method: string, endpoint: string, data?: Req ): Promise<Res> {
+function request<Req, Res>( method: 'GET' | 'POST' | 'PATCH', endpoint: string, data?: Req ): Promise<Res> {
   return fetch(`${httpBaseUrl}${endpoint}`, {
       method,
       headers: {
@@ -69,31 +69,50 @@ export function submitOrder(ingredientIDs: string[]) {
       .then(orderResponse => orderResponse.order.number);
 }
 
+interface IUser {
+  email: string,
+  name: string
+}
 
-//получаем оба токена
-export function login(email, password) {
-  return request('POST', 'auth/login', {email, password})
-  .then(({user, accessToken, refreshToken}) => {
-    setTokens ({accessToken, refreshToken});
-    return {user};
-  });
+interface ILoginResponse {
+  accessToken: string,
+  refreshToken: string,
+  user: IUser
+}
+
+interface ILoginRequest {
+  email: string,
+  password: string
 }
 
 //получаем оба токена
-export function register(name, email, password) {
-  return request('POST', 'auth/register', {name, email, password})
+export function login(email: string, password: string): Promise<IUser> {
+  return request<ILoginRequest, ILoginResponse>('POST', 'auth/login', {email, password})
+  .then(response => {
+    setTokens ({accessToken: response.accessToken, refreshToken: response.refreshToken});
+    return response.user;
+  });
+}
+interface IRegisterRequest {
+  name: string,
+  email: string,
+  password: string
+}
+//получаем оба токена
+export function register(name: string, email: string, password: string): Promise<IUser> {
+  return request<IRegisterRequest, ILoginResponse>('POST', 'auth/register', {name, email, password})
   .then(({user, accessToken, refreshToken}) => {
     setTokens ({accessToken, refreshToken});
-    return {user};
+    return user;
   });
 }
 
-export function forgotPassword(email) {
+export function forgotPassword(email: string) {
   return request('POST', 'password-reset', {email});
 }
 
 //
-export function resetPassword(password, token) {
+export function resetPassword(password: string, token: string) {
   return request('POST', 'password-reset/reset', {password, token});
 }
 
@@ -118,8 +137,18 @@ export function getProfile(): Promise<TProfile> {
   return request<void, TProfileResponse>('GET', 'auth/user');
 }
 
-export function updateProfile(name, email, password) {
-  return request('PATCH', 'auth/user', {name, email, password:(password ? password : null)})
+interface IUpdateProfileRequest {
+  name?: string,
+  email?: string,
+  password?: string
+}
+
+interface IUpdateProfileResponse {
+  user: IUser
+}
+
+export function updateProfile(name: string, email: string, password: string): Promise<IUser> {
+  return request<IUpdateProfileRequest, IUpdateProfileResponse>('PATCH', 'auth/user', {name, email, password:(password ? password : undefined)})
   .then(({user}) => {
     return {
       name: user.name,
@@ -128,8 +157,17 @@ export function updateProfile(name, email, password) {
   });
 }
 
+interface IRefreshTokenRequest {
+  token: string
+}
+
+interface IRefreshTokenResponse{
+  accessToken: string,
+  refreshToken: string
+}
+
 export function refreshToken() {
-  return request('POST', 'auth/token', {token : getTokens()?.refreshToken})
+  return request<IRefreshTokenRequest, IRefreshTokenResponse> ('POST', 'auth/token', {token : getTokens()?.refreshToken})
   .then(({accessToken, refreshToken}) => {
     setTokens ({accessToken, refreshToken});
   });

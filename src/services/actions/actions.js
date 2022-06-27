@@ -84,10 +84,10 @@ export function registerAction (userName, email, password) {
             type: REGISTER_REQUEST
         });
         register(userName, email, password)
-        .then(response => {
+        .then(user => {
             dispatch({
                 type: REGISTER_SUCCESS,
-                user: response.user
+                user: user
             })
         })
         .catch (err => {
