@@ -1,4 +1,3 @@
-import { useSelector, useDispatch } from 'react-redux';
 import {Link, useLocation} from 'react-router-dom';
 import { useDrop } from 'react-dnd';
 import { v4 as uuidv4 } from 'uuid';
@@ -12,12 +11,13 @@ import { ADD_INGREDIENT, DELETE_INGREDIENT, HIDE_ORDER_NUMBER, submitOrderAction
 import {isAuthenticated} from 'utils/auth';
 
 import styles from './burger-constructor.module.css';
+import { useAppDispatch, useAppSelector } from 'services/hooks';
 
 function BurgerConstructor () {
 
   let {pathname} = useLocation();
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [{}, dropIngredient] = useDrop({
     accept: 'ingredient',
@@ -30,7 +30,7 @@ function BurgerConstructor () {
     },
   }); 
 
-  const [{ bun, filling }, orderNumber, isSubmittingOrder] = useSelector(store => [store.burger, store.orderNumber, store.isSubmittingOrder]);
+  const [{ bun, filling }, orderNumber, isSubmittingOrder] = useAppSelector(store => [store.burger, store.orderNumber, store.isSubmittingOrder]);
 
   const bunPrice = bun ? bun.price * 2 : 0;
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { YandexPasswordInput } from 'yandex/yandex-password-input';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import {resetPasswordAction} from 'services/actions/actions';
 
 import styles from './page-reset-password.module.css';
+import { useAppDispatch, useAppSelector } from 'services/hooks';
 
 function PageResetPassword () {
     
@@ -19,14 +19,14 @@ function PageResetPassword () {
         setForm({...form, [e.target.name]:e.target.value});
     };
     
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const resetPassword = (event) => {
         event.preventDefault();
         dispatch(resetPasswordAction (form.password, form.token));
     };
 
-    const isResettingPassword = useSelector(store => store.isResettingPassword);
+    const isResettingPassword = useAppSelector(store => store.isResettingPassword);
     if(!isResettingPassword) {
         return (
             <Redirect to="/" />

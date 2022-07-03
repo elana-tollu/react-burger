@@ -1,13 +1,13 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd';
 import { Link, useLocation } from "react-router-dom";
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import styles from './burger-ingredient.module.css';
 import {INGREDIENT_TYPE} from 'utils/types';
+import { useAppSelector } from 'services/hooks';
 
 function BurgerIngredient (props) {
-  const count = useSelector(store => [...store.burger.filling, store.burger.bun].filter(value => value && value._id === props.ingredient._id).length);
+  const count = useAppSelector(store => [...store.burger.filling, store.burger.bun].filter(value => value && value._id === props.ingredient._id).length);
   const counterBadge = (
     <span className={styles.counter}>
       <p className="text text_type_digits-default">

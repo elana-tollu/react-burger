@@ -1,6 +1,4 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { YandexEmailInput } from 'yandex/yandex-email-input';
 import { YandexPasswordInput } from 'yandex/yandex-password-input';

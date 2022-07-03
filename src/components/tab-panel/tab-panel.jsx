@@ -1,12 +1,12 @@
 import { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import ListOfIngridients from '../list-of-ingredients/list-of-ingredients';
 import {INGREDIENT_TYPE} from 'utils/types';
 
 import styles from './tab-panel.module.css';
+import { useAppSelector } from 'services/hooks';
 
 function ingredientsOfType (ings, type) {
   return ings.filter(element => element.type === type);
@@ -18,7 +18,7 @@ function scroll(parentRef, childRef) {
 }
 
 function TabPanel () {
-  const ingredients = useSelector(store => store.ingredients);
+  const ingredients = useAppSelector(store => store.ingredients);
   
   const [current, setCurrent] = useState('buns')
 

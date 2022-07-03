@@ -7,7 +7,6 @@ import {
     useLocation,
     useParams
 } from "react-router-dom";
-import {  useSelector } from 'react-redux';
 
 import styles from './home.module.css';
 import OrderInfo from 'components/order-info/order-info';
@@ -15,6 +14,7 @@ import Modal from 'components/modal/modal.jsx';
 import Orders from './orders';
 import FeedPage from './feed';
 import { loadOrder } from 'utils/api';
+import { useAppSelector } from 'services/hooks';
 
 
 function Order () {  
@@ -27,7 +27,7 @@ function Order () {
         history.goBack();
     };
 
-    const [orderFromStore, ingredients] = useSelector(store => [
+    const [orderFromStore, ingredients] = useAppSelector(store => [
         store.orders.find(o => o.number === orderNumber), 
         store.ingredients
     ]);

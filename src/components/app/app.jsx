@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 
-import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { loadIngredientsAction } from 'services/actions/actions';
 
@@ -18,9 +17,10 @@ import AppHeader from '../app-header/app-header.jsx';
 import IngredientPage from 'pages/ingredients.jsx';
 import Logout from 'pages/logout';
 import Order from 'pages/order.jsx';
+import { useAppDispatch } from 'services/hooks';
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(loadIngredientsAction())

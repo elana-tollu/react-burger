@@ -1,14 +1,14 @@
 import React, {useEffect} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './order-feed.module.css';
 import OrderCard from 'components/order-card/order-card';
 import Statistics from 'components/statistics/statistics';
 import {WS_CLOSE, WS_START } from 'services/actions/wsActions';
+import { useAppDispatch, useAppSelector } from 'services/hooks';
 
 function OrderFeed () {
     const location = useLocation();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch ({
             type: WS_START,
@@ -21,7 +21,7 @@ function OrderFeed () {
         };
       }, []);
     
-    const [orders, ingredients] = useSelector(store => [store.orders, store.ingredients]);
+    const [orders, ingredients] = useAppSelector(store => [store.orders, store.ingredients]);
 
     if(ingredients.length === 0 || orders.length === 0) {
         return (

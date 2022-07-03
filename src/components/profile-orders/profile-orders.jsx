@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import OrderCard from 'components/order-card/order-card';
 
@@ -10,10 +9,11 @@ import ProfileMenu from '../profile-menu/profile-menu';
 
 import { refreshToken } from 'utils/api';
 import { getTokens } from 'utils/auth';
+import { useAppDispatch, useAppSelector } from 'services/hooks';
 
 function ProfileOrders () {
     let location = useLocation();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     useEffect(() => {
         refreshToken().then(() => {
             const accessToken = getTokens()?.accessToken?.slice(7);
@@ -30,7 +30,7 @@ function ProfileOrders () {
         };
       }, []);
     
-    const [orders, ingredients] = useSelector(store => [store.orders, store.ingredients]);
+    const [orders, ingredients] = useAppSelector(store => [store.orders, store.ingredients]);
 
     if(ingredients.length === 0 || orders.length === 0) {
         return (

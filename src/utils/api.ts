@@ -25,7 +25,7 @@ function request<Req, Res>( method: 'GET' | 'POST' | 'PATCH', endpoint: string, 
   });
 }
 
-type TIngredient = {
+export type TIngredient = {
   _id: string;
   image: string; 
   price: number;
@@ -69,7 +69,7 @@ export function submitOrder(ingredientIDs: string[]) {
       .then(orderResponse => orderResponse.order.number);
 }
 
-interface IUser {
+export interface IUser {
   email: string,
   name: string
 }

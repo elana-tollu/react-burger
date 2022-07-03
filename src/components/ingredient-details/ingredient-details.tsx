@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from 'services/hooks';
 import styles from './ingredient-details.module.css';
 
-function IngredientDetails (props) {
-   const ingredient = useSelector(store => store.ingredients.find(ing => ing._id === props.ingredientId));
+function IngredientDetails (props: IIngredientDetailsProps) {
+   const ingredient = useAppSelector(store => store.ingredients.find(ing => ing._id === props.ingredientId));
     
    if(!ingredient) {
     return (
@@ -50,8 +49,8 @@ function IngredientDetails (props) {
     )
 }
 
-IngredientDetails.propTypes = {
-    ingredientId: PropTypes.string.isRequired
-};
+interface IIngredientDetailsProps {
+    ingredientId: string,
+}
 
 export default IngredientDetails;

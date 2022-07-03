@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
 import { useDrag, useDrop } from 'react-dnd';
 
 import { MOVE_ORDER_ITEM } from '../../services/actions/actions';
@@ -9,10 +8,11 @@ import { MOVE_ORDER_ITEM } from '../../services/actions/actions';
 import { DragIcon, ConstructorElement }  from '@ya.praktikum/react-developer-burger-ui-components';
 
 import styles from './ordered-ingredient.module.css'
+import { useAppDispatch } from 'services/hooks';
 
 function OrderedIngredient (props) {
     const currentIngredientIndex = props.index;
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const [{ opacity }, dragRef] = useDrag({
         type: 'orderItem',

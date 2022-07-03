@@ -1,9 +1,9 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from 'services/hooks';
 import styles from './statistics.module.css';
 
 function Statistics () {
-    const [orders, total, totalToday] = useSelector(store => [store.orders, store.total, store.totalToday]);
+    const [orders, total, totalToday] = useAppSelector(store => [store.orders, store.total, store.totalToday]);
     const ordersDone = orders
         .filter(order => order.status === 'done')
         .filter((order, index) => index <= 19)

@@ -8,7 +8,7 @@ import {
   useParams
 } from "react-router-dom";
 
-import IngredientDetails from 'components/ingredient-details/ingredient-details.jsx';
+import IngredientDetails from 'components/ingredient-details/ingredient-details';
 import styles from './home.module.css';
 import HomePage from 'pages/home.jsx';
 import Modal from 'components/modal/modal';
