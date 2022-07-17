@@ -1,4 +1,5 @@
 import { setTokens, getTokens, deleteTokens} from 'utils/auth';
+import { ITokens } from './types';
 
 const host = 'norma.nomoreparties.space';
 const httpBaseUrl = `https://${host}/api/`;
@@ -74,9 +75,7 @@ export interface IUser {
   name: string
 }
 
-interface ILoginResponse {
-  accessToken: string,
-  refreshToken: string,
+interface ILoginResponse extends ITokens {
   user: IUser
 }
 

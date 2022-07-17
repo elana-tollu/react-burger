@@ -1,11 +1,13 @@
-export function setTokens (tokens) {
+import { ITokens } from "./types";
+
+export function setTokens (tokens: ITokens) {
     const tokensString = JSON.stringify(tokens);
     localStorage.setItem('tokens', tokensString);
 }
   
-export function getTokens () {
+export function getTokens (): ITokens | null {
     const tokensString = localStorage.getItem('tokens');
-    return JSON.parse(tokensString);
+    return tokensString && JSON.parse(tokensString);
 }
 
 export function isAuthenticated () {
