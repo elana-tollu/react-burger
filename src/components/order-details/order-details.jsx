@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import styles from './order-details.module.css';
 
@@ -21,8 +20,10 @@ function OrderDetails (props) {
     )
 }
 
-OrderDetails.propTypes = {
+
+//todo
+/* OrderDetails.propTypes = {
     orderNum: PropTypes.number.isRequired,
-};
+}; */
 
 export default OrderDetails;

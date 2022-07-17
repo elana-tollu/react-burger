@@ -1,9 +1,7 @@
 import React from 'react';
 import {forwardRef} from 'react';
-import PropTypes from 'prop-types';
 
 import BurgerIngredient from '../burger-ingredient/burger-ingredient';
-import {INGREDIENT_TYPE} from 'utils/types';
 
 import styles from './list-of-ingredients.module.css';
 
@@ -25,11 +23,12 @@ const ListOfIngridients = forwardRef(function(props, ref){
     );
 });
 
-ListOfIngridients.propTypes = {
+//todo use IIngredient
+/* ListOfIngridients.propTypes = {
     title: PropTypes.string.isRequired,
     ingredients: PropTypes.arrayOf(
       INGREDIENT_TYPE
     )
-  };
+  }; */
 
 export default ListOfIngridients

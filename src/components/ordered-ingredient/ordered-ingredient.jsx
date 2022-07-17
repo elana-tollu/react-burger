@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useDrag, useDrop } from 'react-dnd';
 
 import { MOVE_ORDER_ITEM } from '../../services/actions/actions';
@@ -48,13 +47,14 @@ function OrderedIngredient (props) {
     )
 }
 
-OrderedIngredient.propTypes = {
+//todo use IIngredient
+/* OrderedIngredient.propTypes = {
     ingredient: PropTypes.shape({
       _id: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired, 
       price: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired
     }).isRequired
-  };
+  }; */
 
 export default OrderedIngredient;

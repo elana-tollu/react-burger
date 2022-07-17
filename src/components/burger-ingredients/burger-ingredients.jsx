@@ -1,10 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import TabPanel from '../tab-panel/tab-panel';
-import {INGREDIENT_TYPE} from 'utils/types';
 
 import styles from './burger-ingredients.module.css';
 
@@ -24,11 +22,12 @@ function BurgerIngredients () {
   );
 }
 
-BurgerIngredients.propTypes = {
+//todo use IIngredient
+/* BurgerIngredients.propTypes = {
   data: PropTypes.arrayOf(
     INGREDIENT_TYPE
   )
-};
+}; */
 
 export default BurgerIngredients;
 

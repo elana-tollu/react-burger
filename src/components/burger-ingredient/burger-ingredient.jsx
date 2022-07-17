@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import styles from './burger-ingredient.module.css';
-import {INGREDIENT_TYPE} from 'utils/types';
 import { useAppSelector } from 'services/hooks';
 
 function BurgerIngredient (props) {
@@ -54,8 +53,9 @@ function BurgerIngredient (props) {
   );
 }
 
-BurgerIngredient.propTypes = {
+//todo use IIngredient
+/* BurgerIngredient.propTypes = {
   ingredient: INGREDIENT_TYPE.isRequired
-};
+}; */
 
 export default BurgerIngredient;
