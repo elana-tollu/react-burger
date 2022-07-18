@@ -5,12 +5,17 @@ const host = 'norma.nomoreparties.space';
 const httpBaseUrl = `https://${host}/api/`;
 
 function request<Req, Res>( method: 'GET' | 'POST' | 'PATCH', endpoint: string, data?: Req ): Promise<Res> {
+  let headers: HeadersInit = {
+    'Content-Type': 'application/json',
+  }
+
+  if (getTokens()) {
+    headers['Authorization'] = getTokens()!.accessToken
+  }
+  
   return fetch(`${httpBaseUrl}${endpoint}`, {
       method,
-      headers: {
-        'Authorization': getTokens()?.accessToken,
-        'Content-Type': 'application/json',
-      },
+      headers,
       body: JSON.stringify(data),
   }).then((response) => {
       if (response.ok) {
@@ -157,7 +162,7 @@ export function updateProfile(name: string, email: string, password: string): Pr
 }
 
 interface IRefreshTokenRequest {
-  token: string
+  token?: string
 }
 
 interface IRefreshTokenResponse{
