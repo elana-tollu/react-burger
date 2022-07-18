@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 
-import { MOVE_ORDER_ITEM } from '../../services/actions/actions';
+import { moveOrderItem, MOVE_ORDER_ITEM } from '../../services/actions/actions';
 
 
 import { DragIcon, ConstructorElement }  from '@ya.praktikum/react-developer-burger-ui-components';
@@ -24,11 +24,7 @@ function OrderedIngredient (props) {
     const [{}, dropRef] = useDrop({
         accept: 'orderItem',
         drop({dropIndex}) {
-          dispatch ({
-            type: MOVE_ORDER_ITEM,
-            fromIndex: dropIndex,
-            toIndex: currentIngredientIndex
-          });
+          dispatch (moveOrderItem(dropIndex, currentIngredientIndex));
         },
       }); 
 

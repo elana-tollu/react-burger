@@ -1,12 +1,8 @@
 import {
-    HIDE_INGREDIENT, 
-
     LOAD_INGREDIENTS_REQUEST, 
     LOAD_INGREDIENTS_SUCCESS,
     LOAD_INGREDIENTS_ERROR,
 
-    SHOW_BURGER_INGREDIENTS, 
-    SHOW_INGREDIENT, 
     ADD_INGREDIENT,
     DELETE_INGREDIENT,
 
@@ -51,18 +47,6 @@ export const rootReducer = (state, action) => {
             };
         case LOAD_INGREDIENTS_ERROR:
             return state;
-        case SHOW_BURGER_INGREDIENTS:
-            return state;
-        case SHOW_INGREDIENT:
-            return {
-                ...state, 
-                currentIngredient: action.ingredient,
-            };
-        case HIDE_INGREDIENT:
-            return {
-                ...state, 
-                currentIngredient: null,
-            };
         case ADD_INGREDIENT:
             return {
                 ...state,

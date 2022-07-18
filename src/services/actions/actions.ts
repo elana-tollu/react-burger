@@ -1,12 +1,8 @@
-import { loadIngredientCards, submitOrder, login, register, forgotPassword, resetPassword } from 'utils/api';
+import { loadIngredientCards, submitOrder, register, forgotPassword, resetPassword, TIngredient } from 'utils/api';
 
 export const LOAD_INGREDIENTS_REQUEST: 'LOAD_INGREDIENTS_REQUEST' = 'LOAD_INGREDIENTS_REQUEST';
 export const LOAD_INGREDIENTS_SUCCESS: 'LOAD_INGREDIENTS_SUCCESS' = 'LOAD_INGREDIENTS_SUCCESS';
 export const LOAD_INGREDIENTS_ERROR: 'LOAD_INGREDIENTS_ERROR' = 'LOAD_INGREDIENTS_ERROR';
-
-export const SHOW_BURGER_INGREDIENTS: 'SHOW_BURGER_INGREDIENTS' = 'SHOW_BURGER_INGREDIENTS';
-export const SHOW_INGREDIENT: 'SHOW_INGREDIENT' = 'SHOW_INGREDIENT';
-export const HIDE_INGREDIENT: 'HIDE_INGREDIENT' = 'HIDE_INGREDIENT';
 
 export const ADD_INGREDIENT: 'ADD_INGREDIENT' = 'ADD_INGREDIENT';
 export const DELETE_INGREDIENT: 'DELETE_INGREDIENT' = 'DELETE_INGREDIENT';
@@ -35,27 +31,67 @@ export const RESET_PASSWORD_ERROR: 'RESET_PASSWORD_ERROR' = 'RESET_PASSWORD_ERRO
 
 export const UPDATE_ORDER_FEED: 'UPDATE_ORDER_FEED' = 'UPDATE_ORDER_FEED';
 
+export interface ILoadIngredientsRequestAction {
+    readonly type: typeof LOAD_INGREDIENTS_REQUEST;
+}
+
+export function loadIngredientsRequest(): ILoadIngredientsRequestAction {
+    return {
+        type: LOAD_INGREDIENTS_REQUEST
+    }
+}
+
+export interface ILoadIngredientsSuccessAction {
+    readonly type: typeof LOAD_INGREDIENTS_SUCCESS;
+    readonly ingredients: TIngredient[];
+}
+
+export function loadIngredientsSuccess(ingredients: TIngredient[]): ILoadIngredientsSuccessAction {
+    return {
+        type: LOAD_INGREDIENTS_SUCCESS,
+        ingredients
+    }
+}
+
+export interface ILoadIngredientsErrorAction {
+    readonly type: typeof LOAD_INGREDIENTS_ERROR;
+}
+
+export function loadIngredientsError(): ILoadIngredientsErrorAction {
+    return {
+        type: LOAD_INGREDIENTS_ERROR
+    }
+}
 
 export function loadIngredientsAction() {
     return function(dispatch) {
-        dispatch({
-            type: LOAD_INGREDIENTS_REQUEST
-        });
+        dispatch(loadIngredientsRequest());
         loadIngredientCards()
         .then(ingredients => {
-            dispatch({
-                type: LOAD_INGREDIENTS_SUCCESS,
-                ingredients
-            })
+            dispatch( loadIngredientsSuccess(ingredients))
         })
         .catch (err => {
             alert ("Ингредиенты для бургеров похитили космические пираты!");
-            dispatch({
-                type: LOAD_INGREDIENTS_ERROR
-            })
+            dispatch(loadIngredientsError())
         }); 
     }
 }
+
+
+export interface IMoveOrderItemAction {
+    readonly type: typeof MOVE_ORDER_ITEM;
+    readonly fromIndex: number;
+    readonly toIndex: number;
+} 
+
+export function moveOrderItem(fromIndex: number, toIndex: number): IMoveOrderItemAction {
+    return {
+        type: MOVE_ORDER_ITEM,
+        fromIndex,
+        toIndex,
+    }
+}
+
 
 export function submitOrderAction(ingredientIDs) {
     return function(dispatch) {
