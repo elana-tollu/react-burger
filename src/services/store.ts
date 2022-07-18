@@ -8,7 +8,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 const enhancer = composeWithDevTools(applyMiddleware(thunk, wsMiddleware(wsActions)));
 
-interface IStore {
+export interface IStore {
   ingredients: TIngredient[],
   burger: {
     bun: TIngredient | null,

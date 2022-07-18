@@ -1,3 +1,4 @@
+import { Reducer } from "redux";
 import {
     LOAD_INGREDIENTS_REQUEST, 
     LOAD_INGREDIENTS_SUCCESS,
@@ -29,14 +30,16 @@ import {
     RESET_PASSWORD_REQUEST,
     RESET_PASSWORD_SUCCESS,
     RESET_PASSWORD_ERROR,
+    TAction,
     
 } from "services/actions/actions";
 
 import {
     WS_MESSAGE
 } from  "services/actions/wsActions";
+import { IStore } from "services/store";
 
-export const rootReducer = (state, action) => {
+export const rootReducer: Reducer<IStore, TAction> = (state, action) => {
     switch (action.type) {
         case LOAD_INGREDIENTS_REQUEST:
             return state;
@@ -50,7 +53,7 @@ export const rootReducer = (state, action) => {
         case ADD_INGREDIENT:
             return {
                 ...state,
-                burger: addIngredient(state.burger, action.ingredient),
+                burger: addIngredient(state!.burger, action.ingredient),
             }
         case DELETE_INGREDIENT:
             return {

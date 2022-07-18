@@ -174,3 +174,9 @@ export function resetPasswordAction (password, token) {
         });
     }
 }
+
+export type TAction = 
+    | ILoadIngredientsRequestAction
+    | ILoadIngredientsSuccessAction
+    | ILoadIngredientsErrorAction
+    | IMoveOrderItemAction;
