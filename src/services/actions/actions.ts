@@ -77,6 +77,18 @@ export function loadIngredientsAction() {
     }
 }
 
+export interface IAddIngredientAction {
+    readonly type: typeof ADD_INGREDIENT;
+    readonly ingredient: TIngredient;
+}
+
+export function addIngredient(ingredient: TIngredient): IAddIngredientAction {
+    return {
+        type: ADD_INGREDIENT,
+        ingredient
+    }
+}
+
 
 export interface IMoveOrderItemAction {
     readonly type: typeof MOVE_ORDER_ITEM;
@@ -179,4 +191,5 @@ export type TAction =
     | ILoadIngredientsRequestAction
     | ILoadIngredientsSuccessAction
     | ILoadIngredientsErrorAction
+    | IAddIngredientAction
     | IMoveOrderItemAction;
