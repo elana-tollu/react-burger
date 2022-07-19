@@ -58,7 +58,7 @@ export const rootReducer: Reducer<IStore, TAction> = (state, action) => {
         case DELETE_INGREDIENT:
             return {
                 ...state,
-                burger: deleteIngredient(state.burger, action.index),
+                burger: deleteIngredient(state!.burger, action.index),
             }
         case MOVE_ORDER_ITEM:
             return {

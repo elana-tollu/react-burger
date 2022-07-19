@@ -89,6 +89,19 @@ export function addIngredient(ingredient: TIngredient): IAddIngredientAction {
     }
 }
 
+export interface IDeleteIngredientAction {
+    readonly type: typeof DELETE_INGREDIENT;
+    readonly ingredient: TIngredient;
+    readonly index: number;
+}
+
+export function deleteIngredient(ingredient: TIngredient, index: number): IDeleteIngredientAction {
+    return {
+        type: DELETE_INGREDIENT,
+        ingredient,
+        index
+    }
+}
 
 export interface IMoveOrderItemAction {
     readonly type: typeof MOVE_ORDER_ITEM;
@@ -103,6 +116,7 @@ export function moveOrderItem(fromIndex: number, toIndex: number): IMoveOrderIte
         toIndex,
     }
 }
+
 
 
 export function submitOrderAction(ingredientIDs) {
@@ -192,4 +206,5 @@ export type TAction =
     | ILoadIngredientsSuccessAction
     | ILoadIngredientsErrorAction
     | IAddIngredientAction
+    | IDeleteIngredientAction
     | IMoveOrderItemAction;

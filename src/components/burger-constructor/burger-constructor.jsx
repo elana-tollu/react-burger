@@ -23,7 +23,9 @@ function BurgerConstructor () {
     accept: 'ingredient',
     drop(ingredient) {
       const uuid = uuidv4();
-      dispatch ({
+      dispatch (
+        // addIngredient(ingredient)
+        {
         type: ADD_INGREDIENT,
         ingredient: {...ingredient, uuid}
       });
@@ -44,7 +46,9 @@ function BurgerConstructor () {
           key={ingredient.uuid}  
           ingredient={ingredient}
           index = {index}
-          onClose={() => dispatch ({
+          onClose={() => dispatch (
+            // deleteIngredient(ingredient, index)
+            {
               type: DELETE_INGREDIENT,
               index
             })
