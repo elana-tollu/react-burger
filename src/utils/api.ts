@@ -50,7 +50,7 @@ export function loadIngredientCards(): Promise<TIngredient[]> {
 }
 
 type TOrder = {
-  number: string;
+  number: number;
   //todo
 };
 

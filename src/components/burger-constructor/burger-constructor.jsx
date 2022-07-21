@@ -7,7 +7,7 @@ import {Button, ConstructorElement} from '@ya.praktikum/react-developer-burger-u
 import OrderedIngredient from 'components/ordered-ingredient/ordered-ingredient.jsx'
 import Modal from 'components/modal/modal.jsx';
 import OrderDetails from 'components/order-details/order-details.jsx';
-import { ADD_INGREDIENT, DELETE_INGREDIENT, HIDE_ORDER_NUMBER, submitOrderAction } from '../../services/actions/actions';
+import { ADD_INGREDIENT, deleteIngredient, addIngredient, hideOrderNumber, HIDE_ORDER_NUMBER, submitOrderAction } from '../../services/actions/actions';
 import {isAuthenticated} from 'utils/auth';
 
 import styles from './burger-constructor.module.css';
@@ -22,13 +22,7 @@ function BurgerConstructor () {
   const [{}, dropIngredient] = useDrop({
     accept: 'ingredient',
     drop(ingredient) {
-      const uuid = uuidv4();
-      dispatch (
-        // addIngredient(ingredient)
-        {
-        type: ADD_INGREDIENT,
-        ingredient: {...ingredient, uuid}
-      });
+      dispatch (addIngredient(ingredient));
     },
   }); 
 
@@ -46,12 +40,7 @@ function BurgerConstructor () {
           key={ingredient.uuid}  
           ingredient={ingredient}
           index = {index}
-          onClose={() => dispatch (
-            // deleteIngredient(ingredient, index)
-            {
-              type: DELETE_INGREDIENT,
-              index
-            })
+          onClose={() => dispatch (deleteIngredient(index))
           }
         />
       );
@@ -68,9 +57,7 @@ function BurgerConstructor () {
 
   const orderNumModal = (orderNumber && 
     <Modal  
-      onClose={() => dispatch ({
-        type: HIDE_ORDER_NUMBER
-      })
+      onClose={() => dispatch (hideOrderNumber())
       }> 
       <OrderDetails orderNum = {orderNumber}/> 
     </Modal>);

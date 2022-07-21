@@ -15,10 +15,6 @@ import {
 
     HIDE_ORDER_NUMBER,
 
-    LOGIN_REQUEST,
-    LOGIN_SUCCESS,
-    LOGIN_ERROR,
-
     REGISTER_REQUEST,
     REGISTER_SUCCESS,
     REGISTER_ERROR,
@@ -37,9 +33,12 @@ import {
 import {
     WS_MESSAGE
 } from  "services/actions/wsActions";
-import { IStore } from "services/store";
+import { initialState, IStore } from "services/store";
 
 export const rootReducer: Reducer<IStore, TAction> = (state, action) => {
+    if (state === undefined) {
+        return initialState
+    }
     switch (action.type) {
         case LOAD_INGREDIENTS_REQUEST:
             return state;
@@ -53,12 +52,12 @@ export const rootReducer: Reducer<IStore, TAction> = (state, action) => {
         case ADD_INGREDIENT:
             return {
                 ...state,
-                burger: addIngredient(state!.burger, action.ingredient),
+                burger: addIngredient(state.burger, action.ingredient),
             }
         case DELETE_INGREDIENT:
             return {
                 ...state,
-                burger: deleteIngredient(state!.burger, action.index),
+                burger: deleteIngredient(state.burger, action.index),
             }
         case MOVE_ORDER_ITEM:
             return {
@@ -90,16 +89,6 @@ export const rootReducer: Reducer<IStore, TAction> = (state, action) => {
                 ...state, 
                 orderNumber: null,
             };
-        case LOGIN_REQUEST:
-            return state;
-        case LOGIN_SUCCESS:
-            return {
-                ...state,
-                isAuthenticated: true,
-                user: action.user,
-            };
-        case LOGIN_ERROR:
-            return state;
         
         case REGISTER_REQUEST:
             return state;

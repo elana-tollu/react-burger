@@ -1,4 +1,7 @@
-import { loadIngredientCards, submitOrder, register, forgotPassword, resetPassword, TIngredient } from 'utils/api';
+
+import { v4 as uuidv4 } from 'uuid';
+import { loadIngredientCards, submitOrder, register, forgotPassword, resetPassword, TIngredient, IUser } from 'utils/api';
+import { IWsMessage } from './wsActions';
 
 export const LOAD_INGREDIENTS_REQUEST: 'LOAD_INGREDIENTS_REQUEST' = 'LOAD_INGREDIENTS_REQUEST';
 export const LOAD_INGREDIENTS_SUCCESS: 'LOAD_INGREDIENTS_SUCCESS' = 'LOAD_INGREDIENTS_SUCCESS';
@@ -12,10 +15,6 @@ export const SUBMIT_ORDER_REQUEST: 'SUBMIT_ORDER_REQUEST' = 'SUBMIT_ORDER_REQUES
 export const SUBMIT_ORDER_SUCCESS: 'SUBMIT_ORDER_SUCCESS' = 'SUBMIT_ORDER_SUCCESS';
 export const SUBMIT_ORDER_ERROR: 'SUBMIT_ORDER_ERROR' = 'SUBMIT_ORDER_ERROR';
 export const HIDE_ORDER_NUMBER: 'HIDE_ORDER_NUMBER' = 'HIDE_ORDER_NUMBER';
-
-export const LOGIN_REQUEST: 'LOGIN_REQUEST' = 'LOGIN_REQUEST';
-export const LOGIN_SUCCESS: 'LOGIN_SUCCESS' = 'LOGIN_SUCCESS';
-export const LOGIN_ERROR: 'LOGIN_ERROR' = 'LOGIN_ERROR';
 
 export const REGISTER_REQUEST: 'REGISTER_REQUEST' = 'REGISTER_REQUEST';
 export const REGISTER_SUCCESS: 'REGISTER_SUCCESS' = 'REGISTER_SUCCESS';
@@ -77,28 +76,30 @@ export function loadIngredientsAction() {
     }
 }
 
+export interface TConstructorIngredient extends TIngredient {
+    readonly uuid: string
+}
+
 export interface IAddIngredientAction {
     readonly type: typeof ADD_INGREDIENT;
-    readonly ingredient: TIngredient;
+    readonly ingredient: TConstructorIngredient;
 }
 
 export function addIngredient(ingredient: TIngredient): IAddIngredientAction {
     return {
         type: ADD_INGREDIENT,
-        ingredient
+        ingredient: {...ingredient, uuid: uuidv4()}
     }
 }
 
 export interface IDeleteIngredientAction {
     readonly type: typeof DELETE_INGREDIENT;
-    readonly ingredient: TIngredient;
     readonly index: number;
 }
 
-export function deleteIngredient(ingredient: TIngredient, index: number): IDeleteIngredientAction {
+export function deleteIngredient(index: number): IDeleteIngredientAction {
     return {
         type: DELETE_INGREDIENT,
-        ingredient,
         index
     }
 }
@@ -117,86 +118,192 @@ export function moveOrderItem(fromIndex: number, toIndex: number): IMoveOrderIte
     }
 }
 
+export interface ISubmitOrderRequestAction {
+    readonly type: typeof SUBMIT_ORDER_REQUEST
+}
 
+export function submitOrderRequest(): ISubmitOrderRequestAction {
+    return {
+        type: SUBMIT_ORDER_REQUEST
+    }
+}
+
+export interface ISubmitOrderSuccessAction {
+    readonly type: typeof SUBMIT_ORDER_SUCCESS;
+    readonly orderNumber: number;
+}
+
+export function submitOrderSuccess(orderNumber: number): ISubmitOrderSuccessAction {
+    return {
+        type: SUBMIT_ORDER_SUCCESS,
+        orderNumber
+    }
+}
+
+export interface ISubmitOrderErrorAction {
+    readonly type: typeof SUBMIT_ORDER_ERROR
+}
+
+export function submitOrderError(): ISubmitOrderErrorAction {
+    return {
+        type: SUBMIT_ORDER_ERROR
+    }
+}
+
+export interface IHideOrderNumber {
+    readonly type: typeof HIDE_ORDER_NUMBER
+}
+
+export function hideOrderNumber(): IHideOrderNumber {
+    return {
+        type:  HIDE_ORDER_NUMBER
+    }
+}
 
 export function submitOrderAction(ingredientIDs) {
     return function(dispatch) {
-        dispatch({
-            type: SUBMIT_ORDER_REQUEST
-        });
+        dispatch(submitOrderRequest());
         submitOrder(ingredientIDs)
         .then(orderNumber => {
-            dispatch({
-                type: SUBMIT_ORDER_SUCCESS,
-                orderNumber
-            })
+            dispatch(submitOrderSuccess(orderNumber))
         })
         .catch (err => {
             alert ("Упс! Заказ потерялся в космическом пространстве!");
-            dispatch({
-                type: SUBMIT_ORDER_ERROR
-            })
+            dispatch(submitOrderError())
         });
     }
 }
 
+export interface IRegisterRequest {
+    readonly type: typeof REGISTER_REQUEST
+}
+
+export function registerRequest(): IRegisterRequest {
+    return {
+        type: REGISTER_REQUEST
+    }
+}
+
+export interface IRegisterSuccess {
+    readonly type: typeof REGISTER_SUCCESS;
+    readonly user: IUser;
+}
+
+export function registerSuccess(user: IUser): IRegisterSuccess {
+    return {
+        type: REGISTER_SUCCESS,
+        user
+    }
+}
+
+export interface IRegisterError {
+    readonly type: typeof REGISTER_ERROR;
+}
+
+export function registerError(): IRegisterError {
+    return {
+        type: REGISTER_ERROR
+    }
+} 
+
 export function registerAction (userName, email, password) {
     return function(dispatch) {
-        dispatch({
-            type: REGISTER_REQUEST
-        });
+        dispatch(registerRequest());
         register(userName, email, password)
         .then(user => {
-            dispatch({
-                type: REGISTER_SUCCESS,
-                user: user
-            })
+            dispatch(registerSuccess(user))
         })
         .catch (err => {
             alert ("Упс! Данные попали в чёрную дыру - попробуй еще раз, друг!");
-            dispatch({
-                type: REGISTER_ERROR
-            })
+            dispatch(registerError())
         });
+    }
+}
+
+export interface IForgotPasswordRequest {
+    readonly type: typeof FORGOT_PASSWORD_REQUEST;
+}
+
+export function forgotPasswordRequest(): IForgotPasswordRequest {
+    return {
+        type: FORGOT_PASSWORD_REQUEST
+    }
+}
+
+export interface IForgotPasswordSuccess {
+    readonly type: typeof FORGOT_PASSWORD_SUCCESS;
+}
+
+export function forgotPasswordSuccess(): IForgotPasswordSuccess {
+    return {
+        type: FORGOT_PASSWORD_SUCCESS
+    }
+}
+
+export interface IForgotPasswordError {
+    readonly type: typeof FORGOT_PASSWORD_ERROR;
+}
+
+export function forgotPasswordError(): IForgotPasswordError {
+    return {
+        type: FORGOT_PASSWORD_ERROR
     }
 }
 
 export function forgotPasswordAction (email) {
     return function(dispatch) {
-        dispatch({
-            type: FORGOT_PASSWORD_REQUEST
-        });
+        dispatch(forgotPasswordRequest());
         forgotPassword(email)
         .then(() => {
-            dispatch({
-                type: FORGOT_PASSWORD_SUCCESS
-            })
+            dispatch(forgotPasswordSuccess())
         })
         .catch (err => {
             alert ("Упс! Данные попали в чёрную дыру - попробуй еще раз, друг!");
-            dispatch({
-                type: FORGOT_PASSWORD_ERROR
-            })
+            dispatch(forgotPasswordError())
         });
+    }
+}
+
+export interface IResetPasswordRequest {
+    readonly type: typeof RESET_PASSWORD_REQUEST;
+}
+
+export function resetPasswordRequest(): IResetPasswordRequest {
+    return {
+        type: RESET_PASSWORD_REQUEST
+    }
+}
+
+export interface IResetPasswordSuccess {
+    readonly type: typeof RESET_PASSWORD_SUCCESS;
+}
+
+export function resetPasswordSuccess(): IResetPasswordSuccess {
+    return {
+        type: RESET_PASSWORD_SUCCESS
+    }
+}
+
+export interface IResetPasswordError {
+    readonly type: typeof RESET_PASSWORD_ERROR;
+}
+
+export function resetPasswordError (): IResetPasswordError {
+    return {
+        type: RESET_PASSWORD_ERROR
     }
 }
 
 export function resetPasswordAction (password, token) {
     return function(dispatch) {
-        dispatch({
-            type: RESET_PASSWORD_REQUEST
-        });
+        dispatch(resetPasswordRequest());
         resetPassword(password, token)
         .then(() => {
-            dispatch({
-                type: RESET_PASSWORD_SUCCESS
-            })
+            dispatch(resetPasswordSuccess())
         })
         .catch (err => {
             alert ("Упс! Данные попали в чёрную дыру - попробуй еще раз, друг!");
-            dispatch({
-                type: RESET_PASSWORD_ERROR
-            })
+            dispatch(resetPasswordError())
         });
     }
 }
@@ -207,4 +314,18 @@ export type TAction =
     | ILoadIngredientsErrorAction
     | IAddIngredientAction
     | IDeleteIngredientAction
-    | IMoveOrderItemAction;
+    | IMoveOrderItemAction
+    | ISubmitOrderRequestAction
+    | ISubmitOrderSuccessAction
+    | ISubmitOrderErrorAction
+    | IHideOrderNumber
+    | IRegisterRequest
+    | IRegisterSuccess
+    | IRegisterError
+    | IForgotPasswordRequest
+    | IForgotPasswordSuccess
+    | IForgotPasswordError
+    | IResetPasswordRequest
+    | IResetPasswordSuccess
+    | IResetPasswordError
+    | IWsMessage;

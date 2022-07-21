@@ -2,7 +2,7 @@ import { compose, createStore, applyMiddleware } from "redux";
 import { rootReducer } from "services/reducers/reducers";
 import thunk from "redux-thunk";
 import { wsMiddleware } from "services/wsMiddleware";
-import { wsActions } from "./actions/wsActions";
+import { IFeedOrder, wsActions } from "./actions/wsActions";
 import { IUser, TIngredient } from "utils/api";
 import { composeWithDevTools } from "redux-devtools-extension";
 
@@ -25,24 +25,7 @@ export interface IStore {
     orders: IFeedOrder[],
 }
 
-export enum OrderStatus {
-  Done = 'done',
-  Created = 'created',
-  Pending = 'pending',
-  Cancel = 'cancel'
-}
-
-export interface IFeedOrder {
-  _id: string, 
-  ingredients: string[],
-  status: OrderStatus,
-  name: string,
-  createdAt: string,
-  updatedAt: string,
-  number: number
-}
-
-const initialState: IStore = {
+export const initialState: IStore = {
   ingredients: [],
     burger: {
       bun: null,
