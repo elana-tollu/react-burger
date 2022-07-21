@@ -36,6 +36,11 @@ export type TIngredient = {
   image: string; 
   price: number;
   name: string;
+  calories: number;
+  proteins: number;
+  fat: number;
+  carbohydrates: number;
+
 };
 
 type TIngredientResponse = {
