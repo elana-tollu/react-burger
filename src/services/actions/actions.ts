@@ -1,6 +1,6 @@
 
 import { v4 as uuidv4 } from 'uuid';
-import { loadIngredientCards, submitOrder, register, forgotPassword, resetPassword, TIngredient, IUser } from 'utils/api';
+import { loadIngredientCards, submitOrder, register, forgotPassword, resetPassword, IIngredient, IUser } from 'utils/api';
 import { IWsMessage } from './wsActions';
 
 export const LOAD_INGREDIENTS_REQUEST: 'LOAD_INGREDIENTS_REQUEST' = 'LOAD_INGREDIENTS_REQUEST';
@@ -42,10 +42,10 @@ export function loadIngredientsRequest(): ILoadIngredientsRequestAction {
 
 export interface ILoadIngredientsSuccessAction {
     readonly type: typeof LOAD_INGREDIENTS_SUCCESS;
-    readonly ingredients: TIngredient[];
+    readonly ingredients: IIngredient[];
 }
 
-export function loadIngredientsSuccess(ingredients: TIngredient[]): ILoadIngredientsSuccessAction {
+export function loadIngredientsSuccess(ingredients: IIngredient[]): ILoadIngredientsSuccessAction {
     return {
         type: LOAD_INGREDIENTS_SUCCESS,
         ingredients
@@ -76,7 +76,7 @@ export function loadIngredientsAction() {
     }
 }
 
-export interface TConstructorIngredient extends TIngredient {
+export interface TConstructorIngredient extends IIngredient {
     readonly uuid: string
 }
 
@@ -85,7 +85,7 @@ export interface IAddIngredientAction {
     readonly ingredient: TConstructorIngredient;
 }
 
-export function addIngredient(ingredient: TIngredient): IAddIngredientAction {
+export function addIngredient(ingredient: IIngredient): IAddIngredientAction {
     return {
         type: ADD_INGREDIENT,
         ingredient: {...ingredient, uuid: uuidv4()}

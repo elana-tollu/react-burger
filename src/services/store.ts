@@ -3,18 +3,18 @@ import { rootReducer } from "services/reducers/reducers";
 import thunk from "redux-thunk";
 import { wsMiddleware } from "services/wsMiddleware";
 import { IFeedOrder, wsActions } from "./actions/wsActions";
-import { IUser, TIngredient } from "utils/api";
+import { IUser, IIngredient } from "utils/api";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 const enhancer = composeWithDevTools(applyMiddleware(thunk, wsMiddleware(wsActions)));
 
 export interface IStore {
-  ingredients: TIngredient[],
+  ingredients: IIngredient[],
   burger: {
-    bun: TIngredient | null,
-    filling: TIngredient[]
+    bun: IIngredient | null,
+    filling: IIngredient[]
   },
-    currentIngredient: TIngredient | null,
+    currentIngredient: IIngredient | null,
     orderNumber: number | null,
     isAuthenticated: boolean,
     user: IUser,

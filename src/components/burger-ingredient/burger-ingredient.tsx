@@ -4,8 +4,13 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 
 import styles from './burger-ingredient.module.css';
 import { useAppSelector } from 'services/hooks';
+import { IIngredient } from 'utils/api';
 
-function BurgerIngredient (props) {
+interface IBurgerIngredientProps {
+  readonly ingredient: IIngredient;
+}
+
+function BurgerIngredient (props: IBurgerIngredientProps) {
   const count = useAppSelector(store => [...store.burger.filling, store.burger.bun].filter(value => value && value._id === props.ingredient._id).length);
   const counterBadge = (
     <span className={styles.counter}>
@@ -52,10 +57,5 @@ function BurgerIngredient (props) {
     </Link>
   );
 }
-
-//todo use IIngredient
-/* BurgerIngredient.propTypes = {
-  ingredient: INGREDIENT_TYPE.isRequired
-}; */
 
 export default BurgerIngredient;

@@ -31,7 +31,7 @@ function request<Req, Res>( method: 'GET' | 'POST' | 'PATCH', endpoint: string, 
   });
 }
 
-export type TIngredient = {
+export interface IIngredient {
   _id: string;
   image: string; 
   price: number;
@@ -41,14 +41,14 @@ export type TIngredient = {
   fat: number;
   carbohydrates: number;
 
+}
+
+type IIngredientResponse = {
+  data: IIngredient[];
 };
 
-type TIngredientResponse = {
-  data: TIngredient[];
-};
-
-export function loadIngredientCards(): Promise<TIngredient[]> {
-  return request<void, TIngredientResponse>('GET', 'ingredients')
+export function loadIngredientCards(): Promise<IIngredient[]> {
+  return request<void, IIngredientResponse>('GET', 'ingredients')
     .then(cards => {
         return cards.data;
     });
