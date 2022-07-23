@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
+import { TICons } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons';
 
 export const YandexPasswordInput = ({
     placeholder= 'Пароль',
@@ -7,11 +8,13 @@ export const YandexPasswordInput = ({
     onChange,
     name,
     size,
+    icon
 }: {
     placeholder: string;
     value: string;
     name: string;
     size?: 'default' | 'small';
+    icon?: keyof TICons;
     onChange(e: React.ChangeEvent<HTMLInputElement>): void;
 }) => {
     const [visible, setVisible] = useState(false);
@@ -47,7 +50,7 @@ export const YandexPasswordInput = ({
             type={visible ? 'text' : 'password'}
             placeholder={placeholder}
             onChange={onChange}
-            icon={visible ? 'HideIcon' : 'ShowIcon'}
+            icon={icon ? icon : visible ? 'HideIcon' : 'ShowIcon'}
             value={value}
             ref={inputRef}
             onBlur={onBlur}
