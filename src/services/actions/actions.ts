@@ -4,7 +4,7 @@ import { loadIngredientCards, submitOrder, register, forgotPassword, resetPasswo
 import { IWsClose, IWsMessage, IWsStart } from './wsActions';
 import { Action, ActionCreator } from 'redux';
 import { ThunkAction } from 'redux-thunk';
-import { AppDispatch, RootState } from 'services/store';
+import { RootState } from 'services/store';
 
 export const LOAD_INGREDIENTS_REQUEST: 'LOAD_INGREDIENTS_REQUEST' = 'LOAD_INGREDIENTS_REQUEST';
 export const LOAD_INGREDIENTS_SUCCESS: 'LOAD_INGREDIENTS_SUCCESS' = 'LOAD_INGREDIENTS_SUCCESS';
@@ -69,7 +69,7 @@ export function loadIngredientsError(): ILoadIngredientsErrorAction {
 }
 
 export const loadIngredientsAction: AppThunk = () => {
-    return function(dispatch: AppDispatch) {
+    return function(dispatch) {
         dispatch(loadIngredientsRequest());
         loadIngredientCards()
         .then(ingredients => {
@@ -167,7 +167,7 @@ export function hideOrderNumber(): IHideOrderNumber {
 }
 
 export const submitOrderAction: AppThunk = (ingredientIDs) => {
-    return function(dispatch: AppDispatch) {
+    return function(dispatch) {
         dispatch(submitOrderRequest());
         submitOrder(ingredientIDs)
         .then(orderNumber => {
@@ -213,7 +213,7 @@ export function registerError(): IRegisterError {
 } 
 
 export const registerAction: AppThunk = (userName, email, password) => {
-    return function(dispatch: AppDispatch) {
+    return function(dispatch) {
         dispatch(registerRequest());
         register(userName, email, password)
         .then(user => {
@@ -257,7 +257,7 @@ export function forgotPasswordError(): IForgotPasswordError {
 }
 
 export const forgotPasswordAction: AppThunk = (email) => {
-    return function(dispatch: AppDispatch) {
+    return function(dispatch) {
         dispatch(forgotPasswordRequest());
         forgotPassword(email)
         .then(() => {
@@ -301,7 +301,7 @@ export function resetPasswordError (): IResetPasswordError {
 }
 
 export const resetPasswordAction: AppThunk = (password, token) => {
-    return function(dispatch: AppDispatch) {
+    return function(dispatch) {
         dispatch(resetPasswordRequest());
         resetPassword(password, token)
         .then(() => {
