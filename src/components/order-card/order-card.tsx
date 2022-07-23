@@ -32,7 +32,7 @@ const OrderCard: FunctionComponent <IOrderCardProps> = (props) => {
     return (
         <li className={styles.orderCard}>
             <div className={styles.orderInfo}>
-                <p className="text text_type_digits-default">#{props.order._id}</p>
+                <p className="text text_type_digits-default">#{props.order.number}</p>
                 <p className="text text_type_main-default text_color_inactive">{formatDate(props.order.createdAt)}</p>
             </div>
             
