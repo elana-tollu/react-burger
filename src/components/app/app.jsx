@@ -17,6 +17,7 @@ import ProtectedRoute from 'components/protected-route/protected-route.jsx';
 import AppHeader from '../app-header/app-header.jsx';
 import IngredientPage from 'pages/ingredients.jsx';
 import Logout from 'pages/logout';
+import Order from 'pages/order.jsx';
 
 function App() {
   const dispatch = useDispatch();
@@ -48,12 +49,20 @@ function App() {
               <ProfilePage />
             </ProtectedRoute>
 
-            <Route path="/profile/orders">
+            <ProtectedRoute path="/profile/orders" exact>
               <Orders />
+            </ProtectedRoute>
+
+            <ProtectedRoute path="/profile/orders/:orderNumber">
+              <Order />
+            </ProtectedRoute>
+
+            <Route path="/feed" exact>
+              <FeedPage />
             </Route>
 
-            <Route path="/feed">
-              <FeedPage />
+            <Route path="/feed/:orderNumber">
+              <Order />
             </Route>
 
             <Route path="/ingredients/:id">

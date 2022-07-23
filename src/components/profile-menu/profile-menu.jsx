@@ -11,7 +11,7 @@ function ProfileMenu () {
         <section className={styles.body}>
             <ul className={styles.list}>
                 <li className="text text_type_main-medium text_color_inactive">
-                    <NavLink 
+                    <NavLink exact
                         to={{pathname: `/profile`}}
                         className={styles.link}
                         activeClassName={styles.activeLink}>

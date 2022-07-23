@@ -1,0 +1,88 @@
+.modal {
+    width: 720px;
+    height: 688px;
+    padding: 48px 40px 40px 40px;
+    background: #1C1C21;
+    border: 1px solid rgba(76, 76, 255, 0.2);
+    box-sizing: border-box;
+    box-shadow: 0 24px 32px rgb(0 0 0 / 4%), 0 16px 24px rgb(0 0 0 / 4%), 0 4px 8px rgb(0 0 0 / 4%), 0 0 1px rgb(0 0 0 / 4%);
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.info {
+    text-align: left;
+}
+
+.constructor-scroll {
+    height: 312px;
+    width: 640px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(19, 19, 22);
+}
+
+.constructor-scroll::-webkit-scrollbar{
+    background-color: #2F2F37;
+    width: 8px;
+}
+
+.constructor-scroll::-webkit-scrollbar-thumb{
+    background-color: #8585AD;
+}
+
+.order {
+    margin: 0 24px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.orderIngredient {
+    margin: 24px 0 0 0;
+    display: grid;
+    grid-template-columns: 64px 1fr 124px;
+    gap: 16px;
+    text-align: left;
+    align-items: center;
+}
+
+.orderDetails{
+    margin: 40px 0 0 0;
+    height: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.image{
+    margin: 0;
+    padding: 0;
+    width: 64px;
+    height: 64px;
+    background: #131316;
+    box-sizing: border-box;
+    border-width: 2px;
+    border-style: solid;
+    border-color: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
+    border-radius: 100px;
+}
+
+.price {
+    width: 132px;
+    height: 24px;
+    display: grid;
+    grid-template-columns: 1fr 24px;
+    gap: 8px;
+    text-align: right;
+}

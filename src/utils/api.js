@@ -1,9 +1,10 @@
 import { setTokens, getTokens, deleteTokens} from 'utils/auth';
 
-const baseUrl = 'https://norma.nomoreparties.space/api/';
+const host = 'norma.nomoreparties.space';
+const httpBaseUrl = `https://${host}/api/`;
 
 function request( method, endpoint, data ) {
-  return fetch(`${baseUrl}${endpoint}`, {
+  return fetch(`${httpBaseUrl}${endpoint}`, {
       method,
       headers: {
         'Authorization': getTokens()?.accessToken,
@@ -29,6 +30,10 @@ export function loadIngredientCards() {
     .then(cards => {
         return cards.data;
     });
+}
+
+export function loadOrder(orderNumber) {
+  return request('GET', 'orders/' + orderNumber);
 }
 
 export function submitOrder(ingredientIDs) {
@@ -78,7 +83,6 @@ export function getProfile() {
   return request('GET', 'auth/user');
 }
 
-//нужен access токен
 export function updateProfile(name, email, password) {
   return request('PATCH', 'auth/user', {name, email, password:(password ? password : null)})
   .then(({user}) => {
@@ -89,11 +93,9 @@ export function updateProfile(name, email, password) {
   });
 }
 
-//нужен refresh токен
-//получаем оба токена
-function refreshToken() {
+export function refreshToken() {
   return request('POST', 'auth/token', {token : getTokens()?.refreshToken})
   .then(({accessToken, refreshToken}) => {
     setTokens ({accessToken, refreshToken});
-  }) ;
+  });
 }

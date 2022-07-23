@@ -1,0 +1,42 @@
+.body {
+    width: 1260px;
+    min-height: 1012px;
+    padding-top: 80px;
+    display: grid;
+    grid-template-columns: 320px 860px;
+    gap: 60px;
+    background-color: #131316;
+    text-align: start;
+}
+
+.constructor-scroll {
+    height: 916px;
+    width: 880px;
+    margin-top: -80px;
+    padding: 0 16px 0 8px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(19, 19, 22);
+}
+
+.constructor-scroll::-webkit-scrollbar{
+    background-color: #2F2F37;
+    width: 8px;
+}
+
+.constructor-scroll::-webkit-scrollbar-thumb{
+    background-color: #8585AD;
+}
+
+.orderList {
+    margin: 0;
+    padding: 0;
+}
+
+.link {
+    text-decoration: none;
+    color: #F2F2F3;
+}

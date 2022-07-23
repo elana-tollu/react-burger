@@ -40,8 +40,13 @@ import {
 
     RESET_PASSWORD_REQUEST,
     RESET_PASSWORD_SUCCESS,
-    RESET_PASSWORD_ERROR
-} from "../actions/actions";
+    RESET_PASSWORD_ERROR,
+    
+} from "services/actions/actions";
+
+import {
+    WS_MESSAGE
+} from  "services/actions/wsActions";
 
 export const rootReducer = (state, action) => {
     switch (action.type) {
@@ -178,6 +183,19 @@ export const rootReducer = (state, action) => {
             return {
                 ...state,
                 isResettingPassword: false,
+            };
+
+        case WS_MESSAGE:
+            return {
+                ...state,
+                total: action.data.total || 0,
+                totalToday: action.data.totalToday || 0,
+                orders: action.data.orders.sort((a, b)=> {
+                    if (a.createdAt < b.createdAt) {
+                        return 1;
+                    }
+                    return -1;
+                }),
             };
 
         default:

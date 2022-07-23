@@ -1,5 +1,6 @@
 import React from 'react';
 
+import OrderFeed from 'components/order-feed/order-feed.jsx';
 import styles from './home.module.css';
 
 
@@ -7,9 +8,7 @@ function FeedPage () {
   
   return (
     <div className={styles.app}>
-        <h1 className="text text_type_main-medium text_color_inactive">
-           Лента заказов
-        </h1>
+      <OrderFeed />
     </div>
   );
 };
