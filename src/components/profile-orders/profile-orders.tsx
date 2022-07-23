@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import OrderCard from 'components/order-card/order-card';
 
-import { WS_CLOSE, WS_START } from 'services/actions/wsActions';
+import { wsClose, wsStart } from 'services/actions/wsActions';
 
 import styles from './profile-orders.module.css';
 import ProfileMenu from '../profile-menu/profile-menu';
@@ -17,16 +17,11 @@ function ProfileOrders () {
     useEffect(() => {
         refreshToken().then(() => {
             const accessToken = getTokens()?.accessToken?.slice(7);
-            dispatch ({
-                type: WS_START,
-                url: 'wss://norma.nomoreparties.space/orders?token=' + accessToken,
-            })
+            dispatch (wsStart('wss://norma.nomoreparties.space/orders?token=' + accessToken))
         });
         
         return () => {
-            dispatch ({
-                type: WS_CLOSE,
-            })
+            dispatch (wsClose())
         };
       }, []);
     

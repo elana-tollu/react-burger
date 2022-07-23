@@ -1,9 +1,11 @@
-import React from 'react';
-
+import React, { FunctionComponent } from 'react';
 import styles from './order-details.module.css';
 
+interface IOrderDetailsProps {
+    orderNum: number;
+}
 
-function OrderDetails (props) {
+export const OrderDetails: FunctionComponent<IOrderDetailsProps> = (props) => {
     return (
         <section className={styles['order-details']}>
             <div className={styles.title} />
@@ -19,11 +21,5 @@ function OrderDetails (props) {
         </section>
     )
 }
-
-
-//todo
-/* OrderDetails.propTypes = {
-    orderNum: PropTypes.number.isRequired,
-}; */
 
 export default OrderDetails;
