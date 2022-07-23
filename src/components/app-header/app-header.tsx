@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import {NavLink, Link, useLocation} from 'react-router-dom';
 
 import { BurgerIcon, Button, ListIcon, Logo, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import styles from './app-header.module.css';
 
-function AppHeader() {
+export const AppHeader: FunctionComponent = () => {
   let {pathname} = useLocation();
   return (
     <header className={styles['app-header']}>

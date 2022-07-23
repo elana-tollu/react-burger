@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ForwardedRef } from 'react';
 import {forwardRef} from 'react';
 import { Interface } from 'readline';
 import { IIngredient } from 'utils/api';
@@ -11,7 +11,7 @@ interface IListOfIngridientsProps {
   readonly title: string;
 }
 
-const ListOfIngridients = forwardRef(function(props: IListOfIngridientsProps, ref){
+const ListOfIngridients = forwardRef(function(props: IListOfIngridientsProps, ref: ForwardedRef<HTMLElement>){
     const listOfIngridients = props.ingredients
       .map((ingredient, index) => 
         <BurgerIngredient key={ingredient._id} ingredient={ingredient}/>
@@ -28,13 +28,5 @@ const ListOfIngridients = forwardRef(function(props: IListOfIngridientsProps, re
         </section>
     );
 });
-
-//todo use IIngredient
-/* ListOfIngridients.propTypes = {
-    title: PropTypes.string.isRequired,
-    ingredients: PropTypes.arrayOf(
-      INGREDIENT_TYPE
-    )
-  }; */
 
 export default ListOfIngridients

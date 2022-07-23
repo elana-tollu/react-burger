@@ -1,24 +1,24 @@
-import React from 'react';
+import React, { FormEvent, FunctionComponent } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { YandexEmailInput } from 'yandex/yandex-email-input';
 import {forgotPasswordAction} from 'services/actions/actions';
 import {isAuthenticated} from 'utils/auth';
 
 import styles from './page-forgot-password.module.css';
 import { useAppDispatch, useAppSelector } from 'services/hooks';
+import { YandexButton } from 'yandex/yandex-button';
 
-function PageForgotPassword () {
+export const PageForgotPassword: FunctionComponent = () => {
     const isResettingPassword = useAppSelector(store => store.isResettingPassword);
     
     const [email, setEmail] = React.useState('')
 
-    const onChange = e => {
-        setEmail(e.target.value);
+    const onChange = (e: FormEvent<HTMLInputElement>) => {
+        setEmail(e.currentTarget.value);
     };
 
     const dispatch = useAppDispatch();
-    const recoverPassword = (event) => {
+    const recoverPassword = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         dispatch(forgotPasswordAction (email));
     };
@@ -48,13 +48,13 @@ function PageForgotPassword () {
                     </div>
 
                     <div className={styles.button}>
-                        <Button
+                        <YandexButton
                             type="primary" 
                             size="medium" 
                             style={{ height: '56px' }} 
                             className="ml-1 mr-1 mb-1 mt-6">
                             Восстановить
-                        </Button>
+                        </YandexButton>
                     </div>
                 </div>
                 

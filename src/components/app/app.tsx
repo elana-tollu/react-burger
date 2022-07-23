@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {FunctionComponent, useEffect} from 'react';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { loadIngredientsAction } from 'services/actions/actions';
@@ -19,7 +19,7 @@ import Order from 'pages/order';
 import { useAppDispatch } from 'services/hooks';
 import { ProtectedRoute } from 'components/protected-route/protected-route';
 
-function App() {
+export const App: FunctionComponent = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {

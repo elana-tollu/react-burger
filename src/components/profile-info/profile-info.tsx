@@ -1,5 +1,4 @@
-import React from 'react';
-import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import React, { ChangeEvent, FormEvent, FunctionComponent } from 'react';
 import { YandexEmailInput } from 'yandex/yandex-email-input';
 import { YandexPasswordInput } from 'yandex/yandex-password-input';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -7,8 +6,9 @@ import { getProfile, updateProfile } from 'utils/api';
 
 import styles from './profile-info.module.css';
 import ProfileMenu from '../profile-menu/profile-menu';
+import { YandexButton } from 'yandex/yandex-button';
 
-function ProfileInfo () {
+export const ProfileInfo: FunctionComponent = () => {
     const [originalData, setOriginalData] = React.useState({
         name: '',
         email: '',
@@ -27,7 +27,7 @@ function ProfileInfo () {
     }, []); 
     
     
-    const onChange = e => {
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         setForm({...form, [e.target.name]:e.target.value});
     };
 
@@ -37,7 +37,7 @@ function ProfileInfo () {
         setForm(originalData)
     };
 
-    const update = (event) => {
+    const update = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         updateProfile(form.name, form.email, form.password)
         .then(({name, email}) => {
@@ -68,32 +68,32 @@ function ProfileInfo () {
                         />
                     </div>
                     <div className={styles.input}>
-                        <YandexEmailInput value={form.email} name="email" onChange={onChange} />
+                        <YandexEmailInput placeholder="e-mail" value={form.email} name="email" onChange={onChange} />
                     </div>
                     <div className={styles.input}>
-                        <YandexPasswordInput value={form.password} name="password" onChange={onChange} 
+                        <YandexPasswordInput placeholder="Пароль" value={form.password} name="password" onChange={onChange} 
                          icon={'EditIcon'} />
                     </div>
 
                     {isEdited && <div className={styles.buttonContainer}>
                         <div className={styles.button}>
-                            <Button 
+                            <YandexButton 
                                 onClick = {cancel}
                                 type="secondary" 
                                 size="medium" 
                                 style={{ height: '56px' }} 
                                 className="ml-1 mr-1 mb-1 mt-6">
                                 Отмена
-                            </Button>
+                            </YandexButton>
                         </div>
                         <div className={styles.button}>
-                            <Button 
+                            <YandexButton
                                 type="primary" 
                                 size="medium" 
                                 style={{ height: '56px' }} 
                                 className="ml-1 mr-1 mb-1 mt-6">
                                 Сохранить
-                            </Button>
+                            </YandexButton>
                         </div>
                     </div>}
                 </div> 

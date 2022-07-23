@@ -1,12 +1,12 @@
 import React, {useState, FunctionComponent, FormEventHandler} from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { YandexEmailInput } from 'yandex/yandex-email-input';
 import { YandexPasswordInput } from 'yandex/yandex-password-input';
 import {isAuthenticated} from 'utils/auth';
 import { login } from 'utils/api';
 
 import styles from './page-login.module.css';
+import { YandexButton } from 'yandex/yandex-button';
 
 export const PageLogin: FunctionComponent<{}> = () => {
     const [password, setPassword] = useState('');
@@ -47,13 +47,13 @@ export const PageLogin: FunctionComponent<{}> = () => {
                     </div>
 
                     <div className={styles.button}>
-                        <Button disabled={isLoading}
+                        <YandexButton disabled={isLoading}
                             type="primary" 
                             size="medium" 
                             style={{ height: '56px' }} 
                             className="ml-1 mr-1 mb-1 mt-6">
                             Войти
-                        </Button>
+                        </YandexButton>
                     </div>
                 </div>
                 

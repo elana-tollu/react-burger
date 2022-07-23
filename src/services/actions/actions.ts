@@ -2,6 +2,9 @@
 import { v4 as uuidv4 } from 'uuid';
 import { loadIngredientCards, submitOrder, register, forgotPassword, resetPassword, IIngredient, IUser } from 'utils/api';
 import { IWsClose, IWsMessage, IWsStart } from './wsActions';
+import { Action, ActionCreator } from 'redux';
+import { ThunkAction } from 'redux-thunk';
+import { AppDispatch, RootState } from 'services/store';
 
 export const LOAD_INGREDIENTS_REQUEST: 'LOAD_INGREDIENTS_REQUEST' = 'LOAD_INGREDIENTS_REQUEST';
 export const LOAD_INGREDIENTS_SUCCESS: 'LOAD_INGREDIENTS_SUCCESS' = 'LOAD_INGREDIENTS_SUCCESS';
@@ -29,6 +32,9 @@ export const RESET_PASSWORD_SUCCESS: 'RESET_PASSWORD_SUCCESS' = 'RESET_PASSWORD_
 export const RESET_PASSWORD_ERROR: 'RESET_PASSWORD_ERROR' = 'RESET_PASSWORD_ERROR';
 
 export const UPDATE_ORDER_FEED: 'UPDATE_ORDER_FEED' = 'UPDATE_ORDER_FEED';
+
+export type AppThunkAction = ThunkAction<void, Action, RootState, TAction>
+export type AppThunk = ActionCreator<AppThunkAction>
 
 export interface ILoadIngredientsRequestAction {
     readonly type: typeof LOAD_INGREDIENTS_REQUEST;
@@ -62,8 +68,8 @@ export function loadIngredientsError(): ILoadIngredientsErrorAction {
     }
 }
 
-export function loadIngredientsAction() {
-    return function(dispatch) {
+export const loadIngredientsAction: AppThunk = () => {
+    return function(dispatch: AppDispatch) {
         dispatch(loadIngredientsRequest());
         loadIngredientCards()
         .then(ingredients => {
@@ -160,8 +166,8 @@ export function hideOrderNumber(): IHideOrderNumber {
     }
 }
 
-export function submitOrderAction(ingredientIDs) {
-    return function(dispatch) {
+export const submitOrderAction: AppThunk = (ingredientIDs) => {
+    return function(dispatch: AppDispatch) {
         dispatch(submitOrderRequest());
         submitOrder(ingredientIDs)
         .then(orderNumber => {
@@ -206,8 +212,8 @@ export function registerError(): IRegisterError {
     }
 } 
 
-export function registerAction (userName, email, password) {
-    return function(dispatch) {
+export const registerAction: AppThunk = (userName, email, password) => {
+    return function(dispatch: AppDispatch) {
         dispatch(registerRequest());
         register(userName, email, password)
         .then(user => {
@@ -250,8 +256,8 @@ export function forgotPasswordError(): IForgotPasswordError {
     }
 }
 
-export function forgotPasswordAction (email) {
-    return function(dispatch) {
+export const forgotPasswordAction: AppThunk = (email) => {
+    return function(dispatch: AppDispatch) {
         dispatch(forgotPasswordRequest());
         forgotPassword(email)
         .then(() => {
@@ -294,8 +300,8 @@ export function resetPasswordError (): IResetPasswordError {
     }
 }
 
-export function resetPasswordAction (password, token) {
-    return function(dispatch) {
+export const resetPasswordAction: AppThunk = (password, token) => {
+    return function(dispatch: AppDispatch) {
         dispatch(resetPasswordRequest());
         resetPassword(password, token)
         .then(() => {

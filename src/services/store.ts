@@ -5,6 +5,8 @@ import { wsMiddleware } from "services/wsMiddleware";
 import { IFeedOrder, wsActions } from "./actions/wsActions";
 import { IUser, IIngredient } from "utils/api";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { AppThunkAction, TAction, TConstructorIngredient } from "./actions/actions";
+import { Dispatch } from "react";
 
 const enhancer = composeWithDevTools(applyMiddleware(thunk, wsMiddleware(wsActions)));
 
@@ -12,7 +14,7 @@ export interface IStore {
   ingredients: IIngredient[],
   burger: {
     bun: IIngredient | null,
-    filling: IIngredient[]
+    filling: TConstructorIngredient[]
   },
     currentIngredient: IIngredient | null,
     orderNumber: number | null,
@@ -53,4 +55,4 @@ export const store = createStore(
 );
 
 export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export type AppDispatch = Dispatch<TAction | AppThunkAction>;

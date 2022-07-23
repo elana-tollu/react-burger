@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { ChangeEvent, FormEvent, FunctionComponent } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { YandexEmailInput } from 'yandex/yandex-email-input';
 import { YandexPasswordInput } from 'yandex/yandex-password-input';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -9,20 +8,21 @@ import {isAuthenticated} from 'utils/auth';
 
 import styles from './page-registration.module.css';
 import { useAppDispatch } from 'services/hooks';
+import { YandexButton } from 'yandex/yandex-button';
 
-function PageRegistration () {
+export const PageRegistration: FunctionComponent = () => {
     
     const [form, setForm] = React.useState({
         userName: '',
         email: '',
         password: '',
     })
-    const onChange = e => {
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         setForm({...form, [e.target.name]:e.target.value});
     };
 
     const dispatch = useAppDispatch();
-    const register = (event) => {
+    const register = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         dispatch(registerAction (form.userName, form.email, form.password));
     };
@@ -46,7 +46,7 @@ function PageRegistration () {
                             type={'text'}
                             placeholder="Имя" 
                             onChange={onChange} 
-                            icon={null}
+                            icon={undefined}
                             value={form.userName} 
                             name="userName" 
                             error={false}
@@ -55,19 +55,19 @@ function PageRegistration () {
                         />
                     </div>
                     <div className={styles.input}>
-                        <YandexEmailInput value={form.email} name="email" onChange={onChange} />
+                        <YandexEmailInput placeholder="e-mail" value={form.email} name="email" onChange={onChange} />
                     </div>
                     <div className={styles.input}>
-                        <YandexPasswordInput value={form.password} name="password" onChange={onChange} />
+                        <YandexPasswordInput placeholder="Пароль" value={form.password} name="password" onChange={onChange} />
                     </div>
 
                     <div className={styles.button}>
-                        <Button type="primary" 
+                        <YandexButton type="primary" 
                             size="medium" 
                             style={{ height: '56px' }} 
                             className="ml-1 mr-1 mb-1 mt-6">
                             Зарегистрироваться
-                        </Button>
+                        </YandexButton>
                     </div>
                 </div>
                 

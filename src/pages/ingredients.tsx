@@ -14,8 +14,8 @@ import HomePage from 'pages/home';
 import Modal from 'components/modal/modal';
 
 function IngredientPage() {
-  let { id } = useParams();
-  let location = useLocation();
+  let { id } = useParams<{id: string}>();
+  let location = useLocation<any>();
   let background = location.state && location.state.background;
 
   let history = useHistory();

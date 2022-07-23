@@ -148,11 +148,11 @@ export function logout() {
 }
 
 type TProfile = {
-  //todo
+  user: IUser;
 };
 
 type TProfileResponse = {
-  //todo
+  user: IUser;
 };
 
 export function getProfile(): Promise<TProfile> {

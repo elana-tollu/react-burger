@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
@@ -6,7 +6,7 @@ import TabPanel from '../tab-panel/tab-panel';
 
 import styles from './burger-ingredients.module.css';
 
-function BurgerIngredients () {
+export const BurgerIngredients: FunctionComponent = () => {
   return (
       <section className={styles['burger-ingredients']}>
         <DndProvider backend={HTML5Backend}>

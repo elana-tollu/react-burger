@@ -1,5 +1,5 @@
 import {Link, useLocation} from 'react-router-dom';
-import { useDrop } from 'react-dnd';
+import { ConnectDropTarget, useDrop } from 'react-dnd';
 import { v4 as uuidv4 } from 'uuid';
 
 import image from 'images/orderIkon.png'
@@ -12,6 +12,7 @@ import {isAuthenticated} from 'utils/auth';
 
 import styles from './burger-constructor.module.css';
 import { useAppDispatch, useAppSelector } from 'services/hooks';
+import { IIngredient } from 'utils/api';
 
 function BurgerConstructor () {
 
@@ -19,9 +20,9 @@ function BurgerConstructor () {
 
   const dispatch = useAppDispatch();
 
-  const [{}, dropIngredient] = useDrop({
+  const [{}, dropIngredient]: [{}, ConnectDropTarget] = useDrop({
     accept: 'ingredient',
-    drop(ingredient) {
+    drop(ingredient: IIngredient) {
       dispatch (addIngredient(ingredient));
     },
   }); 
@@ -47,7 +48,7 @@ function BurgerConstructor () {
   
   const ingredientIDs = [bun, ...filling, bun]
     .filter(ingredient => ingredient) // убираем из обрабатываемого списка undefined, пока булочка ещё не выбрана
-    .map(ingredient => ingredient._id);
+    .map(ingredient => ingredient!._id);
 
   
   

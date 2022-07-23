@@ -1,27 +1,27 @@
-import React from 'react';
+import React, { ChangeEvent, FormEvent, FunctionComponent } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { YandexPasswordInput } from 'yandex/yandex-password-input';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import {resetPasswordAction} from 'services/actions/actions';
 
 import styles from './page-reset-password.module.css';
 import { useAppDispatch, useAppSelector } from 'services/hooks';
+import { YandexButton } from 'yandex/yandex-button';
 
-function PageResetPassword () {
+export const PageResetPassword: FunctionComponent = () => {
     
     const [form, setForm] = React.useState({
         password: '',
         token: '',
     })
 
-    const onChange = e => {
-        setForm({...form, [e.target.name]:e.target.value});
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setForm({...form, [e.currentTarget.name]:e.currentTarget.value});
     };
     
     const dispatch = useAppDispatch();
 
-    const resetPassword = (event) => {
+    const resetPassword = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         dispatch(resetPasswordAction (form.password, form.token));
     };
@@ -56,7 +56,7 @@ function PageResetPassword () {
                             type={'text'}
                             placeholder="Введите код из письма" 
                             onChange={onChange} 
-                            icon={null}
+                            icon={undefined}
                             value={form.token} 
                             name={'token'} 
                             error={false}
@@ -66,13 +66,13 @@ function PageResetPassword () {
                     </div>
 
                     <div className={styles.button}>
-                        <Button 
+                        <YandexButton 
                             type="primary" 
                             size="medium" 
                             style={{ height: '56px' }} 
                             className="ml-1 mr-1 mb-1 mt-6">
                             Сохранить
-                        </Button>
+                        </YandexButton>
                     </div>
                 </div>
                 
