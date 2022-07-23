@@ -2,7 +2,6 @@ import React, { FunctionComponent } from 'react';
 
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './order-info.module.css';
-import { Interface } from 'readline';
 import { IIngredient } from 'utils/api';
 import { OrderStatus } from 'services/actions/wsActions';
 

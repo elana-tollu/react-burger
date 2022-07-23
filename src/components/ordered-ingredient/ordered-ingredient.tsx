@@ -1,15 +1,21 @@
-import React from 'react';
-import { useDrag, useDrop } from 'react-dnd';
-
-import { moveOrderItem, MOVE_ORDER_ITEM } from '../../services/actions/actions';
-
-
+import React, { FunctionComponent, PropsWithChildren } from 'react';
+import { ConnectDropTarget, useDrag, useDrop } from 'react-dnd';
+import { moveOrderItem } from '../../services/actions/actions';
 import { DragIcon, ConstructorElement }  from '@ya.praktikum/react-developer-burger-ui-components';
 
 import styles from './ordered-ingredient.module.css'
 import { useAppDispatch } from 'services/hooks';
+import { IIngredient } from 'utils/api';
 
-function OrderedIngredient (props) {
+interface IOrderedIngredientProps extends PropsWithChildren<any> {
+  ingredient: IIngredient;
+}
+
+interface IDragItem {
+  dropIndex: number;
+}
+
+export const OrderedIngredient: FunctionComponent<IOrderedIngredientProps> = (props) => {
     const currentIngredientIndex = props.index;
     const dispatch = useAppDispatch();
 
@@ -21,10 +27,10 @@ function OrderedIngredient (props) {
         }),
     });
 
-    const [{}, dropRef] = useDrop({
+    const [{}, dropRef]: [{}, ConnectDropTarget] = useDrop({
         accept: 'orderItem',
-        drop({dropIndex}) {
-          dispatch (moveOrderItem(dropIndex, currentIngredientIndex));
+        drop(item: IDragItem) {
+          dispatch (moveOrderItem(item.dropIndex, currentIngredientIndex));
         },
       }); 
 
@@ -42,15 +48,5 @@ function OrderedIngredient (props) {
         </section>
     )
 }
-
-//todo use IIngredient
-/* OrderedIngredient.propTypes = {
-    ingredient: PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired, 
-      price: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired
-    }).isRequired
-  }; */
 
 export default OrderedIngredient;
