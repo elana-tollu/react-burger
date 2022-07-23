@@ -1,10 +1,9 @@
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 
-import PageLogin from '../components/page-login/page-login.jsx';
+import PageLogin from '../components/page-login/page-login';
 import styles from './home.module.css';
 
-function Login() {
-  
+export const Login: FunctionComponent<{}> = () => {  
   return (
     <>
 

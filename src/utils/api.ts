@@ -1,4 +1,4 @@
-import { OrderStatus } from 'services/actions/wsActions';
+import { IFeedOrder, OrderStatus } from 'services/actions/wsActions';
 import { setTokens, getTokens, deleteTokens} from 'utils/auth';
 import { ITokens } from './types';
 
@@ -73,7 +73,7 @@ export interface IOrder {
 }
 
 type TOrderResponse = {
-  //todo
+  orders: IFeedOrder[];
 };
 
 export function loadOrder(orderNumber: string): Promise<TOrderResponse> {

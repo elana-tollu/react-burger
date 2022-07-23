@@ -10,7 +10,7 @@ import {
 
 import IngredientDetails from 'components/ingredient-details/ingredient-details';
 import styles from './home.module.css';
-import HomePage from 'pages/home.jsx';
+import HomePage from 'pages/home';
 import Modal from 'components/modal/modal';
 
 function IngredientPage() {

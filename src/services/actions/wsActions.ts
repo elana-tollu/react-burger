@@ -11,7 +11,6 @@ export interface IFeedOrder {
     status: OrderStatus;
     name: string;
     createdAt: string;
-    updatedAt: string;
     number: number;
 } 
 

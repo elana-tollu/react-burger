@@ -1,4 +1,4 @@
-import React, {useEffect, useState}  from 'react';
+import React, {useEffect, useState, FunctionComponent}  from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -13,13 +13,16 @@ import OrderInfo from 'components/order-info/order-info';
 import Modal from 'components/modal/modal';
 import Orders from './orders';
 import FeedPage from './feed';
-import { loadOrder } from 'utils/api';
+import { IIngredient, loadOrder } from 'utils/api';
 import { useAppSelector } from 'services/hooks';
 
+interface IOrderParams {
+    orderNumber: string;
+}
 
-function Order () {  
-    let { orderNumber } = useParams();
-    let location = useLocation();
+export const Order: FunctionComponent<{}> = () => { 
+    let { orderNumber } = useParams<IOrderParams>();
+    let location = useLocation<any>();
     let background = location.state && location.state.background;
 
     let history = useHistory();
@@ -28,7 +31,7 @@ function Order () {
     };
 
     const [orderFromStore, ingredients] = useAppSelector(store => [
-        store.orders.find(o => o.number === orderNumber), 
+        store.orders.find(o => o.number === parseInt(orderNumber)), 
         store.ingredients
     ]);
 
@@ -50,7 +53,7 @@ function Order () {
             )
     }
 
-    const burgerIngredients = order.ingredients.map(id => ingredients.find(ingredient => ingredient._id === id));
+    const burgerIngredients = order.ingredients.map(id => ingredients.find(ingredient => ingredient._id === id)!)
 
     const orderInfo =  
             <OrderInfo

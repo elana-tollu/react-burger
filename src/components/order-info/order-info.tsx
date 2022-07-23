@@ -6,7 +6,7 @@ import { IIngredient } from 'utils/api';
 import { OrderStatus } from 'services/actions/wsActions';
 
 interface IOrderInfoProps {
-    readonly orderId: string; 
+    readonly orderId: number; 
     readonly orderDate: string; 
     readonly orderTitle: string; 
     readonly orderIngredients: IIngredient[]; 

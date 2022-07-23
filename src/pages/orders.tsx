@@ -1,11 +1,9 @@
 import ProfileOrders from 'components/profile-orders/profile-orders';
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 
 import styles from './home.module.css';
 
-
-function Orders () {  
-  
+export const Orders: FunctionComponent<{}> = () => {  
   return (
     <div className={styles.app}>
       <ProfileOrders/>

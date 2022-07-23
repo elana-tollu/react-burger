@@ -6,8 +6,8 @@ import styles from './modal.module.css';
 
 const modalRoot = document.querySelector('#modals')!;
 interface IModalProps {
-    readonly title: string;
-    readonly children?: ReactNode;
+    readonly title?: string;
+    readonly children: ReactNode;
     readonly onClose: () => void;
 }
 
