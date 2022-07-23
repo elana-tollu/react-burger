@@ -41,7 +41,6 @@ function ProfileOrders () {
     }
 
     const orderCards = orders.map(order => {
-        const burgerIngredients = order.ingredients.map(id=> ingredients.find(ingredient => ingredient._id === id));
         return (
             <Link 
                 to={{
@@ -52,11 +51,7 @@ function ProfileOrders () {
                 key={order._id}
                 >
                 <OrderCard
-                    orderId={order.number} 
-                    orderDate={order.createdAt} 
-                    orderTitle={order.name} 
-                    orderStatus={order.status}
-                    orderIngredients={burgerIngredients}
+                    order={order} 
                 />
             </Link>
         );

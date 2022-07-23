@@ -34,6 +34,7 @@ function request<Req, Res>( method: 'GET' | 'POST' | 'PATCH', endpoint: string, 
 export interface IIngredient {
   _id: string;
   image: string; 
+  image_mobile: string;
   price: number;
   name: string;
   calories: number;
@@ -54,10 +55,14 @@ export function loadIngredientCards(): Promise<IIngredient[]> {
     });
 }
 
-type TOrder = {
-  number: number;
-  //todo
-};
+export interface IOrder {
+  readonly number: number;
+  readonly _id: string; 
+  readonly createdAt: string;
+  readonly name: string; 
+  readonly ingredients: IIngredient[]; 
+  readonly status: string;
+}
 
 type TOrderResponse = {
   //todo
@@ -72,7 +77,7 @@ type TSubmitOrderRequest = {
 };
 
 type TSubmitOrderResponse = {
-  order: TOrder;
+  order: IOrder;
 };
 
 export function submitOrder(ingredientIDs: string[]) {

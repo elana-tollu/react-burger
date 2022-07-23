@@ -1,6 +1,6 @@
 import React from 'react';
 
-import OrderFeed from 'components/order-feed/order-feed.jsx';
+import OrderFeed from 'components/order-feed/order-feed';
 import styles from './home.module.css';
 
 

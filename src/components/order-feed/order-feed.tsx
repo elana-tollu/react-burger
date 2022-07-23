@@ -21,9 +21,9 @@ function OrderFeed () {
         };
       }, []);
     
-    const [orders, ingredients] = useAppSelector(store => [store.orders, store.ingredients]);
+    const orders = useAppSelector(store => store.orders);
 
-    if(ingredients.length === 0 || orders.length === 0) {
+    if(orders.length === 0) {
         return (
             <p className="text text_type_main-large">
                 Информация о заказах в пути
@@ -32,7 +32,6 @@ function OrderFeed () {
     }
 
     const orderCards = orders.map(order => {
-        const burgerIngredients = order.ingredients.map(id => ingredients.find(ingredient => ingredient._id === id));
         return (
             <Link 
                 to={{
@@ -42,11 +41,8 @@ function OrderFeed () {
                 className={styles.link}
                 key={order._id}
                 >
-                <OrderCard
-                    orderId={order.number} 
-                    orderDate={order.createdAt} 
-                    orderTitle={order.name} 
-                    orderIngredients={burgerIngredients}
+                <OrderCard 
+                    order = {order} 
                 />
             </Link>
         );

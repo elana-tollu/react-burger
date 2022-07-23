@@ -10,7 +10,7 @@ import RegistrationPage from 'pages/register.jsx';
 import ForgotPasswordPage from 'pages/forgot-password.jsx';
 import ResetPasswordPage from 'pages/reset-password.jsx';
 import Orders from 'pages/orders.jsx';
-import FeedPage from 'pages/feed.jsx';
+import FeedPage from 'pages/feed';
 import NotFoundPage from 'pages/not-found.jsx';
 import ProtectedRoute from 'components/protected-route/protected-route.jsx';
 import AppHeader from '../app-header/app-header.jsx';
