@@ -1,8 +1,8 @@
 import React, { FunctionComponent, PropsWithChildren } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, RouteProps } from 'react-router-dom';
 import {isAuthenticated} from 'utils/auth';
 
-export const ProtectedRoute: FunctionComponent<PropsWithChildren<any>> = ({ children, ...rest }) => {
+export const ProtectedRoute: FunctionComponent<RouteProps> = ({ children, ...rest }) => {
     return (
       <Route
         {...rest}
