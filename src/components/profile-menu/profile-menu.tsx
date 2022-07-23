@@ -1,12 +1,9 @@
-import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
-import {  NavLink, useHistory } from 'react-router-dom';
+import {  NavLink } from 'react-router-dom';
 
 import styles from './profile-menu.module.css';
 
-function ProfileMenu () {
-    const history = useHistory();
-    
+function ProfileMenu () {  
     return (
         <section className={styles.body}>
             <ul className={styles.list}>
