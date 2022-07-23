@@ -10,7 +10,7 @@ import {
 
 import styles from './home.module.css';
 import OrderInfo from 'components/order-info/order-info';
-import Modal from 'components/modal/modal.jsx';
+import Modal from 'components/modal/modal';
 import Orders from './orders';
 import FeedPage from './feed';
 import { loadOrder } from 'utils/api';

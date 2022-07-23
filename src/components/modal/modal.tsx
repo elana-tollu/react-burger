@@ -1,22 +1,24 @@
-import { useEffect } from 'react';
+import { FunctionComponent, ReactNode, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-
-import ModalOverlay from '../modal-overlay/modal-overlay.jsx'
-
+import ModalOverlay from '../modal-overlay/modal-overlay'
 import styles from './modal.module.css';
 
-const modalRoot = document.querySelector('#modals');
+const modalRoot = document.querySelector('#modals')!;
+interface IModalProps {
+    readonly title: string;
+    readonly children?: ReactNode;
+    readonly onClose: () => void;
+}
 
-function Modal (props) {
+const Modal: FunctionComponent <IModalProps> = (props) => {
     
-    const handleClickClose = (event) => {
-        event.stopPropagation();
+    const handleClickClose = () => {
         props.onClose();
     };
 
     useEffect(() => {
-        const handleEscClose = (event) => {
+        const handleEscClose = (event: KeyboardEvent) => {
             if (event.key === 'Escape') {
                 props.onClose();
             }

@@ -4,10 +4,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 import image from 'images/orderIkon.png'
 import {Button, ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
-import OrderedIngredient from 'components/ordered-ingredient/ordered-ingredient.jsx'
-import Modal from 'components/modal/modal.jsx';
-import OrderDetails from 'components/order-details/order-details.jsx';
-import { ADD_INGREDIENT, deleteIngredient, addIngredient, hideOrderNumber, HIDE_ORDER_NUMBER, submitOrderAction } from '../../services/actions/actions';
+import OrderedIngredient from 'components/ordered-ingredient/ordered-ingredient'
+import Modal from 'components/modal/modal';
+import OrderDetails from 'components/order-details/order-details';
+import { deleteIngredient, addIngredient, hideOrderNumber, submitOrderAction } from '../../services/actions/actions';
 import {isAuthenticated} from 'utils/auth';
 
 import styles from './burger-constructor.module.css';

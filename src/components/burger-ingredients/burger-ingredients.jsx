@@ -22,12 +22,5 @@ function BurgerIngredients () {
   );
 }
 
-//todo use IIngredient
-/* BurgerIngredients.propTypes = {
-  data: PropTypes.arrayOf(
-    INGREDIENT_TYPE
-  )
-}; */
-
 export default BurgerIngredients;
 
