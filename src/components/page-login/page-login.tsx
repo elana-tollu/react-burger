@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, FunctionComponent, FormEventHandler} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { YandexEmailInput } from 'yandex/yandex-email-input';
@@ -8,12 +8,12 @@ import { login } from 'utils/api';
 
 import styles from './page-login.module.css';
 
-function PageLogin () {
+export const PageLogin: FunctionComponent<{}> = () => {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [isLoading, setLoading] = useState(false);
     
-    const submit = (event) => {
+    const submit: FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault();
         setLoading(true);
         login(email, password)
@@ -40,10 +40,10 @@ function PageLogin () {
                         <p className="text text_type_main-medium">Вход</p>
                     </h1>
                     <div className={styles.input}>
-                        <YandexEmailInput value = {email} onChange = {e => setEmail(e.target.value)}/>
+                        <YandexEmailInput placeholder = "e-mail" name = "email" value = {email} onChange = {e => setEmail(e.target.value)}/>
                     </div>
                     <div className={styles.input}>
-                        <YandexPasswordInput value = {password} onChange = {e => setPassword(e.target.value)}/>
+                        <YandexPasswordInput placeholder = "Пароль" name = "password" value = {password} onChange = {e => setPassword(e.target.value)}/>
                     </div>
 
                     <div className={styles.button}>
