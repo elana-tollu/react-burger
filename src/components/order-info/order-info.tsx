@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './order-info.module.css';
+import { Interface } from 'readline';
+import { IIngredient } from 'utils/api';
+import { OrderStatus } from 'services/actions/wsActions';
 
-function OrderInfo ({orderId, orderDate, orderTitle, orderIngredients, orderStatus}) { 
+interface IOrderInfoProps {
+    readonly orderId: string; 
+    readonly orderDate: string; 
+    readonly orderTitle: string; 
+    readonly orderIngredients: IIngredient[]; 
+    readonly orderStatus: OrderStatus;
+}
+
+export const OrderInfo: FunctionComponent<IOrderInfoProps> = ({orderId, orderDate, orderTitle, orderIngredients, orderStatus}) => { 
 
     const ingredientCounts = countIngredients(orderIngredients);
     const uniqueIngredients = Object.keys(ingredientCounts).map(id => orderIngredients.find( ing => ing._id === id));
     
     const ingredients = uniqueIngredients.map(ingredient => 
+        ingredient &&
         <li className={styles.orderIngredient} key = {ingredient._id}>
             <img src={ingredient.image_mobile} className={styles.image}/>
             <p className="text text_type_main-default text_color_primary pr-8">{ingredient.name}</p>
@@ -48,7 +60,7 @@ function OrderInfo ({orderId, orderDate, orderTitle, orderIngredients, orderStat
   
 export default OrderInfo;
 
-function formatOrderStatus(orderStatus) {
+function formatOrderStatus(orderStatus: OrderStatus) {
     if (orderStatus === 'done') {
         return 'Выполнен';
     } 
@@ -64,8 +76,8 @@ function formatOrderStatus(orderStatus) {
     return 'Неизвестный статус: ' + orderStatus;
 }
 
-function countIngredients(ingredients) {
-    let result = {};
+function countIngredients(ingredients: IIngredient[]) {
+    let result: {[key:string] : number} = {};
     for (const ingredient of ingredients) {
         const id = ingredient._id;
         const currentCount = result[id];
