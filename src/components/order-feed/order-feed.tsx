@@ -3,21 +3,16 @@ import { Link, useLocation } from 'react-router-dom';
 import styles from './order-feed.module.css';
 import OrderCard from 'components/order-card/order-card';
 import Statistics from 'components/statistics/statistics';
-import {WS_CLOSE, WS_START } from 'services/actions/wsActions';
+import {wsClose, wsStart } from 'services/actions/wsActions';
 import { useAppDispatch, useAppSelector } from 'services/hooks';
 
 function OrderFeed () {
     const location = useLocation();
     const dispatch = useAppDispatch();
     useEffect(() => {
-        dispatch ({
-            type: WS_START,
-            url: 'wss://norma.nomoreparties.space/orders/all',
-        })
+        dispatch (wsStart('wss://norma.nomoreparties.space/orders/all'))
         return () => {
-            dispatch ({
-                type: WS_CLOSE,
-            })
+            dispatch (wsClose())
         };
       }, []);
     

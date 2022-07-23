@@ -28,6 +28,28 @@ export interface IOrdersData {
     orders: IFeedOrder[];
 }
 
+export interface IWsStart {
+    readonly type: typeof WS_START;
+    readonly url: string;
+}
+
+export function wsStart (url: string): IWsStart {
+    return {
+        type: WS_START,
+        url
+    }
+}
+
+export interface IWsClose {
+    readonly type: typeof WS_CLOSE;
+}
+
+export function wsClose (): IWsClose {
+    return {
+        type: WS_CLOSE
+    }
+}
+
 export interface IWsMessage {
     readonly type: typeof WS_MESSAGE;
     readonly data: IOrdersData;
@@ -47,14 +69,3 @@ export const wsActions = {
     onerror :  WS_ERROR,
     onmessage : WS_MESSAGE
 };
-
-/*{
-     action.data.total || 0,
-    action.data.totalToday || 0,
-     action.data.orders.sort((a, b)=> {
-        if (a.createdAt < b.createdAt) {
-            return 1;
-        }
-        return -1;
-    }),
-}*/

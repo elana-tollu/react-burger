@@ -1,3 +1,4 @@
+import { OrderStatus } from 'services/actions/wsActions';
 import { setTokens, getTokens, deleteTokens} from 'utils/auth';
 import { ITokens } from './types';
 
@@ -41,7 +42,6 @@ export interface IIngredient {
   proteins: number;
   fat: number;
   carbohydrates: number;
-
 }
 
 type IIngredientResponse = {
@@ -55,13 +55,20 @@ export function loadIngredientCards(): Promise<IIngredient[]> {
     });
 }
 
+interface IXXX {
+
+  ingredients: string[];
+
+
+} 
+
 export interface IOrder {
   readonly number: number;
   readonly _id: string; 
   readonly createdAt: string;
   readonly name: string; 
   readonly ingredients: IIngredient[]; 
-  readonly status: string;
+  readonly status: OrderStatus;
 }
 
 type TOrderResponse = {

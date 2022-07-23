@@ -1,7 +1,7 @@
 
 import { v4 as uuidv4 } from 'uuid';
 import { loadIngredientCards, submitOrder, register, forgotPassword, resetPassword, IIngredient, IUser } from 'utils/api';
-import { IWsMessage } from './wsActions';
+import { IWsClose, IWsMessage, IWsStart } from './wsActions';
 
 export const LOAD_INGREDIENTS_REQUEST: 'LOAD_INGREDIENTS_REQUEST' = 'LOAD_INGREDIENTS_REQUEST';
 export const LOAD_INGREDIENTS_SUCCESS: 'LOAD_INGREDIENTS_SUCCESS' = 'LOAD_INGREDIENTS_SUCCESS';
@@ -328,4 +328,6 @@ export type TAction =
     | IResetPasswordRequest
     | IResetPasswordSuccess
     | IResetPasswordError
-    | IWsMessage;
+    | IWsStart
+    | IWsMessage
+    | IWsClose;
