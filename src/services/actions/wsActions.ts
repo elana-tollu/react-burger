@@ -61,7 +61,22 @@ export function wsMessage (data: IOrdersData): IWsMessage {
     }
 }
 
-export const wsActions = {
+export type TWsActionType = 
+    | typeof WS_START 
+    | typeof WS_CLOSE 
+    | typeof WS_ERROR 
+    | typeof WS_MESSAGE 
+    | typeof WS_SUCCESS;
+
+export interface IWsActions {
+    start :  TWsActionType;
+    close: TWsActionType;
+    onsuccess: TWsActionType;
+    onerror :  TWsActionType;
+    onmessage : TWsActionType;
+}
+
+export const wsActions: IWsActions = {
     start :  WS_START,
     close: WS_CLOSE,
     onsuccess: WS_SUCCESS,

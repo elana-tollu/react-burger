@@ -1,7 +1,5 @@
 import {Link, useLocation} from 'react-router-dom';
 import { ConnectDropTarget, useDrop } from 'react-dnd';
-import { v4 as uuidv4 } from 'uuid';
-
 import image from 'images/orderIkon.png'
 import {Button, ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
 import OrderedIngredient from 'components/ordered-ingredient/ordered-ingredient'
