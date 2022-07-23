@@ -42,6 +42,7 @@ export interface IIngredient {
   proteins: number;
   fat: number;
   carbohydrates: number;
+  type: string;
 }
 
 type IIngredientResponse = {
